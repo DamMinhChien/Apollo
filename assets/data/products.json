@@ -1,0 +1,239 @@
+[
+    {
+        "id": 1,
+        "title": "Áo ba lỗ",
+        "versions": [
+            {
+                "price": "200000₫",
+                "color": "Cam",
+                "img_path": "./assets/images/best-seller/orange-1.jpg"
+            },
+            {
+                "price": "190000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/black-1.jpg"
+            },
+            {
+                "price": "210000₫",
+                "color": "Trắng",
+                "img_path": "./assets/images/best-seller/white-1.jpg"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Áo thun phong cách",
+        "versions": [
+            {
+                "price": "149000₫",
+                "color": "Nâu",
+                "img_path": "./assets/images/best-seller/brown-2.jpg"
+            },
+            {
+                "price": "154000₫",
+                "color": "Tím",
+                "img_path": "./assets/images/best-seller/purple.jpg"
+            },
+            {
+                "price": "148000₫",
+                "color": "Xanh Nhạt",
+                "img_path": "./assets/images/best-seller/green.jpg"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Áo phông logo lớn",
+        "versions": [
+            {
+                "price": "200000₫",
+                "color": "Trắng",
+                "img_path": "./assets/images/best-seller/white-2.jpg"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Áo thun Unisex",
+        "versions": [
+            {
+                "price": "290000₫",
+                "color": "Trắng",
+                "img_path": "./assets/images/best-seller/white-3.jpg"
+            },
+            {
+                "price": "299000₫",
+                "color": "Tím",
+                "img_path": "./assets/images/best-seller/purple-2.jpg"
+            },
+            {
+                "price": "280000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/black-2.jpg"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Áo thun vải lanh cổ chữ V",
+        "versions": [
+            {
+                "price": "439000₫",
+                "color": "Nâu",
+                "img_path": "./assets/images/best-seller/brown-3.jpg"
+            },
+            {
+                "price": "445000₫",
+                "color": "Trắng",
+                "img_path": "./assets/images/best-seller/white-4.jpg"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Áo Sweater ấm áp",
+        "versions": [
+            {
+                "price": "739000₫",
+                "color": "Xanh Nhạt",
+                "img_path": "./assets/images/best-seller/light-green-2.jpg"
+            },
+            {
+                "price": "725000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/black-3.jpg"
+            },
+            {
+                "price": "749000₫",
+                "color": "Xanh Dương",
+                "img_path": "./assets/images/best-seller/blue.jpg"
+            },
+            {
+                "price": "740000₫",
+                "color": "Xanh Đậm",
+                "img_path": "./assets/images/best-seller/dark-blue.jpg"
+            },
+            {
+                "price": "739000₫",
+                "color": "Trắng",
+                "img_path": "./assets/images/best-seller/white-6.jpg"
+            },
+            {
+                "price": "735000₫",
+                "color": "Xám",
+                "img_path": "./assets/images/best-seller/light-grey.jpg"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Áo sơ mi Oxford vừa vặn",
+        "versions": [
+            {
+                "price": "980000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/black-4.jpg"
+            },
+            {
+                "price": "970000₫",
+                "color": "Xanh Đậm",
+                "img_path": "./assets/images/best-seller/dark-blue-2.jpg"
+            },
+            {
+                "price": "990000₫",
+                "color": "Be",
+                "img_path": "./assets/images/best-seller/beige.jpg"
+            },
+            {
+                "price": "985000₫",
+                "color": "Xanh Nhạt",
+                "img_path": "./assets/images/best-seller/light-blue.jpg"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Áo hoodie form rộng",
+        "versions": [
+            {
+                "price": "700000₫",
+                "color": "Trắng",
+                "img_path": "./assets/images/best-seller/white-6.jpg"
+            },
+            {
+                "price": "690000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/black-5.jpg"
+            },
+            {
+                "price": "710000₫",
+                "color": "Xanh Dương",
+                "img_path": "./assets/images/best-seller/blue-2.jpg"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Khăn choàng hoa văn",
+        "versions": [
+            {
+                "price": "95000₫",
+                "color": "Nâu",
+                "img_path": "./assets/images/best-seller/brown-4.jpg"
+            },
+            {
+                "price": "105000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/black-6.jpg"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Áo len cổ lọ",
+        "versions": [
+            {
+                "price": "340000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/black-9.jpg"
+            },
+            {
+                "price": "355000₫",
+                "color": "Trắng",
+                "img_path": "./assets/images/best-seller/white-9.jpg"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Áo phông mỏng thoáng mát",
+        "versions": [
+            {
+                "price": "199000₫",
+                "color": "Xám",
+                "img_path": "./assets/images/best-seller/grey-2.jpg"
+            },
+            {
+                "price": "205000₫",
+                "color": "Hồng",
+                "img_path": "./assets/images/best-seller/pink-1.jpg"
+            },
+            {
+                "price": "190000₫",
+                "color": "Hồng Nhạt",
+                "img_path": "./assets/images/best-seller/light-pink.jpg"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Áo lót",
+        "versions": [
+            {
+                "price": "89000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/black-11.jpg"
+            }
+        ]
+    }
+]

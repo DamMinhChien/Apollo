@@ -1,0 +1,225 @@
+<div id="categories-carousel" class="carousel slide col-xl-9 col-md-8 col-6"
+                            data-bs-ride="carousel">
+                            <div class="carousel-inner d-flex flex-nowrap">
+                                <div class="carousel-item active d-block">
+                                    <div class="card">
+                                        <div class="card-list">
+                                            <a href="" class="overflow-hidden"><img class="card-img-top d-block w-100"
+                                                    src="./assets/images/categories/collection-17.jpg" alt="img"></a>
+                                        </div>
+                                        <div class="card-body position-absolute">
+                                            <button
+                                                class="btn btn-dark fw-bold animate__animated animate__fadeIn animate__delay-2s"><span>Hàng
+                                                    mới</span><i class="bi bi-arrow-right-short"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item d-block">
+                                    <div class="card">
+                                        <div class="card-list">
+                                            <a href="" class="overflow-hidden"><img class="card-img-top d-block w-100"
+                                                    src="./assets/images/categories/collection-17.jpg" alt="img"></a>
+                                        </div>
+                                        <div class="card-body position-absolute">
+                                            <button
+                                                class="btn btn-dark fw-bold animate__animated animate__fadeIn animate__delay-2s"><span>Hàng
+                                                    mới</span><i class="bi bi-arrow-right-short"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="all-categories col-xl-3 col-md-4 col-6">
+
+
+<div class="categories-body">
+                <div class="container">
+                    <div class="row">
+                        <div id="categories-carousel" class="carousel slide">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="card">
+                                        <div class="img-wrapper">
+                                            <img src="./assets/images/categories/collection-17.jpg" class="card-img-top"
+                                                alt="img">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="card">
+                                        <div class="img-wrapper">
+                                            <img src="./assets/images/categories/collection-14.jpg" class="card-img-top"
+                                                alt="img">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="card">
+                                        <div class="img-wrapper">
+                                            <img src="./assets/images/categories/collection-15.jpg" class="card-img-top"
+                                                alt="img">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="card">
+                                        <div class="img-wrapper">
+                                            <img src="./assets/images/categories/collection-15.jpg" class="card-img-top"
+                                                alt="img">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="card">
+                                        <div class="img-wrapper">
+                                            <img src="./assets/images/categories/collection-15.jpg" class="card-img-top"
+                                                alt="img">
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Card title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and
+                                                make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#categories-carousel"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#categories-carousel"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+-----------------------------------------Navbar rác-----------------------------------------------------------------
+<script>
+    $(function () {
+        let isRegister = false;
+
+        // Hiển thị modal khi nhấn vào biểu tượng tài khoản
+        $(document).on("click", "#account", function (e) {
+            e.preventDefault();
+            $("#loginModal").modal("show");
+        });
+
+        // Hiển thị/ẩn mật khẩu
+        $(document).on("click", ".toggle-password", function () {
+            const passwordInput = $(this).siblings("input");
+            const type = passwordInput.attr("type") === "password" ? "text" : "password";
+            passwordInput.attr("type", type);
+            $(this).toggleClass("bi-eye-fill bi-eye-slash-fill");
+        });
+    });
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4">
+            <div class="modal-body p-0">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-xl navbar-light bg-light fixed-top">
+    <div class="container-fluid px-3">
+        <!-- Nút toggle cho mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Logo / Brand -->
+        <a class="navbar-brand" href="index.html">
+            <img src="./assets/images/logo/logo.svg" alt="Logo" width="272px" height="42px">
+        </a>
+
+        <!-- Nội dung Navbar -->
+        <div class="collapse navbar-collapse px-5" id="navbarNav">
+            <ul class="navbar-nav m-auto gap-4">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1" href="./index.html">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1" href="./index.html">Cửa hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1" href="./index.html">Sản phẩm</a>
+                </li>
+
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link  nav-link-1 dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Danh Mục
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Áo</a></li>
+                        <li><a class="dropdown-item" href="#">Quần</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Phụ Kiện</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1" href="#">Về chúng tôi</a>
+                </li>
+            </ul>
+
+            <!-- Icon bên phải -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i class="bi bi-search"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" id="account" class="nav-link"><i class="bi bi-person-fill"></i></a>
+                </li>
+                <li class="nav-item position-relative">
+                    <a href="#" class="nav-link d-inline-block"><i class="bi bi-cart"></i></a>
+                    <span class="badge bg-danger position-absolute rounded-pill">4</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+
+</style>

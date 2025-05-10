@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="./assets/images/logo/favicon.png">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./assets/css/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <script src="./assets/js/colorMap.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        #checkout-box {
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<script>
+    let cards = []
+    $(function () {
+        $("header").load("navbar.html")
+        $("footer").load("footer.html")
+        $(".footer-bottom").load("footer-bottom.html")
+        $("#progress").click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 10);
+        })
+        ShowNavbarWhenScroll()
+        zoom()
+        //Lưu data
+
+        //Lấy dữ liệu Card từ file Json
+        $.ajax({
+            url: "./assets/data/products.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                cards = data; // Lưu dữ liệu sản phẩm
+                renderCards(cards); // Gọi hàm render sản phẩm
+            },
+            error: function (xhr, status, error) {
+                $("body").prepend(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Lỗi: </strong> ${error}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>`);
+            }
+        });
+
+        $(".categories-btn").click(function () {
+            window.location.href = "./best-seller.html"
+        })
+
+        //Owl Carousel
+        $(".feedback-carousel").owlCarousel({
+            loop: true,
+            margin: 20,
+            nav: true,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: { items: 1 },
+                600: { items: 2 },
+                1000: { items: 3 }
+            }
+        });
+
+        $(".categories-carousel").owlCarousel({
+            loop: false,
+            margin: 20,
+            nav: false,
+            dots: true,
+            autoplay: false,
+            autoplayTimeout: false,
+            autoplayHoverPause: true,
+            responsive: {
+                0: { items: 1 },
+                600: { items: 2 },
+                1000: { items: 3 }
+            }
+        });
+        var owl = $(".categories-carousel")
+        $("#categories-prev").click(function () {
+            owl.trigger('prev.owl.carousel');
+        })
+        $("#categories-next").click(function () {
+            owl.trigger('next.owl.carousel');
+        })
+    })
+    function ShowNavbarWhenScroll() {
+        var previousScroll = 0
+        $(window).scroll(function () {
+            var currentScroll = $(this).scrollTop();
+            if (currentScroll > previousScroll) {
+                // Cuộn xuống: ẩn navbar
+                $('.navbar').stop()
+                $('.navbar').slideUp(1000, "linear");
+            } else {
+                // Cuộn lên: hiện navbar
+                $('.navbar').stop()
+                $('.navbar').slideDown(100, "linear");
+            }
+
+            previousScroll = currentScroll; // Cập nhật vị trí cuộn trước đó
+        })
+    }
+
+    function calcScrollValue() {
+        let pos = $(document).scrollTop() //Vị trí hiện tại
+        let calcHeight = $(document).height() - $(window).height();
+        let scrollValue = Math.round((pos / calcHeight) * 100); // tỷ lệ % vị trí hiện tại so với tài liệu
+
+        if (pos > 100) {
+            $("#progress").fadeIn()
+        }
+        else {
+            $("#progress").fadeOut()
+        }
+        $("#progress").css("background", `conic-gradient( #001a2e ${scrollValue}%, #f8f9fa ${scrollValue}%)`)
+    }
+
+    $(window).on("scroll", calcScrollValue);
+    $(window).on("load", calcScrollValue);
+    //Xử lý dấu + và -
+    $(document).on("click", ".footer-heading button.collapse-toggle", function () {
+        let icon = $(this).find("i");
+        let isExpanded = $(this).attr("aria-expanded") === "true"
+        // Kiểm tra icon hiện tại và thay đổi nó
+        if (isExpanded) {
+            icon.removeClass("bi-plus-lg").addClass("bi-dash-lg")
+        }
+        else {
+            icon.removeClass("bi-dash-lg").addClass("bi-plus-lg")
+        }
+    })
+
+    //Hàm render Cards vào DOM
+    function renderCards(cards) {
+        let html = `
+            <div class="fw-bold row align-items-center mb-3 product-row" style="background-color: #f8f9fa; border-radius: 10px; padding: 1rem;">
+                <div class="col-1"></div>
+                <div class="col-3">Hình ảnh</div>
+                <div class="col-2">Tên sản phẩm</div>
+                <div class="col-2">Giá</div>
+                <div class="col-2">Số lượng</div>
+                <div class="col-1">Tổng tiền</div>
+            </div>
+        `;
+
+        cards.forEach((item, index) => {
+            // Lấy phiên bản đầu tiên làm mặc định
+            let defaultVersion = item.versions[0];
+            let quantity = 1;
+
+            html += `
+            
+            <div class="row align-items-center mb-3 product-row" data-id="${item.id}">
+                <div class="col-1">
+                    <div class="form-check">
+                        <input class="form-check-input bg-danger product-check" type="checkbox" value="${item.id}" id="check${index}">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <img src="${defaultVersion.img_path}" style="height: 10rem; object-fit: cover;" class="img-thumbnail" alt="${item.title}" id="product-img-${item.id}">
+                </div>
+                <div class="col-2">
+                    <p>${item.title}</p>
+                    <select class="form-select form-select-sm color-select" data-id="${item.id}">
+                        ${item.versions.map(v => `<option value="${v.color}" ${v.color === defaultVersion.color ? 'selected' : ''}>${v.color}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="col-2">
+                    <p class="price m-0" id="product-price-${item.id}">${defaultVersion.price}</p>
+                </div>
+                <div class="col-2">
+                    <div class="d-flex">
+                        <button class="btn btn-outline-secondary btn-sm me-2 btn-decrease">-</button>
+                        <input type="number" class="form-control form-control-sm text-center quantity-input" value="${quantity}" min="1">
+                        <button class="btn btn-outline-secondary btn-sm ms-2 btn-increase">+</button>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <p class="total-price m-0" id="total-price-${item.id}">${(parseInt(defaultVersion.price.replace('₫', '').replace(',', '')) * quantity).toLocaleString()}₫</p>
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-danger btn-sm btn-delete">Xóa</button>
+                </div>
+            </div>
+        `;
+        });
+
+        $('#product-section').html(html);
+        attachEventHandlers();
+    }
+
+    // Hàm gắn sự kiện
+    function attachEventHandlers() {
+        $('#product-section').on('click', '.btn-delete', function () {
+            if (confirm(`Bạn có chắc chắn muốn xóa sản phẩm này không?`)) {
+                $(this).closest('.product-row').remove();
+            }
+        });
+
+        $('#product-section').on('click', '.btn-increase', function () {
+            let quantityInput = $(this).siblings('.quantity-input');
+            let quantity = parseInt(quantityInput.val());
+            quantityInput.val(quantity + 1);
+            updateTotalPrice($(this).closest('.product-row'));
+            updateTotalAmount();
+        });
+
+        $('#product-section').on('click', '.btn-decrease', function () {
+            let quantityInput = $(this).siblings('.quantity-input');
+            let quantity = parseInt(quantityInput.val());
+            if (quantity > 1) {
+                quantityInput.val(quantity - 1);
+                updateTotalPrice($(this).closest('.product-row'));
+            }
+            updateTotalAmount();
+        });
+
+        $('#product-section').on('change', '.quantity-input', function () {
+            updateTotalPrice($(this).closest('.product-row'));
+        });
+
+        $('#product-section').on('change', '.color-select', function () {
+            let selectedColor = $(this).val();
+            let productId = $(this).data('id');
+            let productRow = $(this).closest('.product-row');
+            updateSelectedColor(productRow, selectedColor, productId);
+        });
+    }
+
+    // Hàm cập nhật màu sắc được chọn
+    function updateSelectedColor(row, selectedColor, productId) {
+        let product = cards.find(item => item.id == productId);
+        if (!product) {
+            console.error('Product not found for ID:', productId);
+            return;
+        }
+
+        let selectedVersion = product.versions.find(v => v.color === selectedColor);
+        if (!selectedVersion) {
+            console.error('Version not found for color:', selectedColor);
+            return;
+        }
+
+        // Cập nhật ảnh
+        row.find('img').attr('src', selectedVersion.img_path);
+        // Cập nhật giá
+        row.find('.price').text(selectedVersion.price);
+        // Cập nhật tổng tiền
+        let quantity = parseInt(row.find('.quantity-input').val()) || 1;
+        let price = parseInt(selectedVersion.price.replace('₫', '').replace(',', ''));
+        let totalPrice = price * quantity;
+
+        row.find('.total-price').text(totalPrice.toLocaleString() + '₫');
+    }
+
+    // Hàm cập nhật tổng tiền khi thay đổi số lượng
+    function updateTotalPrice(row) {
+        let quantity = parseInt(row.find('.quantity-input').val()) || 1;
+        if (quantity < 1) {
+            quantity = 1;
+            row.find('.quantity-input').val(1);
+        }
+        let price = parseInt(row.find('.price').text().replace('₫', '').replace(',', '')) || 0;
+        let totalPrice = price * quantity;
+
+        row.find('.total-price').text(totalPrice.toLocaleString() + '₫');
+    }
+    function zoom() {
+        $("#card-list img, .card-list img").hover(
+            function () {
+                $(this).css({
+                    "transform": "scale(1.2)",
+                    "transition": "2s ease"
+                })
+            }, function () {
+                $(this).css({
+                    "transform": "scale(1)",
+                    "transition": "0.5s ease"
+                })
+            })
+    }
+    $(document).ready(function () {
+        // Sự kiện "Chọn tất cả"
+        $('#check-all').on('change', function () {
+            const isChecked = $(this).is(':checked');
+            $('.product-check').prop('checked', isChecked); // Đặt trạng thái cho tất cả checkbox sản phẩm
+            updateTotalAmount(); // Cập nhật tổng tiền
+        });
+
+        // Sự kiện khi chọn/deselect từng sản phẩm
+        $('#product-section').on('change', '.product-check', function () {
+            const allChecked = $('.product-check').length === $('.product-check:checked').length;
+            $('#check-all').prop('checked', allChecked); // Cập nhật trạng thái của "Chọn tất cả"
+            updateTotalAmount(); // Cập nhật tổng tiền
+        });
+
+    });
+
+    // Hàm tính tổng tiền
+    function updateTotalAmount() {
+        let totalAmount = 0;
+
+        // Duyệt qua tất cả các sản phẩm được chọn
+        $('.product-check:checked').each(function () {
+            const productRow = $(this).closest('.product-row'); // Lấy hàng sản phẩm
+            const totalPrice = parseInt(productRow.find('.total-price').text().replace('₫', '').replace('.', '')) || 0;
+            //console.log(productRow.find('.total-price').text().replace('₫', '').replace(',', ''))
+            totalAmount += totalPrice; // Cộng tổng tiền
+        });
+
+        // Hiển thị tổng tiền
+        $('#total-amount').text(totalAmount.toLocaleString() + '₫');
+    }
+</script>
+
+<body>
+    <div id="wrapper" class="text-dark">
+        <!--Menu-->
+        <header></header>
+        <!--Content-->
+
+        <div class="container" style="margin-top: 8rem;">
+            <div class="flat-title flat-title-gradient text-center p-3">
+                <h1>Giỏ hàng</h1>
+                <p>Mua sắm tha ga với mức giá phải chăng</p>
+            </div>
+        </div>
+
+        <section class="container my-3 p-2" id="product-section">
+            <!-- Sản phẩm sẽ được jQuery render vào đây -->
+        </section>
+        <!-- Ô thanh toán sticky -->
+        <div id="checkout-box" class="bg-light shadow p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <label for="check-all"><input class="form-check-input bg-danger" type="checkbox" id="check-all"> Chọn
+                    tất cả sản phẩm</label>
+                <p class="m-0">Tổng tiền: <span id="total-amount">0₫</span></p>
+                <button class="btn btn-primary">Thanh toán</button>
+            </div>
+        </div>
+        <!--------------------------------------------------Footer---------------------------------------------------------->
+        <hr>
+        <footer class="mx-3 my-5"></footer>
+        <!--------------------------------------------------Bottom Footer---------------------------------------------------------->
+        <hr>
+        <div class="footer-bottom my-4"></div>
+        <!--------------------------------------------------Scroll To Top Button---------------------------------------------------------->
+        <div id="progress">
+            <span id="progress-value"><i class="bi bi-chevron-up"></i></span>
+        </div>
+    </div>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

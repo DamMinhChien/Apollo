@@ -155,4 +155,19 @@
     <div class="footer-bottom">
 
     </div>
+    <script>
+        //Xử lý dấu + và -
+        $(document).on("click", ".footer-heading button.collapse-toggle", function () {
+            let icon = $(this).find("i");
+            let isExpanded = $(this).attr("aria-expanded") === "true"
+            // Kiểm tra icon hiện tại và thay đổi nó
+            if (isExpanded) {
+                icon.removeClass("bi-plus-lg").addClass("bi-dash-lg")
+            }
+            else {
+                icon.removeClass("bi-dash-lg").addClass("bi-plus-lg")
+            }
+        })
+
+    </script>
 </div>

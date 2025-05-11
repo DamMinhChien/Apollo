@@ -131,19 +131,6 @@
 
     $(window).on("scroll", calcScrollValue);
     $(window).on("load", calcScrollValue);
-    //Xử lý dấu + và -
-    $(document).on("click", ".footer-heading button.collapse-toggle", function () {
-        let icon = $(this).find("i");
-        let isExpanded = $(this).attr("aria-expanded") === "true"
-        // Kiểm tra icon hiện tại và thay đổi nó
-        if (isExpanded) {
-            icon.removeClass("bi-plus-lg").addClass("bi-dash-lg")
-        }
-        else {
-            icon.removeClass("bi-dash-lg").addClass("bi-plus-lg")
-        }
-    })
-
     //Hàm render Cards vào DOM
     function renderCards(cards) {
         let cardList = $("#card-list")
@@ -230,7 +217,7 @@
 <div class="align-content-center"></div>
 
 <body>
-    <div id="wrapper" class="text-dark">
+    <div id="wrapper">
         <!--Menu-->
         <header></header>
         <!--Content-->

@@ -77,26 +77,51 @@
                     "background-image": "url('./assets/images/cartoon/night.png')",
                     "background-position": "left"
                 })
+                $(".navbar-brand img").attr("src", "./assets/images/logo/logo-dark.svg")
             }
             else {
                 $(this).css({
                     "background-image": "url('./assets/images/cartoon/day.png')",
                     "background-position": "right"
                 })
+                $(".navbar-brand img").attr("src", "./assets/images/logo/logo.svg")
             }
             toggleTheme()
         })
     })
     function toggleTheme() {
-        const $body = $('body');
-        let theme = $body.attr('data-bs-theme');
+        const $html = $('html');
+        let theme = $html.attr('data-bs-theme');
 
         if (!theme) {
             theme = 'light';
-            $body.attr('data-bs-theme', theme);
+            $html.attr('data-bs-theme', theme);
         }
 
-        $body.attr('data-bs-theme', theme === 'dark' ? 'light' : 'dark');
+        // Chuyển đổi giữa Light và Dark Mode
+        theme = theme === 'dark' ? 'light' : 'dark';
+        $html.attr('data-bs-theme', theme);
+
+        // Lưu trạng thái vào localStorage
+        localStorage.setItem('theme', theme);
     }
 
+    // Kiểm tra trạng thái Dark Mode khi tải trang
+    $(document).ready(function () {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        $('html').attr('data-bs-theme', savedTheme);
+
+        // Cập nhật trạng thái nút toggle
+        if (savedTheme === 'dark') {
+            $(".toggle-button").addClass("active").css({
+                "background-image": "url('./assets/images/cartoon/night.png')",
+                "background-position": "left"
+            });
+        } else {
+            $(".toggle-button").removeClass("active").css({
+                "background-image": "url('./assets/images/cartoon/day.png')",
+                "background-position": "right"
+            });
+        }
+    });
 </script>

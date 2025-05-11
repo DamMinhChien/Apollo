@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="./assets/images/logo/favicon.png">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./assets/css/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <script src="./assets/js/colorMap.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<script>
+    $(function () {
+        $("header").load("navbar.html")
+        $("footer").load("footer.html")
+        $(".footer-bottom").load("footer-bottom.html")
+        $("#progress").click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 10);
+        })
+        ShowNavbarWhenScroll()
+    })
+    function ShowNavbarWhenScroll() {
+        var previousScroll = 0
+        $(window).scroll(function () {
+            var currentScroll = $(this).scrollTop();
+            if (currentScroll > previousScroll) {
+                // Cuộn xuống: ẩn navbar
+                $('.navbar').stop()
+                $('.navbar').slideUp(1000, "linear");
+            } else {
+                // Cuộn lên: hiện navbar
+                $('.navbar').stop()
+                $('.navbar').slideDown(100, "linear");
+            }
+
+            previousScroll = currentScroll; // Cập nhật vị trí cuộn trước đó
+        })
+    }
+
+    function calcScrollValue() {
+        let pos = $(document).scrollTop() //Vị trí hiện tại
+        let calcHeight = $(document).height() - $(window).height();
+        let scrollValue = Math.round((pos / calcHeight) * 100); // tỷ lệ % vị trí hiện tại so với tài liệu
+
+        if (pos > 100) {
+            $("#progress").fadeIn()
+        }
+        else {
+            $("#progress").fadeOut()
+        }
+        $("#progress").css("background", `conic-gradient( #001a2e ${scrollValue}%, #f8f9fa ${scrollValue}%)`)
+    }
+
+    $(window).on("scroll", calcScrollValue);
+    $(window).on("load", calcScrollValue);
+
+</script>
+
+<body>
+    <div id="wrapper" class="text-dark">
+        <!--Menu-->
+        <header></header>
+        <!--Content-->
+        <div class="container" style="margin-top: 8rem;">
+            <div class="flat-title flat-title-gradient text-center p-5">
+                <h1>Điều khoản</h1>
+            </div>
+        </div>
+        <div class="container my-5">
+            <p>Chào mừng bạn đến với cửa hàng của chúng tôi! Khi sử dụng dịch vụ hoặc mua sắm tại cửa hàng, bạn đồng ý
+                tuân
+                thủ các điều khoản và điều kiện dưới đây. Vui lòng đọc kỹ trước khi tiếp tục.</p>
+
+            <h3>1. Thông tin sản phẩm</h3>
+            <p>Chúng tôi cam kết cung cấp thông tin sản phẩm chính xác nhất. Tuy nhiên, trong một số trường hợp, thông
+                tin
+                sản phẩm có thể không đầy đủ hoặc có sai sót. Nếu bạn phát hiện bất kỳ lỗi nào, vui lòng liên hệ với
+                chúng
+                tôi để được hỗ trợ.</p>
+
+            <h3>2. Giá cả và thanh toán</h3>
+            <ul>
+                <li>Giá sản phẩm được niêm yết trên website là giá cuối cùng, đã bao gồm thuế (nếu có).</li>
+                <li>Chúng tôi chấp nhận các phương thức thanh toán như: thanh toán khi nhận hàng (COD) và chuyển khoản
+                    ngân
+                    hàng.</li>
+                <li>Trong trường hợp có sai sót về giá, chúng tôi sẽ thông báo và xác nhận lại với bạn trước khi xử lý
+                    đơn
+                    hàng.</li>
+            </ul>
+
+            <h3>3. Chính sách vận chuyển</h3>
+            <ul>
+                <li>Chúng tôi cung cấp dịch vụ vận chuyển trên toàn quốc.</li>
+                <li>Phí vận chuyển sẽ được tính dựa trên địa chỉ giao hàng:
+                    <ul>
+                        <li>Nội thành Hà Nội: Miễn phí vận chuyển.</li>
+                        <li>Các khu vực khác: 30,000₫.</li>
+                    </ul>
+                </li>
+                <li>Thời gian giao hàng dự kiến từ 2-5 ngày làm việc, tùy thuộc vào địa chỉ giao hàng.</li>
+            </ul>
+
+            <h3>4. Chính sách đổi trả</h3>
+            <ul>
+                <li>Chúng tôi chấp nhận đổi trả sản phẩm trong vòng 7 ngày kể từ ngày nhận hàng.</li>
+                <li>Sản phẩm phải còn nguyên vẹn, chưa qua sử dụng và đầy đủ bao bì, hóa đơn.</li>
+                <li>Chi phí vận chuyển đổi trả sẽ do khách hàng chi trả, trừ khi sản phẩm bị lỗi hoặc giao sai.</li>
+            </ul>
+
+            <h3>5. Quyền riêng tư</h3>
+            <p>Chúng tôi cam kết bảo mật thông tin cá nhân của bạn. Thông tin của bạn sẽ chỉ được sử dụng để xử lý đơn
+                hàng
+                và cung cấp dịch vụ tốt nhất.</p>
+
+            <h3>6. Điều khoản sử dụng</h3>
+            <ul>
+                <li>Bạn không được sử dụng sản phẩm hoặc dịch vụ của chúng tôi cho mục đích bất hợp pháp.</li>
+                <li>Chúng tôi có quyền từ chối cung cấp dịch vụ nếu phát hiện hành vi vi phạm điều khoản.</li>
+            </ul>
+
+            <h3>7. Liên hệ</h3>
+            <p>Nếu bạn có bất kỳ câu hỏi nào về điều khoản và điều kiện, vui lòng liên hệ với chúng tôi qua:</p>
+            <ul>
+                <li>Email: damminhchien220204@gmail.com.com</li>
+                <li>Hotline: 0123 456 789</li>
+                <li>Địa chỉ: Số 123, Đường ABC, Quận XYZ, Hà Nội</li>
+            </ul>
+
+            <p class="mt-4">Cảm ơn bạn đã tin tưởng và mua sắm tại cửa hàng của chúng tôi!</p>
+        </div>
+
+        <!--------------------------------------------------Footer---------------------------------------------------------->
+        <hr>
+        <footer class="mx-3 my-5"></footer>
+        <!--------------------------------------------------Bottom Footer---------------------------------------------------------->
+        <hr>
+        <div class="footer-bottom my-4"></div>
+        <!--------------------------------------------------Scroll To Top Button---------------------------------------------------------->
+        <div id="progress">
+            <span id="progress-value"><i class="bi bi-chevron-up"></i></span>
+        </div>
+    </div>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

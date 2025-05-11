@@ -45,48 +45,6 @@
                 </div>`)
             }
         })
-
-        $(".categories-btn").click(function () {
-            window.location.href = "./best-seller.html"
-        })
-
-        //Owl Carousel
-        $(".feedback-carousel").owlCarousel({
-            loop: true,
-            margin: 20,
-            nav: true,
-            dots: true,
-            autoplay: true,
-            autoplayTimeout: 3000,
-            autoplayHoverPause: true,
-            responsive: {
-                0: { items: 1 },
-                600: { items: 2 },
-                1000: { items: 3 }
-            }
-        });
-
-        $(".categories-carousel").owlCarousel({
-            loop: false,
-            margin: 20,
-            nav: false,
-            dots: true,
-            autoplay: false,
-            autoplayTimeout: false,
-            autoplayHoverPause: true,
-            responsive: {
-                0: { items: 1 },
-                600: { items: 2 },
-                1000: { items: 3 }
-            }
-        });
-        var owl = $(".categories-carousel")
-        $("#categories-prev").click(function () {
-            owl.trigger('prev.owl.carousel');
-        })
-        $("#categories-next").click(function () {
-            owl.trigger('next.owl.carousel');
-        })
     })
     function ShowNavbarWhenScroll() {
         var previousScroll = 0
@@ -122,18 +80,6 @@
 
     $(window).on("scroll", calcScrollValue);
     $(window).on("load", calcScrollValue);
-    //Xử lý dấu + và -
-    $(document).on("click", ".footer-heading button.collapse-toggle", function () {
-        let icon = $(this).find("i");
-        let isExpanded = $(this).attr("aria-expanded") === "true"
-        // Kiểm tra icon hiện tại và thay đổi nó
-        if (isExpanded) {
-            icon.removeClass("bi-plus-lg").addClass("bi-dash-lg")
-        }
-        else {
-            icon.removeClass("bi-dash-lg").addClass("bi-plus-lg")
-        }
-    })
 
     //Hàm render Cards vào DOM
     function renderCards(cards) {

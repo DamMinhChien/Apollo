@@ -441,3 +441,186 @@ input[type="radio"]:hover {
     transform: translateX(27px);
     transition: transform 0.5s;
 }
+
+/* Dark Mode - Toàn bộ trang */
+[data-bs-theme="dark"] body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Navbar */
+[data-bs-theme="dark"] .navbar { 
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .navbar .nav-link {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .navbar .nav-link:hover {
+    color: #db1215 !important;
+}
+
+[data-bs-theme="dark"] .navbar .navbar-brand img {
+    color: #ffffff !important;
+}
+
+/* Card */
+[data-bs-theme="dark"] .card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #333333;
+}
+
+/* Button */
+[data-bs-theme="dark"] .btn {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+[data-bs-theme="dark"] .btn:hover {
+    background-color: #555555;
+    color: #ffffff;
+}
+
+/* Footer */
+[data-bs-theme="dark"] footer {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .footer-wrap {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .footer-wrap a {
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .footer-wrap a:hover {
+    color: #db1215;
+}
+
+[data-bs-theme="dark"] .footer-heading h4 {
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .footer-menu_item {
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .footer-menu_item:hover {
+    color: #db1215;
+}
+
+[data-bs-theme="dark"] .footer-newsletter input.subscribe-email {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #555555;
+}
+
+[data-bs-theme="dark"] .footer-newsletter input.subscribe-email::placeholder {
+    color: #aaaaaa;
+}
+
+[data-bs-theme="dark"] .footer-newsletter button.subscribe-button {
+    background-color: #555555;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+[data-bs-theme="dark"] .footer-newsletter button.subscribe-button:hover {
+    background-color: #777777;
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .footer-bottom {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Carousel */
+[data-bs-theme="dark"] .carousel-inner {
+    background-color: #1e1e1e;
+}
+
+[data-bs-theme="dark"] .carousel-control-next-icon,
+[data-bs-theme="dark"] .carousel-control-prev-icon {
+    filter: invert(1);
+}
+
+/* Tooltip */
+[data-bs-theme="dark"] .tooltip-inner {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+/* Tab Content */
+[data-bs-theme="dark"] .tab-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Feedback Section */
+[data-bs-theme="dark"] .feedback-section {
+    background-color: #1e1e1e;
+}
+
+[data-bs-theme="dark"] .feedback-item {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #444444;
+}
+
+/* Brand Section */
+[data-bs-theme="dark"] .brand-item img {
+    opacity: 0.7;
+}
+
+[data-bs-theme="dark"] .brand-item img:hover {
+    opacity: 1;
+}
+
+/* Scroll To Top Button */
+[data-bs-theme="dark"] #progress {
+    background: #333333;
+}
+
+[data-bs-theme="dark"] #progress-value {
+    background-color: #555555;
+    color: #ffffff;
+}
+
+/* Pagination */
+[data-bs-theme="dark"] .pagination .page-item.active .page-link {
+    background-color: #555555;
+    color: #ffffff !important;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Flat Title */
+[data-bs-theme="dark"] .flat-title-gradient {
+    background: linear-gradient(to right, #333333, #444444, #333333);
+}
+
+/* Owl Carousel Dots */
+[data-bs-theme="dark"] .owl-dots .owl-dot {
+    background-color: #555555 !important;
+}
+
+[data-bs-theme="dark"] .owl-dots .owl-dot.active {
+    background-color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .shop-section a{
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .shop-section a:hover{
+    color: #db1215 !important;
+}
+
+

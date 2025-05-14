@@ -20,6 +20,21 @@
             background-color: transparent;
             filter: invert(1) grayscale(100%) sepia(100%) saturate(200%) hue-rotate(180deg);
         }
+
+        #lightning {
+            color: orangered;
+        }
+
+        #lightning i {
+            transition: opacity 0.5s ease;
+        }
+
+        #lightning i.hidden {
+            opacity: 0;
+            /* Mờ dần khi ẩn */
+            visibility: hidden;
+            /* Ẩn nhưng giữ không gian */
+        }
     </style>
 </head>
 
@@ -31,6 +46,7 @@
         $("#progress").click(function () {
             $("html, body").animate({ scrollTop: 0 }, 10);
         })
+
             >
             $(document).ready(function () {
                 let hours = 24, minutes = 0, seconds = 0;
@@ -65,6 +81,16 @@
             });
         ShowNavbarWhenScroll()
         zoom()
+        //lighting
+        setInterval(() => {
+            const lightningIcon = $("#lightning").find("i");
+            if (lightningIcon.css("visibility") === "visible") {
+                lightningIcon.css("visibility", "hidden"); // Ẩn nhưng vẫn giữ không gian
+            } else {
+                lightningIcon.css("visibility", "visible"); // Hiện lại
+            }
+        }, 1000); // Thay đổi trạng thái mỗi giây
+
         $(".pagination .page-item").click(function (e) {
             e.preventDefault()
             $(".pagination .page-item").removeClass("active")
@@ -224,6 +250,44 @@
                 })
             })
     }
+    $(document).ready(function () {
+        // Khi thay đổi lựa chọn màu sắc
+        $(".color-option").on("change", function () {
+            // Lấy thông tin từ thuộc tính data
+            const selectedColor = $(this).data("color");
+            const selectedPrice = $(this).data("price");
+
+            // Cập nhật màu sắc được chọn
+            $("#selected-color").text(selectedColor);
+
+            // Cập nhật giá
+            $("h3.text-danger").text(selectedPrice);
+        });
+
+        // Xử lý tăng số lượng
+        $("#increase-quantity").on("click", function () {
+            let quantity = parseInt($("#quantity").val());
+            $("#quantity").val(quantity + 1);
+        });
+
+        // Xử lý giảm số lượng
+        $("#decrease-quantity").on("click", function () {
+            let quantity = parseInt($("#quantity").val());
+            if (quantity > 1) {
+                $("#quantity").val(quantity - 1);
+            }
+        });
+
+        // Xử lý khi nhấn nút Thêm vào giỏ hàng
+        $("#add-to-cart").on("click", function () {
+            const quantity = parseInt($("#quantity").val());
+            const selectedColor = $("#selected-color").text();
+            const selectedPrice = $("h3.text-danger").text();
+
+            alert(`Đã thêm ${quantity} sản phẩm (${selectedColor}) với giá ${selectedPrice} vào giỏ hàng!`);
+            // Thêm logic lưu vào giỏ hàng (localStorage hoặc gửi lên server) tại đây
+        });
+    });
 </script>
 
 <body>
@@ -236,18 +300,11 @@
             <a><i class="bi bi-chevron-right"></i></a>
             <a href="">Áo Sweater</a>
         </div>
-        <!--Flat title-->
-        <div class="container mb-5">
-            <div class="flat-title text-center">
-                <h1>Mọi người khác cũng thích</h1>
-                <p>Mua sắm những phong cách mới nhất: Luôn dẫn đầu xu hướng với những sản phẩm mới nhất của chúng tôi
-                </p>
-            </div>
-        </div>
+
         <main class="my-2">
             <div class="container">
                 <div class="row">
-                    <div class="detail-img col-xl-6 col-md-6 col-12">
+                    <div class="detail-img col-xl-7 col-md-6 col-12">
                         <div id="carouselExample" class="carousel slide">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -269,56 +326,274 @@
                             </button>
                         </div>
                     </div>
-                    <div class="detail-content col-xl-6 col-md-6 col-12">
-                        <h3>Áo thun cotton jersey</h3>
+                    <div class="detail-content col-xl-5 col-md-6 col-12">
+                        <h3 class="text-danger">Áo thun cotton jersey</h3>
                         <span class="p-2 border border-1 border-black rounded-1 fw-bolder" style="font-size: 10px;">Bán
                             chạy nhất</span>
                         <span id="lightning"><i class="bi bi-lightning-charge-fill"></i></span>
                         <span class="fw-bold">Bán chạy quá! Đã có 56 người mua sản phẩm này trong giỏ hàng.</span>
-                        <div class="d-flex my-2 gap-2 align-items-center">
-                            <h3 class="m-0">149,000₫</h3>
-                            <h4 class="m-0">189,000₫</h4>
+                        <div class="d-flex my-3 gap-2 align-items-center">
+                            <h3 class="m-0 text-danger">149,000₫</h3>
+                            <h5 class="m-0 text-decoration-line-through opacity-50">189,000₫</h5>
                             <div class="badge text-bg-light p-1">Giảm 20%</div>
                         </div>
                         <div class="d-flex gap-2 my-4 align-items-center">
-                            <div class="badge text-bg-danger p-2">50</div>
+                            <div class="badge text-bg-dark p-2">50</div>
                             <h6 class="fw-bold m-0">Người đang xem lúc này</h6>
                         </div>
                         <div class="p-2 border border-1 border-black rounded-1 fw-bolder d-inline-flex">
                             <div style=" padding: 10px 15px;">
                                 <div style="font-size: 10px;"><i class="bi-alarm me-2"></i>NHANH LÊN! KHUYẾN MẠI KẾT
-                                    THÚC
-                                    SAU:</div>
-                                <div id="countdown" style="font-size: 16px;">24:00:00</div>
+                                    THÚC SAU:</div>
+                                <div id="countdown" class="text-danger" style="font-size: 16px;">24:00:00</div>
                             </div>
                         </div>
-                        <div class="mt-2">
-                            <h6>Màu sắc <b>Màu be</b></h6>
+                        <div class="my-3">
+                            <h6>Màu sắc <b id="selected-color">Màu be</b></h6>
                         </div>
-                        <div class="form-check d-flex align-items-center">
-                            <input class="form-check-input" id="beige" type="radio"
-                                style="cursor: pointer; background-color: beige;" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" title="Beige" value="beige">
-                            <div class="mb-0 ms-2">Màu be</div>
+                        <div id="form-color" class=" d-flex gap-3 flex-wrap">
+                            <div class="form-check d-flex align-items-center">
+                                <input class="form-check-input color-option" id="beige" type="radio" name="color"
+                                    style="cursor: pointer; background-color: beige;" data-color="Màu be"
+                                    data-price="149,000₫" checked>
+                                <div class="mb-0 ms-1">Màu be</div>
+                            </div>
+                            <div class="form-check d-flex align-items-center">
+                                <input class="form-check-input color-option" id="red" type="radio" name="color"
+                                    style="cursor: pointer; background-color: red;" data-color="Màu đỏ"
+                                    data-price="159,000₫">
+                                <div class="mb-0 ms-1">Màu đỏ</div>
+                            </div>
+                            <div class="form-check d-flex align-items-center">
+                                <input class="form-check-input color-option" id="blue" type="radio" name="color"
+                                    style="cursor: pointer; background-color: blue;" data-color="Màu xanh"
+                                    data-price="169,000₫">
+                                <div class="mb-0 ms-1">Màu xanh</div>
+                            </div>
                         </div>
-
-                        <div class="form-check d-flex align-items-center">
-                            <input class="form-check-input" id="beige" type="radio"
-                                style="cursor: pointer; background-color: beige;" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" title="Beige" value="beige">
-                            <div class="mb-0 ms-2">Màu be</div>
+                        <div class="my-4 d-flex gap-2 align-items-center">
+                            <h6>Số lượng</h6>
+                            <div class="input-group" style="width: 120px;">
+                                <button class="btn btn-outline-secondary" id="decrease-quantity">-</button>
+                                <input type="text" class="form-control text-bg-light text-center" id="quantity"
+                                    value="1" readonly style="border: 1px solid black;">
+                                <button class="btn btn-outline-secondary" id="increase-quantity">+</button>
+                            </div>
                         </div>
-                        <div class="form-check d-flex align-items-center">
-                            <input class="form-check-input" id="beige" type="radio"
-                                style="cursor: pointer; background-color: beige;" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" title="Beige" value="beige">
-                            <div class="mb-0 ms-2">Màu be</div>
+                        <button class="btn btn-dark w-100 my-3" id="add-to-cart">Thêm vào giỏ hàng</button>
+                        <!--Product-delivery-->
+                        <div class="container-fluid my-3">
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <div style="min-height: 220px;"
+                                        class="text-center product-delivery border border-opacity-75 border-black- rounded-1 p-3">
+                                        <div><i class="bi bi-truck fs-3"></i></div>
+                                        <div>
+                                            <p class="m-0">Thời gian giao hàng ước tính: <strong>3-5 ngày</strong>
+                                                (Quốc tế), 1-2 ngày (Việt Nam).
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div style="min-height: 220px;"
+                                        class="text-center product-delivery border border-opacity-75 border-black- rounded-1 p-3">
+                                        <div><i class="bi bi-arrow-repeat fs-3"></i></div>
+                                        <div>
+                                            <p class="m-0">Trả lại trong vòng <strong>30 ngày</strong> kể từ ngày mua.
+                                                Thuế và phí không được hoàn lại.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </main>
+        <section id="details">
+            <section class="shop-section p-4 border border-2 my-5 " style="max-width: 70%;margin: 0 auto;">
+                <div class="container w-100">
+                    <ul class=" nav nav-tabs nav-justified">
+                        <li class="nav-item fw-bold">
+                            <a href="#description" class="nav-link active" id="hanoi-tab" data-bs-toggle="tab"
+                                role="tab">Mô tả</a>
+                        </li>
+                        <li class="nav-item fw-bold">
+                            <a href="#shipping" class="nav-link" id="danang-tab" data-bs-toggle="tab" role="tab">Chính
+                                sách vận chuyển</a>
+                        </li>
+                        <li class="nav-item fw-bold">
+                            <a href="#return" class="nav-link" id="tphcm-tab" data-bs-toggle="tab" role="tab">Chính sách
+                                hoàn trả
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <!-- Nội dung của các tab -->
+                <div class="container tab-content mt-3">
+                    <!-- Tab Hà Nội -->
+                    <div class="tab-pane active" id="description">
+                        <h2 class="fw-bold text-center my-2">Mô tả</h2>
+                        <div class="my-2">
+                            <p>Áo sơ mi tay cài nút và kiểu dáng thoải mái. Được may bằng vải có kết cấu nhăn, mềm mại
+                                được làm từ LENZING™ ECOVERO™ Viscose — sợi gỗ có nguồn gốc có trách nhiệm được sản xuất
+                                thông qua quy trình giảm tác động đến rừng, đa dạng sinh học và nguồn cung cấp nước.</p>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-md-6 col-12">
+                                <h5 class="fw-bold">Thiết kế</h5>
+                                <ul class="list-unstyled">
+                                    <li class="opacity-50">- Nút cài phía trước</li>
+                                    <li class="opacity-50">- Các tab tay áo có thể điều chỉnh</li>
+                                    <li class="opacity-50">- Biểu tượng thêu Babaton ở vạt áo và viền áo</li>
+                                </ul>
+                                <h5 class="fw-bold">Chăm sóc vật liệu</h5>
+                                <ul class="list-unstyled">
+                                    <li class="opacity-50">- Nội dung: 100% LENZING™ ECOVERO™ Viscose</li>
+                                    <li class="opacity-50">- Chăm sóc: Giặt tay</li>
+                                    <li class="opacity-50">- Nhập khẩu</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <h5 class="fw-bold">Chăm sóc vật liệu</h5>
+                                <div class="circle d-flex gap-3 align-items-center my-2">
+                                    <div class="d-flex justify-content-center align-items-center"
+                                        style="border: 1px solid black; border-radius: 50%; width: 30px; height: 30px;">
+                                        <i class="bi bi-bucket"></i>
+                                    </div>
+                                    <div class="opacity-50">Giặt máy tối đa 30ºC. Vắt ngắn.</div>
+                                </div>
+                                <div class="circle d-flex gap-3 align-items-center my-2">
+                                    <div class="d-flex justify-content-center align-items-center"
+                                        style="border: 1px solid black; border-radius: 50%; width: 30px; height: 30px;">
+                                        <i class="bi bi-bucket"></i>
+                                    </div>
+                                    <div class="opacity-50">Là tối đa 110ºC.</div>
+                                </div>
+                                <div class="circle d-flex gap-3 align-items-center my-2">
+                                    <div class="d-flex justify-content-center align-items-center"
+                                        style="border: 1px solid black; border-radius: 50%; width: 30px; height: 30px;">
+                                        <i class="bi bi-bucket"></i>
+                                    </div>
+                                    <div class="opacity-50">Không tẩy.</div>
+                                </div>
+                                <div class="circle d-flex gap-3 align-items-center my-2">
+                                    <div class="d-flex justify-content-center align-items-center"
+                                        style="border: 1px solid black; border-radius: 50%; width: 30px; height: 30px;">
+                                        <i class="bi bi-bucket"></i>
+                                    </div>
+                                    <div class="opacity-50">Không giặt khô.</div>
+                                </div>
+                                <div class="circle d-flex gap-3 align-items-center my-2">
+                                    <div class="d-flex justify-content-center align-items-center"
+                                        style="border: 1px solid black; border-radius: 50%; width: 30px; height: 30px;">
+                                        <i class="bi bi-bucket"></i>
+                                    </div>
+                                    <div class="opacity-50">Sấy khô ở nhiệt độ trung bình.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vận chuyển -->
+                    <div class="tab-pane fade" id="shipping">
+                        <h2 class="fw-bold text-center my-2">Chính sách của Công ty TNHH tư nhân</h2>
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Công ty TNHH Tư nhân cùng với các công ty con, công ty mẹ và công ty liên kết của chúng tôi
+                            (gọi chung là "chúng tôi") hiểu rằng bạn quan tâm đến cách thông tin cá nhân của mình được
+                            sử dụng và chia sẻ. Vì vậy, chúng tôi đã xây dựng Chính sách bảo mật này nhằm thông báo đến
+                            bạn những thông tin mà chúng tôi thu thập từ Trang web, cách chúng tôi sử dụng chúng, cũng
+                            như những lựa chọn bạn có liên quan đến việc thu thập và sử dụng thông tin đó. Vui lòng đọc
+                            kỹ Chính sách bảo mật này. Việc bạn tiếp tục sử dụng Trang web đồng nghĩa với việc bạn đồng
+                            ý với các nguyên tắc được nêu ra trong Chính sách bảo mật.
+                        </p>
+
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Xin lưu ý rằng các hoạt động được mô tả trong Chính sách bảo mật này áp dụng cho thông tin
+                            mà chúng tôi hoặc các công ty con, chi nhánh hoặc đại lý thu thập: (i) thông qua Trang web
+                            này; (ii) nếu có, qua Bộ phận dịch vụ khách hàng của chúng tôi liên quan đến Trang web;
+                            (iii) tại các cửa hàng bán lẻ độc lập; và (iv) thông qua các chương trình tiếp thị hoặc
+                            khuyến mãi, bao gồm cả xổ số.
+                        </p>
+
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Chúng tôi không chịu trách nhiệm đối với nội dung hoặc chính sách bảo mật của bất kỳ trang
+                            web nào khác không thuộc quyền quản lý của chúng tôi.
+                        </p>
+
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Chúng tôi có quyền chỉnh sửa, cập nhật, bổ sung hoặc xóa bất kỳ phần nào trong Chính sách
+                            bảo mật này, toàn bộ hoặc một phần, bất cứ lúc nào. Khi thực hiện thay đổi, chúng tôi sẽ cập
+                            nhật ngày "cập nhật lần cuối" được hiển thị ở đầu Chính sách bảo mật.
+                        </p>
+
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Việc bạn tiếp tục cung cấp thông tin, truy cập hoặc sử dụng Trang web sau khi Chính sách bảo
+                            mật được thay đổi sẽ được coi là bạn đã đồng ý và chấp thuận vô điều kiện với những thay đổi
+                            đó. Phiên bản mới nhất của Chính sách bảo mật sẽ luôn được cập nhật trên Trang web và thay
+                            thế mọi phiên bản trước đó.
+                        </p>
+
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Nếu bạn có bất kỳ câu hỏi nào liên quan đến Chính sách bảo mật này, vui lòng liên hệ Bộ phận
+                            dịch vụ khách hàng qua email: <a
+                                href="mailto:marketing@company.com">marketing@company.com</a>.
+                        </p>
+
+                    </div>
+
+                    <!-- Chính sách hoàn trả -->
+                    <div class="tab-pane fade" id="return">
+                        <h2 class="fw-bold text-center my-2">Chính sách hoàn trả</h2>
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Chúng tôi cam kết mang đến cho khách hàng sự hài lòng tối đa khi mua sắm tại trang web của
+                            chúng tôi. Nếu sản phẩm bạn nhận được không đúng như mô tả, bị lỗi kỹ thuật hoặc không vừa
+                            ý, bạn hoàn toàn có thể yêu cầu đổi/trả hàng trong vòng <strong>30 ngày kể từ ngày nhận
+                                hàng</strong>.
+                        </p>
+
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Để đủ điều kiện đổi hoặc trả hàng, sản phẩm cần ở trong tình trạng ban đầu, chưa qua sử
+                            dụng, chưa giặt và còn đầy đủ tem, nhãn mác, hóa đơn mua hàng. Một số mặt hàng nhất định như
+                            đồ lót, đồ bơi hoặc sản phẩm khuyến mãi có thể không áp dụng chính sách trả hàng, trừ khi có
+                            lỗi từ nhà sản xuất.
+                        </p>
+
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Quá trình đổi/trả hàng sẽ được xử lý sau khi chúng tôi nhận được sản phẩm và xác minh điều
+                            kiện hàng hóa. Nếu yêu cầu của bạn được chấp nhận, chúng tôi sẽ tiến hành hoàn tiền (nếu có)
+                            qua phương thức thanh toán ban đầu trong vòng từ 3–7 ngày làm việc, tùy thuộc vào ngân hàng
+                            hoặc tổ chức thanh toán của bạn.
+                        </p>
+
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Chúng tôi không hoàn lại phí vận chuyển ban đầu, trừ khi sản phẩm bị lỗi hoặc giao sai.
+                            Trong trường hợp đổi hàng do thay đổi sở thích cá nhân, khách hàng có thể phải chịu phí vận
+                            chuyển hai chiều.
+                        </p>
+
+                        <p class="opacity-50" style="text-indent: 2em;">
+                            Để yêu cầu đổi hoặc trả hàng, vui lòng liên hệ Bộ phận chăm sóc khách hàng của chúng tôi qua
+                            email tại <a href="mailto:hotro@company.com">hotro@company.com</a> hoặc số điện thoại
+                            <strong>1900 1234</strong>. Chúng tôi luôn sẵn sàng hỗ trợ bạn trong mọi tình huống.
+                        </p>
+
+                    </div>
+                </div>
+            </section>
+        </section>
+        <hr>
+        <!--Flat title-->
+        <div class="container my-5">
+            <div class="flat-title text-center">
+                <h1>Mọi người khác cũng thích</h1>
+                <p>Mua sắm những phong cách mới nhất: Luôn dẫn đầu xu hướng với những sản phẩm mới nhất của chúng tôi
+                </p>
+            </div>
+        </div>
         <section id="best-seller" class="mt-5">
             <div class="container">
                 <div class="row" id="card-list">

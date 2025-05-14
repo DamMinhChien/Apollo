@@ -1,173 +1,108 @@
-<!--Footer-->
-<div class="footer-wrap">
-    <div class="footer-body">
-        <div class="container">
-            <div class="row">
-                <!-- ------------------------------------Cột 1--------------------------------------------------->
-                <div class="col-xl-3 col-md-6 col-12">
-                    <div class="footer-infor">
-                        <div class="footer-logo">
-                            <a href="index.html">
-                                <img src="./assets/images/logo/logo.svg" alt="Logo" width="272px" height="42px">
-                            </a>
-                        </div>
-                        <p></p>
-                        <ul>
-                            <li>
-                                <p>Địa chỉ: Số 298 đường Cầu Diễn,<br> Minh Khai, Bắc Từ Liêm, Hà Nội</p>
-                            </li>
-                            <li>
-                                <p>Email: <a href="damminhchien220204@gmail.com">damminhchien@gmail.com</a></p>
-                            </li>
-                            <li>
-                                <p>Phone: <a href="#">(+84)969543290</a></p>
-                            </li>
-                            <li>
-                                <a href="contact.html" id=" ">Get direction <i
-                                        class="bi bi-arrow-up-right fs-6"></i></a>
-                            </li>
-                        </ul>
-                        <ul class="d-flex justify-content-start gap-3" id="social-network">
-                            <li><a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a></li>
-                            <li><a href="https://www.twitter.com"><i class="bi bi-twitter-x"></i></a></li>
-                            <li><a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a></li>
-                            <li><a href="https://www.tiktok.com"><i class="bi bi-tiktok"></i></a></li>
-                            <li><a href="https://www.pinterest.com"><i class="bi bi-pinterest"></i></a></li>
-                        </ul>
+<style>
+    ul li {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Tăng kích thước và độ đậm cho tiêu đề h5 */
+    .footer-wrap h5 {
+        font-size: 1.25rem;
+        /* Tăng kích thước chữ */
+        font-weight: 600;
+        /* Tăng độ đậm */
+    }
+
+    /* Hiệu ứng hover cho các thẻ a */
+    .footer-wrap a {
+        color: #212529 !important;
+        /* Màu chữ mặc định */
+        text-decoration: none;
+        /* Loại bỏ gạch chân */
+        transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    .footer-wrap a:hover {
+        color: #0d6efd !important;
+        /* Màu chữ khi hover */
+        text-decoration: underline;
+        /* Gạch chân khi hover */
+    }
+
+    /* Hiệu ứng hover cho các biểu tượng mạng xã hội */
+    #social-network li:hover {
+        transform: scale(1.2);
+        transition: all 0.3s ease;
+    }
+
+    #social-network li:hover>a i {
+        color: #0d6efd;
+    }
+</style>
+<!-- Footer -->
+<div class="footer-wrap bg-light text-dark py-5">
+    <div class="footer-body container">
+        <div class="row">
+            <!-- ------------------------------------Cột 1--------------------------------------------------->
+            <div class="col-xl-3 col-md-6 col-12 mb-4">
+                <div class="footer-infor">
+                    <div class="footer-logo mb-3">
+                        <a href="index.html">
+                            <img src="./assets/images/logo/logo.svg" alt="Logo" width="200px">
+                        </a>
                     </div>
+                    <p>Địa chỉ: Số 298 đường Cầu Diễn, Minh Khai, Bắc Từ Liêm, Hà Nội</p>
+                    <p>Email: <a href="mailto:damminhchien220204@gmail.com" class="text-dark">damminhchien@gmail.com</a>
+                    </p>
+                    <p>Phone: <a href="tel:+84969543290" class="text-dark">(+84) 969 543 290</a></p>
+                    <ul class="d-flex gap-3 mt-3 p-0" id="social-network">
+                        <li><a href="https://www.facebook.com" class="text-dark"><i class="bi bi-facebook fs-4"></i></a>
+                        </li>
+                        <li><a href="https://www.twitter.com" class="text-dark"><i class="bi bi-twitter fs-4"></i></a>
+                        </li>
+                        <li><a href="https://www.instagram.com" class="text-dark"><i class="bi bi-instagram fs-4"></i>
+                            </a></li>
+                        <li><a href="https://www.tiktok.com" class="text-dark"><i class="bi bi-tiktok fs-4"></i></a>
+                        </li>
+                        <li><a href="https://www.pinterest.com" class="text-dark"><i class="bi bi-pinterest fs-4"></i>
+                            </a></li>
+                    </ul>
                 </div>
-                <!-- ------------------------------------Cột 2--------------------------------------------------->
-                <div class="col-xl-3 col-md-6 col-12 ">
-                    <div class="footer-heading d-flex justify-content-between align-content-center mb-3">
-                        <h4>Hỗ trợ</h4>
-                        <div class="d-inline-flex">
-                            <button class="btn btn-link d-md-none collapse-toggle" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#menu-list-2"><i
-                                    class="bi bi-plus-lg"></i></button>
-                        </div>
+            </div>
+            <!-- ------------------------------------Cột 2--------------------------------------------------->
+            <div class="col-xl-3 col-md-6 col-12 mb-4">
+                <h5 class="mb-3">Hỗ trợ</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark text-decoration-none">Chính sách bảo mật</a></li>
+                    <li><a href="#" class="text-dark text-decoration-none">Đổi trả & Hoàn tiền</a></li>
+                    <li><a href="#" class="text-dark text-decoration-none">Vận chuyển</a></li>
+                    <li><a href="#" class="text-dark text-decoration-none">Điều khoản & Điều kiện</a></li>
+                    <li><a href="#" class="text-dark text-decoration-none">Câu hỏi thường gặp</a></li>
+                    <li><a href="#" class="text-dark text-decoration-none">So sánh</a></li>
+                    <li><a href="#" class="text-dark text-decoration-none">Danh sách yêu thích</a></li>
+                </ul>
+            </div>
+            <!-- ------------------------------------Cột 3--------------------------------------------------->
+            <div class="col-xl-3 col-md-6 col-12 mb-4">
+                <h5 class="mb-3">Về chúng tôi</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-dark text-decoration-none">Câu chuyện của chúng tôi</a></li>
+                    <li><a href="#" class="text-dark text-decoration-none">Ghé thăm cửa hàng</a></li>
+                    <li><a href="#" class="text-dark text-decoration-none">Liên hệ với chúng tôi</a></li>
+                    <li><a href="#" class="text-dark text-decoration-none">Tài khoản</a></li>
+                </ul>
+            </div>
+            <!-- ------------------------------------Cột 4--------------------------------------------------->
+            <div class="col-xl-3 col-md-6 col-12 mb-4">
+                <h5 class="mb-3">Đăng ký nhận Email</h5>
+                <p>Đăng ký để nhận thông tin sớm nhất về sản phẩm mới, chương trình giảm giá, nội dung độc quyền,
+                    sự kiện và nhiều hơn nữa!</p>
+                <form>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Nhập email của bạn..." required>
+                        <button class="btn btn-primary">Đăng ký</button>
                     </div>
-                    <div class="menu-list">
-                        <ul id="menu-list-2" class="collapse d-md-block">
-                            <li>
-                                <a href="" class="footer-menu_item">Chính sách bảo mật</a>
-                            </li>
-                            <li>
-                                <a href="" class="footer-menu_item">Đổi trả & Hoàn tiền</a>
-                            </li>
-                            <li>
-                                <a href="" class="footer-menu_item">Vận chuyển</a>
-                            </li>
-                            <li>
-                                <a href="" class="footer-menu_item">Điều khoản & Điều kiện</a>
-                            </li>
-                            <li>
-                                <a href="" class="footer-menu_item">Câu hỏi thường gặp</a>
-                            </li>
-                            <li>
-                                <a href="" class="footer-menu_item">So sánh</a>
-                            </li>
-                            <li>
-                                <a href="" class="footer-menu_item">Danh sách yêu thích</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- ------------------------------------Cột 3--------------------------------------------------->
-                <div class="col-xl-3 col-md-6 col-12 ">
-                    <div class="footer-heading d-flex justify-content-between align-content-center mb-3">
-                        <h4>Về chúng tôi</h4>
-                        <div class="d-inline-flex">
-                            <button class="btn btn-link d-md-none collapse-toggle" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#menu-list-3"><i
-                                    class="bi bi-plus-lg"></i></button>
-                        </div>
-                    </div>
-                    <div class="menu-list">
-                        <ul id="menu-list-3" class="collapse d-md-block">
-                            <li>
-                                <a href="" class="footer-menu_item">Câu chuyện của chúng tôi</a>
-                            </li>
-                            <li>
-                                <a href="" class="footer-menu_item">Ghé thăm cửa hàng</a>
-                            </li>
-                            <li>
-                                <a href="" class="footer-menu_item">Liên hệ với chúng tôi</a>
-                            </li>
-                            <li>
-                                <a href="" class="footer-menu_item">Tài khoản</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- ------------------------------------Cột 4--------------------------------------------------->
-                <div class="col-xl-3 col-md-6 col-12">
-                    <div class="footer-newsletter">
-                        <div class="footer-heading d-flex justify-content-between align-content-center mb-3">
-                            <h4>Đăng ký nhận Email</h4>
-                            <div class="d-inline-flex">
-                                <button class="btn btn-link d-md-none collapse-toggle" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#menu-list-4"><i
-                                        class="bi bi-plus-lg"></i></button>
-                            </div>
-                        </div>
-                        <div id="menu-list-4" class="collapse d-md-block">
-                            <div class="footer-menu_item">Đăng ký để nhận thông tin sớm nhất về sản phẩm mới, chương
-                                trình giảm giá, nội dung độc quyền, sự kiện và nhiều hơn nữa!</div>
-                            <form class="form-newsletter subscribe-form" id="" action="#" method="post"
-                                accept-charset="utf-8" data-mailchimp="true">
-                                <div class="subscribe-content">
-                                    <fieldset class="email">
-                                        <input type="email" name="email-form" class="subscribe-email"
-                                            placeholder="Nhập email của bạn...." tabindex="0" aria-required="true">
-                                    </fieldset>
-                                    <div class="button-submit">
-                                        <button id=""
-                                            class="subscribe-button tf-btn btn-sm radius-3 btn-fill btn-icon animate-hover-btn"
-                                            type="button">Đăng ký<i class="icon icon-arrow1-top-left"></i></button>
-                                    </div>
-                                </div>
-                                <div class="subscribe-msg"></div>
-                            </form>
-                            <div class="tf-cur">
-                                <div class="tf-currencies">
-                                    <select class="image-select center style-default type-currencies">
-                                        <option data-thumbnail="images/country/fr.svg">EUR € | Pháp</option>
-                                        <option data-thumbnail="images/country/de.svg">EUR € | Đức</option>
-                                        <option selected data-thumbnail="images/country/us.svg">USD $ | Hoa Kỳ</option>
-                                        <option data-thumbnail="images/country/vn.svg">VND ₫ | Việt Nam</option>
-                                    </select>
-                                </div>
-                                <div class="tf-languages">
-                                    <select class="image-select center style-default type-languages">
-                                        <option>Tiếng Anh</option>
-                                        <option>Tiếng Ả Rập</option>
-                                        <option>Tiếng Trung (Giản thể)</option>
-                                        <option>Tiếng Urdu</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="footer-bottom">
-
-    </div>
-    <script>
-        //Xử lý dấu + và -
-        $(document).on("click", ".footer-heading button.collapse-toggle", function () {
-            let icon = $(this).find("i");
-            let isExpanded = $(this).attr("aria-expanded") === "true"
-            // Kiểm tra icon hiện tại và thay đổi nó
-            if (isExpanded) {
-                icon.removeClass("bi-plus-lg").addClass("bi-dash-lg")
-            }
-            else {
-                icon.removeClass("bi-dash-lg").addClass("bi-plus-lg")
-            }
-        })
-
-    </script>
 </div>

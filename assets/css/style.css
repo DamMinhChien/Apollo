@@ -401,8 +401,15 @@ input[type="radio"]:hover {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-.flat-title-gradient{
+.flat-title-gradient {
     background: linear-gradient(to right, #fefdfc, #fef0ef, #fefdfc);
+    color: #333333; /* Dark gray for contrast and elegance */
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for both */
+}
+
+.flat-title-gradient:hover {
+    background: linear-gradient(to right, #ffffff, #ffd6d5, #ffffff); /* Vibrant hover gradient */
+    color: #b71c1c; /* Deep red for warmth and sophistication */
 }
 
 /*Toggle button*/
@@ -623,3 +630,9 @@ input[type="radio"]:hover {
     color: #db1215 !important;
 }
 
+@media (max-width: 1119.5px) {
+
+    .navbar-nav .nav-item{
+        width: fit-content;
+    }
+}   

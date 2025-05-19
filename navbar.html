@@ -1,37 +1,34 @@
 <!--Navbar-->
-<nav class="navbar navbar-expand-xl navbar-light bg-light fixed-top">
-    <div class="container-fluid px-3">
-        <!-- Nút toggle cho mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<!-- Bootstrap 5 Navbar with Offcanvas -->
+<nav class="navbar navbar-light bg-light fixed-top">
+    <div class="container-fluid px-3 position-relative">
+        <!-- Toggle Button: chỉ hiện khi < lg -->
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Logo / Brand -->
-        <a class="navbar-brand" href="index.html">
-            <img src="./assets/images/logo/logo.svg" alt="Logo" width="272px" height="42px">
+        <!-- Logo: căn giữa khi <lg, căn trái khi ≥lg -->
+        <a class="navbar-brand mx-auto d-lg-none" href="index.html">
+            <img src="./assets/images/logo/logo.svg" alt="Logo" width="150">
         </a>
 
-        <!-- Nội dung Navbar -->
-        <div class="collapse navbar-collapse px-5" id="navbarNav">
-            <ul class="navbar-nav m-auto gap-4">
-                <li class="nav-item">
-                    <a class="nav-link nav-link-1" href="./index.html">Trang chủ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-1" href="./index.html">Cửa hàng</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-1" href="./best-seller.html">Sản phẩm</a>
-                </li>
+        <!-- Desktop Layout (≥ lg) -->
+        <div class="d-none d-lg-flex w-100 justify-content-between align-items-center">
+            <!-- Logo trái -->
+            <a class="navbar-brand" href="index.html">
+                <img src="./assets/images/logo/logo.svg" alt="Logo" width="150">
+            </a>
 
-                <!-- Dropdown -->
+            <!-- Menu giữa -->
+            <ul class="navbar-nav flex-row gap-4 mx-auto">
+                <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="./index.html">Cửa hàng</a></li>
+                <li class="nav-item"><a class="nav-link" href="./best-seller.html">Sản phẩm</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link  nav-link-1 dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Danh Mục
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLg" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Danh Mục</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownLg">
                         <li><a class="dropdown-item" href="#">Áo</a></li>
                         <li><a class="dropdown-item" href="#">Quần</a></li>
                         <li>
@@ -40,34 +37,94 @@
                         <li><a class="dropdown-item" href="#">Phụ Kiện</a></li>
                     </ul>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link nav-link-1" href="#">Về chúng tôi</a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="#">Về chúng tôi</a></li>
             </ul>
 
-            <!-- Icon bên phải -->
-            <ul class="navbar-nav ms-auto">
+            <!-- Icon phải -->
+            <ul class="navbar-nav flex-row gap-3 align-items-center">
                 <li class="nav-item p-2">
-                    <!--Toggle-button-->
                     <div class="toggle-button">
                         <div class="switch"></div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="bi bi-search"></i></a>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-search"></i></a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" id="account" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                        aria-expanded="false"><i class="bi bi-person"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="account">
+                        <li><a class="dropdown-item require-login" href="./profile.html">Tài khoản của tôi</a></li>
+                        <li><a class="dropdown-item require-login" href="./purchase.html">Đơn mua</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li id="login-li"><a class="dropdown-item" href="./login.html" id="login">Đăng nhập</a></li>
+                        <li id="logout-li" style="display:none;"><a class="dropdown-item" href="#" id="logout">Đăng
+                                xuất</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="./login.html" id="account" class="nav-link"><i class="bi bi-person-fill"></i></a>
-                </li>
+                <li class="nav-item " id="username"></li>
                 <li class="nav-item position-relative">
-                    <a href="./cart.html" class="nav-link d-inline-block"><i class="bi bi-cart"></i></a>
-                    <span class="badge bg-danger position-absolute rounded-pill">4</span>
+                    <a href="./cart.html" class="nav-link"><i class="bi bi-cart"></i></a>
+                    <span
+                        class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill">4</span>
                 </li>
             </ul>
         </div>
+
+        <!-- Offcanvas Nav (< lg) -->
+        <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body px-4">
+                <ul class="navbar-nav gap-3">
+                    <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./index.html">Cửa hàng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./best-seller.html">Sản phẩm</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSm" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Danh Mục</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownSm">
+                            <li><a class="dropdown-item" href="#">Áo</a></li>
+                            <li><a class="dropdown-item" href="#">Quần</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Phụ Kiện</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Về chúng tôi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-search"></i> Tìm kiếm</a></li>
+                    <!-- Tài khoản giống desktop -->
+                    <li class="nav-item dropdown">
+                        <a href="#" id="account-mobile" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                            role="button" aria-expanded="false"><i class="bi bi-person"></i> Tài khoản</a>
+                        <ul class="dropdown-menu" aria-labelledby="account-mobile">
+                            <li><a class="dropdown-item require-login" href="./profile.html">Tài khoản của tôi</a></li>
+                            <li><a class="dropdown-item require-login" href="./purchase.html">Đơn mua</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li id="login-li-mobile"><a class="dropdown-item" href="./login.html" id="login-mobile">Đăng
+                                    nhập</a></li>
+                            <li id="logout-li-mobile" style="display:none;"><a class="dropdown-item" href="#"
+                                    id="logout-mobile">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./cart.html" class="nav-link"><i class="bi bi-cart"></i> Giỏ hàng <span
+                                class="badge bg-danger ms-1">4</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </nav>
+
+
 <script>
     $(function () {
         $(".toggle-button").click(function () {
@@ -88,6 +145,49 @@
             }
             toggleTheme()
         })
+
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser && currentUser.name) {
+            $("#username").html(
+                `<span class="nav-link fw-bold text-danger">${currentUser.name}</span>`
+            );
+            $("#login-li").hide();
+            $("#logout-li").show();
+        } else {
+            $("#username").html('');
+            $("#login-li").show();
+            $("#logout-li").hide();
+        }
+
+        // Xử lý hiển thị đăng nhập/đăng xuất cho mobile
+        if (currentUser && currentUser.name) {
+            $("#login-li-mobile").hide();
+            $("#logout-li-mobile").show();
+        } else {
+            $("#login-li-mobile").show();
+            $("#logout-li-mobile").hide();
+        }
+
+        // Ngăn truy cập nếu chưa đăng nhập (mobile)
+        $(".require-login").click(function (e) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser || !currentUser.name) {
+                e.preventDefault();
+                if (confirm("Bạn cần đăng nhập để sử dụng chức năng này!\nBạn có muốn đăng nhập không?")) {
+                    window.location.href = "./login.html";
+                }
+                return false;
+            }
+        });
+
+        // Xử lý đăng xuất mobile
+        $("#logout-mobile").click(function (e) {
+            e.preventDefault();
+            if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
+                localStorage.removeItem("currentUser");
+                window.location.reload();
+            }
+        });
     })
     function toggleTheme() {
         const $html = $('html');
@@ -124,4 +224,52 @@
             });
         }
     });
+
+    // Ngăn truy cập nếu chưa đăng nhập
+    $(".require-login").click(function (e) {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || !currentUser.name) {
+            e.preventDefault();
+            if (confirm("Bạn cần đăng nhập để sử dụng chức năng này!\nBạn có muốn đăng nhập không?")) {
+                window.location.href = "./login.html";
+            }
+            return false;
+        }
+    });
+
+    // Xử lý đăng xuất
+    $("#logout").click(function (e) {
+        e.preventDefault();
+        if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
+            localStorage.removeItem("currentUser");
+            window.location.reload();
+        }
+    });
 </script>
+
+<style>
+    /* Đảm bảo dropdown không làm tăng chiều cao navbar */
+    .navbar .dropdown-menu {
+        position: absolute !important;
+        top: 100%;
+        left: -200%;
+        z-index: 1050;
+    }
+
+    .dropdown-menu a {
+        background-color: white !important;
+    }
+
+    @media (max-width: 991.98px) {
+        .offcanvas .dropdown-menu {
+            position: static !important;
+            left: 0 !important;
+            top: auto !important;
+            transform: none !important;
+            box-shadow: none;
+            border: none;
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+</style>

@@ -104,8 +104,6 @@
             });
             $('#province').html(provinceOptions);
         });
-        addressAPI()
-        phoneCheck()
         const cartDetails = JSON.parse(localStorage.getItem('cartDetails')) || [];
         renderProducts(cartDetails)
         zoom()
@@ -140,9 +138,12 @@
             // Xử lý đơn hàng ở đây (gửi dữ liệu đến server hoặc lưu vào localStorage)
             alert("Đơn hàng của bạn đã được đặt thành công!");
 
-            window.location.href = "index.html"; // Chuyển hướng về trang chủ
+            window.location.href = "./purchase.html"; // Chuyển hướng về trang chủ
             localStorage.removeItem('cartDetails'); // Xóa giỏ hàng sau khi đặt hàng
         });
+
+        addressAPI()
+        phoneCheck()
     });
     function addressAPI() {
 

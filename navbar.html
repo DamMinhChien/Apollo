@@ -21,7 +21,7 @@
             </a>
 
             <!-- Menu giữa -->
-            <ul class="navbar-nav flex-row gap-4 mx-auto">
+            <ul class="navbar-nav flex-row gap-5 mx-auto">
                 <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
                 <li class="nav-item"><a class="nav-link" href="./index.html">Cửa hàng</a></li>
                 <li class="nav-item"><a class="nav-link" href="./best-seller.html">Sản phẩm</a></li>
@@ -168,18 +168,6 @@
             $("#logout-li-mobile").hide();
         }
 
-        // Ngăn truy cập nếu chưa đăng nhập (mobile)
-        $(".require-login").click(function (e) {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (!currentUser || !currentUser.name) {
-                e.preventDefault();
-                if (confirm("Bạn cần đăng nhập để sử dụng chức năng này!\nBạn có muốn đăng nhập không?")) {
-                    window.location.href = "./login.html";
-                }
-                return false;
-            }
-        });
-
         // Xử lý đăng xuất mobile
         $("#logout-mobile").click(function (e) {
             e.preventDefault();
@@ -227,6 +215,17 @@
 
     // Ngăn truy cập nếu chưa đăng nhập
     $(".require-login").click(function (e) {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || !currentUser.name) {
+            e.preventDefault();
+            if (confirm("Bạn cần đăng nhập để sử dụng chức năng này!\nBạn có muốn đăng nhập không?")) {
+                window.location.href = "./login.html";
+            }
+            return false;
+        }
+    });
+
+    $("a[href='./cart.html']").click(function (e) {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (!currentUser || !currentUser.name) {
             e.preventDefault();

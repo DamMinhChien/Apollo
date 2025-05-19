@@ -23,7 +23,7 @@
             <!-- Menu giữa -->
             <ul class="navbar-nav flex-row gap-5 mx-auto">
                 <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
-                <li class="nav-item"><a class="nav-link" href="./index.html">Cửa hàng</a></li>
+                <li class="nav-item"><a class="nav-link" href="./shop.html">Cửa hàng</a></li>
                 <li class="nav-item"><a class="nav-link" href="./best-seller.html">Sản phẩm</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLg" role="button"
@@ -51,7 +51,7 @@
                 <li class="nav-item dropdown">
                     <a href="#" id="account" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
                         aria-expanded="false"><i class="bi bi-person"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="account">
+                    <ul id="dropdown-menu-acc" class="dropdown-menu dropdown-menu-end" aria-labelledby="account">
                         <li><a class="dropdown-item require-login" href="./profile.html">Tài khoản của tôi</a></li>
                         <li><a class="dropdown-item require-login" href="./purchase.html">Đơn mua</a></li>
                         <li>
@@ -247,12 +247,16 @@
 </script>
 
 <style>
-    /* Đảm bảo dropdown không làm tăng chiều cao navbar */
-    .navbar .dropdown-menu {
+    .dropdown-menu {
         position: absolute !important;
         top: 100%;
         left: -200%;
         z-index: 1050;
+    }
+
+    /* Đảm bảo dropdown không làm tăng chiều cao navbar */
+    #dropdown-menu-acc {
+        left: -200%;
     }
 
     .dropdown-menu a {

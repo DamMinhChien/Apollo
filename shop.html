@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa hàng</title>
+    <link rel="icon" href="./assets/images/logo/favicon.png">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./assets/css/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <script src="./assets/js/colorMap.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        .fs-lg {
+            font-size: 1rem;
+        }
+
+        @media (min-width: 992px) {
+
+            /* Từ breakpoint lg trở lên */
+            .fs-lg {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<script>
+    $(function () {
+        $("header").load("navbar.html")
+        $("footer").load("footer.html")
+        $(".footer-bottom").load("footer-bottom.html")
+        $("#progress").click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 10);
+        })
+        ShowNavbarWhenScroll()
+        zoom()
+    })
+    function ShowNavbarWhenScroll() {
+        var previousScroll = 0
+        $(window).scroll(function () {
+            var currentScroll = $(this).scrollTop();
+            if (currentScroll > previousScroll) {
+                // Cuộn xuống: ẩn navbar
+                $('.navbar').stop()
+                $('.navbar').slideUp(1000, "linear");
+            } else {
+                // Cuộn lên: hiện navbar
+                $('.navbar').stop()
+                $('.navbar').slideDown(100, "linear");
+            }
+
+            previousScroll = currentScroll; // Cập nhật vị trí cuộn trước đó
+        })
+    }
+
+    function calcScrollValue() {
+        let pos = $(document).scrollTop() //Vị trí hiện tại
+        let calcHeight = $(document).height() - $(window).height();
+        let scrollValue = Math.round((pos / calcHeight) * 100); // tỷ lệ % vị trí hiện tại so với tài liệu
+
+        if (pos > 100) {
+            $("#progress").fadeIn()
+        }
+        else {
+            $("#progress").fadeOut()
+        }
+        $("#progress").css("background", `conic-gradient( #001a2e ${scrollValue}%, #f8f9fa ${scrollValue}%)`)
+    }
+
+    $(window).on("scroll", calcScrollValue);
+    $(window).on("load", calcScrollValue);
+
+    function zoom() {
+        $("#card-list img, .card-list img").hover(
+            function () {
+                $(this).css({
+                    "transform": "scale(1.2)",
+                    "transition": "2s ease"
+                })
+            }, function () {
+                $(this).css({
+                    "transform": "scale(1)",
+                    "transition": "0.5s ease"
+                })
+            })
+    }
+</script>
+
+<body>
+    <div class="wrapper" class="text-dark">
+        <!--Menu-->
+        <header></header>
+        <!--Content-->
+        <div class="container" style="margin-top: 5rem;">
+            <div class="flat-title flat-title-gradient text-center p-3">
+                <h1>Cửa hàng</h1>
+                <p>Đến tận nơi và thỏa sức lựa chọn sản phẩm</p>
+            </div>
+        </div>
+        <section class="container mt-5">
+            <div class="row">
+                <div class="col-lg-3 col-6 position-relative mb-4">
+                    <img src="./assets/images/store/store_bac-DOTza73N.webp" alt="Hà Nội" class="w-100 img-fluid ">
+                    <span class="badge bg-danger position-absolute translate-middle start-50 fs-lg"
+                        style="bottom: 1rem;">Hà Nội</span>
+                </div>
+                <div class="col-lg-3 col-6 position-relative mb-4">
+                    <img src="./assets/images/store/store_trung-DZ0neZuq.webp" alt="Đà Nẵng" class="w-100 img-fluid ">
+                    <span class="badge bg-primary position-absolute translate-middle start-50 fs-lg"
+                        style="bottom: 1rem;">Đà Nẵng</span>
+                </div>
+                <div class="col-lg-3 col-6 position-relative mb-4">
+                    <img src="./assets/images/store/store_nam-CqM09ia8.webp" alt="TP.Hồ Chí Minh"
+                        class="w-100 img-fluid ">
+                    <span class="badge bg-warning position-absolute translate-middle start-50 fs-lg"
+                        style="bottom: 1rem;">TP.Hồ Chí Minh</span>
+                </div>
+                <div class="col-lg-3 col-6 position-relative mb-4">
+                    <img src="./assets/images/store/store_lan-BdDQtbvK.webp" alt="Thái Lan" class="w-100 img-fluid ">
+                    <span class="badge bg-success position-absolute translate-middle start-50 fs-lg"
+                        style="bottom: 1rem;">Thái Lan</span>
+                </div>
+            </div>
+            <div class="row mt-5 gap-4 flex-lg-nowrap">
+                <div class="col-lg-6 col-12 mb-4 border border-secondary rounded-5 p-4">
+                    <!-- Thông tin các chi nhánh và mô tả -->
+                    <div>
+                        <h4>Apollo Hà Nội</h4>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-clock me-3"></i>8:00 - 22:00</h6>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-geo-alt me-3"></i>Số 69, ngõ 96, Phú Minh,
+                            Minh Khai, Bắc Từ Liêm, Hà Nội</h6>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-telephone me-3"></i>024 1234 5678</h6>
+                    </div>
+                    <div class="mt-4">
+                        <h4>Apollo Đà Nẵng</h4>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-clock me-3"></i>8:00 - 22:00</h6>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-geo-alt me-3"></i>12 Nguyễn Văn Linh, Hải
+                            Châu, Đà Nẵng</h6>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-telephone me-3"></i>0236 123 4567</h6>
+                    </div>
+                    <div class="mt-4">
+                        <h4>Apollo TP.Hồ Chí Minh</h4>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-clock me-3"></i>8:00 - 22:00</h6>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-geo-alt me-3"></i>45 Lê Lợi, Quận 1, TP.Hồ
+                            Chí Minh</h6>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-telephone me-3"></i>028 1234 5678</h6>
+                    </div>
+                    <div class="mt-4">
+                        <h4>Apollo Thái Lan</h4>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-clock me-3"></i>8:00 - 22:00</h6>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-geo-alt me-3"></i>88 Sukhumvit, Bangkok,
+                            Thailand</h6>
+                        <h6 class="d-flex align-items-center"><i class="bi bi-telephone me-3"></i>+66 2 123 4567</h6>
+                    </div>
+                    <p class="mt-4">Apollo tự hào sở hữu 4 cửa hàng thời trang đẳng cấp tại Hà Nội, Đà Nẵng, TP. Hồ Chí
+                        Minh và Thái Lan – không gian mua sắm hiện đại, phong cách quốc tế, mang đến trải nghiệm tuyệt
+                        vời cho tín đồ thời trang.</p>
+                </div>
+                <div class="col-lg-6 col-12 mb-4 border border-secondary rounded-5 p-4">
+                    <!-- Thông tin mô tả, tiện ích và carousel -->
+                    <div>
+                        <p>Apollo là cửa hàng thời trang hiện đại, chuyên cung cấp các mẫu quần áo phong cách trẻ trung,
+                            đa dạng, chất lượng cao, phục vụ tận tình và giá cả hợp lý.</p>
+                    </div>
+                    <div class="mt-4 mb-4">
+                        <div class="row g-4">
+                            <div class="col-12 col-lg-6">
+                                <div class="border border-secondary rounded-5 p-2 h-100">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="bi bi-car-front fs-2"></i>
+                                        </div>
+                                        <div class="col-10">
+                                            <h4>Gửi xe miễn phí</h4>
+                                            <p>Khách hàng được hỗ trợ gửi xe miễn phí tại cửa hàng Apollo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="border border-secondary rounded-5 p-2 h-100">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="bi bi-person-badge fs-2"></i>
+                                        </div>
+                                        <div class="col-10">
+                                            <h4>Nhân viên tư vấn</h4>
+                                            <p>Đội ngũ nhân viên thân thiện, hỗ trợ bạn chọn lựa trang phục phù hợp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="border border-secondary rounded-5 p-2 h-100">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img src="./assets/images/store/t-shirt-svgrepo-com (1).svg"
+                                                style="width: 30px; height: 30px;">
+                                        </div>
+                                        <div class="col-10">
+                                            <h4>Thời trang đa dạng</h4>
+                                            <p>Sản phẩm phong phú, theo xu hướng, phù hợp nhiều phong cách khác nhau.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="border border-secondary rounded-5 p-2 h-100">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <i class="bi bi-credit-card fs-2"></i>
+                                        </div>
+                                        <div class="col-10">
+                                            <h4>Thanh toán linh hoạt</h4>
+                                            <p>Chấp nhận nhiều hình thức thanh toán như thẻ tín dụng và ví điện tử.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Carousel -->
+                    <div id="demo" class="carousel slide p-4" data-bs-ride="carousel">
+                        <!-- Indicators/dots -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+                        </div>
+                        <!-- The slideshow/carousel -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="./assets/images/store/ourstore1.png" alt="Los Angeles"
+                                    class="d-block w-100 rounded-4">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="./assets/images/store/ourstore2.png" alt="Chicago"
+                                    class="d-block w-100 rounded-4">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="./assets/images/store/ourstore3.png" alt="New York"
+                                    class="d-block w-100 rounded-4">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="./assets/images/store/ourstore4.png" alt="New York"
+                                    class="d-block w-100 rounded-4">
+                            </div>
+                        </div>
+                        <!-- Left and right controls/icons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--------------------------------------------------Footer---------------------------------------------------------->
+
+        <footer class="mx-3 my-5"></footer>
+        <!--------------------------------------------------Bottom Footer---------------------------------------------------------->
+        <hr>
+        <div class="footer-bottom my-4"></div>
+        <!--------------------------------------------------Scroll To Top Button---------------------------------------------------------->
+        <div id="progress">
+            <span id="progress-value"><i class="bi bi-chevron-up"></i></span>
+        </div>
+    </div>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

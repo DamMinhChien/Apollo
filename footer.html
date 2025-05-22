@@ -96,13 +96,32 @@
                 <h5 class="mb-3">Đăng ký nhận Email</h5>
                 <p>Đăng ký để nhận thông tin sớm nhất về sản phẩm mới, chương trình giảm giá, nội dung độc quyền,
                     sự kiện và nhiều hơn nữa!</p>
-                <form>
-                    <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Nhập email của bạn..." required>
-                        <button class="btn btn-primary">Đăng ký</button>
+                <form id="email-register-form">
+                    <div class="input-group mb-2">
+                        <input type="email" class="form-control" id="register-email" placeholder="Nhập email của bạn..."
+                            required>
+                        <button class="btn btn-primary" id="register" type="submit">Đăng ký</button>
                     </div>
-                </form>
+                    <!-- Khung nhập mã xác thực, ẩn mặc định -->
+                    <div id="verify-section" class="mt-2" style="display:none;">
+                        <script>
+                            $(function () {
+                                $("#email-register-form").on("submit", function (e) {
+                                    e.preventDefault();
+                                    var email = $("#register-email").val().trim();
+                                    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                    if (!emailRegex.test(email)) {
+                                        alert("Vui lòng nhập đúng định dạng email!");
+                                        $("#register-email").focus();
+                                        return false;
+                                    }
+                                    alert("Mã xác thực đã được gửi đến email của bạn. Vui lòng kiểm tra hộp thư và nhập mã xác thực để hoàn tất đăng ký!");
+                                    // Có thể mở modal nhập mã xác thực ở đây nếu muốn
+                                    return false;
+                                });
+                            });
+                        </script>
+                    </div>
             </div>
         </div>
     </div>
-</div>

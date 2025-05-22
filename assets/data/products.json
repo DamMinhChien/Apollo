@@ -235,5 +235,227 @@
                 "img_path": "./assets/images/best-seller/black-11.jpg"
             }
         ]
+    },
+    {
+        "id": 13,
+        "title": "Phao Vip Nam Gile Ép Bonding",
+        "versions": [
+            {
+                "price": "494500₫",
+                "color": "Xám",
+                "img_path": "./assets/images/best-seller/1.webp"
+            },
+            {
+                "price": "494500₫",
+                "color": "Xanh Dương",
+                "img_path": "./assets/images/best-seller/2.webp"
+            },
+            {
+                "price": "594500₫",
+                "color": "Xanh Nhạt",
+                "img_path": "./assets/images/best-seller/3.webp"
+            },
+            {
+                "price": "594500₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/4.webp"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Vest Nữ Dáng Blazer Nắp Túi Xẻ Sau",
+        "versions": [
+            {
+                "price": "449500₫",
+                "color": "Xanh Nhạt",
+                "img_path": "./assets/images/best-seller/11.webp"
+            },
+            {
+                "price": "449500₫",
+                "color": "Be",
+                "img_path": "./assets/images/best-seller/12.webp"
+            },
+            {
+                "price": "449500₫",
+                "color": "Trắng",
+                "img_path": "./assets/images/best-seller/13.webp"
+            },
+            {
+                "price": "449500₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/14.webp"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Bộ Đông Nữ Hoodie In Hình",
+        "versions": [
+            {
+                "price": "449500₫",
+                "color": "Xám",
+                "img_path": "./assets/images/best-seller/21.webp"
+            },
+            {
+                "price": "449500₫",
+                "color": "Xanh Đậm",
+                "img_path": "./assets/images/best-seller/22.webp"
+            },
+            {
+                "price": "449500₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/23.webp"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Bộ đồ thể thao nam nỉ Double Face",
+        "versions": [
+            {
+                "price": "699500₫",
+                "color": "Xám",
+                "img_path": "./assets/images/best-seller/17.webp"
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "title": "Set Nữ Lá Cổ Đức Cúc Bọc Chân A",
+        "versions": [
+            {
+                "price": "639200₫",
+                "color": "Be",
+                "img_path": "./assets/images/best-seller/21.webp"
+            },
+            {
+                "price": "639200₫",
+                "color": "Nâu",
+                "img_path": "./assets/images/best-seller/22.webp"
+            },
+            {
+                "price": "619200₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/23.webp"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "title": "Bộ Nỉ Nữ Thể Thao Double Face",
+        "versions": [
+            {
+                "price": "699500₫",
+                "color": "Hồng",
+                "img_path": "./assets/images/best-seller/27.webp"
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "title": "Áo Hoodie Yoguu Tay Tháo Rời",
+        "versions": [
+            {
+                "price": "669000₫",
+                "color": "Xám",
+                "img_path": "./assets/images/best-seller/41.webp"
+            },
+            {
+                "price": "679000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/42.webp"
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "title": "Quần Âu Nữ Dáng Suông Họa Tiêt Kẻ",
+        "versions": [
+            {
+                "price": "649000₫",
+                "color": "Trắng",
+                "img_path": "./assets/images/best-seller/37.webp"
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "title": "Đầm Tiệc Nữ Phối Sang Trọng",
+        "versions": [
+            {
+                "price": "649000₫",
+                "color": "Trắng",
+                "img_path": "./assets/images/best-seller/51.webp"
+            },
+            {
+                "price": "649000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/52.webp"
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "title": "Áo Phao Kid Trần Trám Siêu Ấm",
+        "versions": [
+            {
+                "price": "599000₫",
+                "color": "Be",
+                "img_path": "./assets/images/best-seller/61.webp"
+            },
+            {
+                "price": "549000₫",
+                "color": "Xanh Đậm",
+                "img_path": "./assets/images/best-seller/62.webp"
+            },
+            {
+                "price": "589000₫",
+                "color": "Tím",
+                "img_path": "./assets/images/best-seller/63.webp"
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "title": "Áo Khoác Nỉ Thể Thao Nam Moving Forward",
+        "versions": [
+            {
+                "price": "579000₫",
+                "color": "Xám",
+                "img_path": "./assets/images/best-seller/71.webp"
+            },
+            {
+                "price": "699000₫",
+                "color": "Xanh Đậm",
+                "img_path": "./assets/images/best-seller/72.webp"
+            },
+            {
+                "price": "579000₫",
+                "color": "Nâu",
+                "img_path": "./assets/images/best-seller/73.webp"
+            },
+            {
+                "price": "699000₫",
+                "color": "Đen",
+                "img_path": "./assets/images/best-seller/74.webp"
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "title": "Quần Jean Nữ Ống Suông Hiệu Ứng Gân Nổi",
+        "versions": [
+            {
+                "price": "274000₫",
+                "color": "Xanh Nhạt",
+                "img_path": "./assets/images/best-seller/81.webp"
+            },
+            {
+                "price": "259000₫",
+                "color": "Xanh Đậm",
+                "img_path": "./assets/images/best-seller/82.webp"
+            }
+        ]
     }
 ]

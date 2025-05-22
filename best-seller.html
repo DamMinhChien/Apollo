@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Hàng mới về</title>
     <link rel="icon" href="./assets/images/logo/favicon.png">
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
@@ -64,23 +64,26 @@
     }
     function renderCards(cards) {
         let cardList = $("#card-list");
-        cardList.empty()
-        cards.forEach((card) => {
-            let cardHTML = `<div class="col-xl-3 col-md-4 col-6 mb-5">
-                        <div class="card">
-                            <a href="./product-detail.html" class="overflow-hidden"><img id="product-image-${card.id}" src="${card.versions[0].img_path}" alt="img" class="card-img-top"></a>
-                            <div class="card-body">
-                                <h5 class="card-title fw-normal">${card.title}</h5>
-                                <p class="card-text fw-bold">${card.versions[0].price}</p>
-                                <div id="color-options-${card.id}" class="d-flex gap-2 align-content-center flex-wrap">
-                                </div>
-                            </div>
-                        </div>
-                    </div>`
-            cardList.append(cardHTML)
+        cardList.empty();
+        // Hiển thị tối đa 8 sản phẩm đầu tiên
+        cards.forEach((card, idx) => {
+            let isHidden = idx >= 8 ? "d-none" : "";
+            let cardHTML = `<div class="col-xl-3 col-md-4 col-6 mb-5 ${isHidden}">
+                <div class="card">
+                    <a href="./product-detail.html" class="overflow-hidden">
+                        <img id="product-image-${card.id}" src="${card.versions[0].img_path}" alt="img" class="card-img-top">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title fw-normal">${card.title}</h5>
+                        <p class="card-text fw-bold">${card.versions[0].price}</p>
+                        <div id="color-options-${card.id}" class="d-flex gap-2 align-content-center flex-wrap"></div>
+                    </div>
+                </div>
+            </div>`;
+            cardList.append(cardHTML);
             let colorOptionsDiv = $(`#color-options-${card.id}`);
             card.versions.forEach((version, index) => {
-                const color = window.colorMap[version.color] ?? "#000000"
+                const color = window.colorMap[version.color] ?? "#000000";
                 colorOptionsDiv.append(`
                     <div class="form-check">
                         <input 
@@ -102,8 +105,27 @@
             $(`input[name="color-${card.id}"]`).change(function () {
                 $(`#product-image-${card.id}`).attr("src", $(this).data("img"))
                 $(`input[name="color-${card.id}"]`).tooltip('hide');
-            })
+            });
             $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+
+        // Xử lý phân trang
+        $(".pagination .page-item").off("click").on("click", function (e) {
+            e.preventDefault();
+            $(".pagination .page-item").removeClass("active");
+            $(this).addClass("active");
+            let page = $(this).text().trim();
+            if (page === "1") {
+                $("#card-list .col-xl-3").each(function (i) {
+                    $(this).toggleClass("d-none", i >= 8);
+                });
+            } else if (page === "2") {
+                $("#card-list .col-xl-3").each(function (i) {
+                    $(this).toggleClass("d-none", i < 8);
+                });
+            }
+            // Lăn về đầu trang khi đổi trang
+            $("html, body").animate({ scrollTop: 0 }, 400);
         });
     }
     function calcScrollValue() {
@@ -140,9 +162,9 @@
 </script>
 
 <body>
-    <div id="wrapper" class="text-dark">
+    <div class="wrapper" class="text-dark">
         <header></header>
-        <div class="container" style="margin-top: 8rem;">
+        <div class="container" style="margin-top: 6rem;">
             <div class="flat-title flat-title-gradient text-center p-3">
                 <h1>Hàng mới về</h1>
                 <p>Mua sắm qua bộ sưu tập thời trang mới nhất của chúng tôi</p>
@@ -156,12 +178,9 @@
         </section>
         <div id="pagination" class="mb-5">
             <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center gap-2">
+                <ul class="pagination pagination-lg justify-content-center gap-2">
                     <li class="page-item active"><a class="page-link" href="#">1</a></li>
                     <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
                 </ul>
             </nav>
         </div>

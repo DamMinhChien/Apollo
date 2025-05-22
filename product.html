@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm</title>
+    <link rel="icon" href="./assets/images/logo/favicon.png">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <!--Bootstrap Icon-->
+    <link rel="stylesheet" href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <!--Animate-->
+    <link rel="stylesheet" href="./assets/css/animate.min.css">
+    <!--Owl Carousel-->
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <!--Color Map-->
+    <script src="./assets/js/colorMap.js"></script>
+    <!--Jquery-->
+    <script src="./assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+    <!--Custom-->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+
+<script>
+    $(function () {
+        $("header").load("navbar.html")
+        $("footer").load("footer.html")
+        $(".footer-bottom").load("footer-bottom.html")
+        $("#progress").click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 10);
+        })
+        ShowNavbarWhenScroll()
+        zoom()
+        $(function () {
+            // ...existing code...
+
+            // Pagination: chuyển trang khi click nút trái/phải
+            $(".pagination .page-link").click(function (e) {
+                e.preventDefault();
+                const $this = $(this);
+                // Nếu là nút số thì chuyển trang tương ứng
+                if ($this.text().trim() === "1") window.location.href = "./product.html";
+                if ($this.text().trim() === "2") window.location.href = "./product2.html";
+                if ($this.text().trim() === "3") window.location.href = "./product3.html";
+                if ($this.text().trim() === "4") window.location.href = "./product4.html";
+                // Nếu là nút trái
+                if ($this.find(".bi-chevron-left").length) {
+                    if ($(".pagination .active").prev().find("a.page-link").length) {
+                        $(".pagination .active").prev().find("a.page-link")[0].click();
+                    }
+                }
+                // Nếu là nút phải
+                if ($this.find(".bi-chevron-right").length) {
+                    if ($(".pagination .active").next().find("a.page-link").length) {
+                        $(".pagination .active").next().find("a.page-link")[0].click();
+                    }
+                }
+            });
+        });
+        //Lưu data
+        let cards = []
+        //Lấy dữ liệu Card từ file Json
+        $.ajax({
+            url: "./assets/data/products.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                cards = data
+                // Gọi hàm sau khi render thành công
+                renderCards(cards)
+                zoom()
+            },
+            error: function (xhr, status, error) {
+                $("body").prepend(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Lỗi: </strong> ${error}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>`)
+            }
+        })
+
+        $(".categories-btn").click(function () {
+            window.location.href = "./best-seller.html"
+        })
+
+        //Owl Carousel
+        $(".feedback-carousel").owlCarousel({
+            loop: true,
+            margin: 20,
+            nav: true,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: { items: 1 },
+                600: { items: 2 },
+                1000: { items: 3 }
+            }
+        });
+
+        $(".categories-carousel").owlCarousel({
+            loop: false,
+            margin: 20,
+            nav: false,
+            dots: true,
+            autoplay: false,
+            autoplayTimeout: false,
+            autoplayHoverPause: true,
+            responsive: {
+                0: { items: 1 },
+                600: { items: 2 },
+                1000: { items: 3 }
+            }
+        });
+        var owl = $(".categories-carousel")
+        $("#categories-prev").click(function () {
+            owl.trigger('prev.owl.carousel');
+        })
+        $("#categories-next").click(function () {
+            owl.trigger('next.owl.carousel');
+        })
+    })
+    function ShowNavbarWhenScroll() {
+        var previousScroll = 0
+        $(window).scroll(function () {
+            var currentScroll = $(this).scrollTop();
+            if (currentScroll > previousScroll) {
+                // Cuộn xuống: ẩn navbar
+                $('.navbar').stop()
+                $('.navbar').slideUp(1000, "linear");
+            } else {
+                // Cuộn lên: hiện navbar
+                $('.navbar').stop()
+                $('.navbar').slideDown(100, "linear");
+            }
+
+            previousScroll = currentScroll; // Cập nhật vị trí cuộn trước đó
+        })
+    }
+
+    function calcScrollValue() {
+        let pos = $(document).scrollTop() //Vị trí hiện tại
+        let calcHeight = $(document).height() - $(window).height();
+        let scrollValue = Math.round((pos / calcHeight) * 100); // tỷ lệ % vị trí hiện tại so với tài liệu
+
+        if (pos > 100) {
+            $("#progress").fadeIn()
+        }
+        else {
+            $("#progress").fadeOut()
+        }
+        $("#progress").css("background", `conic-gradient( #001a2e ${scrollValue}%, #f8f9fa ${scrollValue}%)`)
+    }
+
+    $(window).on("scroll", calcScrollValue);
+    $(window).on("load", calcScrollValue);
+    //Hàm render Cards vào DOM
+    function renderCards(cards) {
+        let cardList = $("#card-list")
+        cardList.empty() //Xóa nội dung cũ nếu có
+
+        // Hiển thị tối đa 12 sản phẩm đầu tiên
+        cards.slice(0, 12).forEach((card, index) => {
+            let cardHTML = `<div class="col-xl-3 col-md-4 col-6 mb-5">
+                        <div class="card">
+                            <a href="./product-detail.html" class="overflow-hidden"><img id="product-image-${card.id}" src="${card.versions[0].img_path}" alt="img" class="card-img-top"></a>
+                            <div class="card-body">
+                                <h5 class="card-title fw-normal">${card.title}</h5>
+                                <p class="card-text fw-bold">${card.versions[0].price}</p>
+                                <div id="color-options-${card.id}" class="d-flex gap-2 align-content-center flex-wrap">
+                                    <!--Các Rad sẽ hiển thị ở đây-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+            cardList.append(cardHTML)
+
+            // Tạo radio buttons và xử lý sự kiện thay đổi ảnh
+            let colorOptionsDiv = $(`#color-options-${card.id}`); //Nơi chứa Rad
+
+            card.versions.forEach((version, index) => {
+                const color = window.colorMap[version.color] ?? "#000000"
+
+                colorOptionsDiv.append(`
+        <div class="form-check" id="container-color-${card.id}">
+            <input 
+                class="form-check-input" 
+                id="color-${card.id}-${version.color}" 
+                type="radio" 
+                name="color-${card.id}" 
+                style="cursor: pointer; background-color: ${color};" 
+                data-bs-toggle="tooltip" 
+                data-bs-placement="bottom" 
+                title="${version.color}" 
+                value="${version.color}" 
+                data-img="${version.img_path}" 
+                ${index === 0 ? "checked" : ""}
+            >
+        </div>
+    `);
+            });
+            // Lắng nghe sự kiện thay đổi radio và thay đổi ảnh
+            $(`input[name="color-${card.id}"]`).change(function () {
+                //Đổi giá trị thuộc tính src thành giá trị được lưu trong data-img hiện thời
+                $(`#product-image-${card.id}`).attr("src", $(this).data("img"))
+                $(`input[name="color-${card.id}"]`).tooltip('hide');
+            })
+            // Khởi tạo tooltip cho tất cả các phần tử mới thêm vào
+            $('[data-bs-toggle="tooltip"]').tooltip();
+
+        });
+        // Không còn nút hiển thị thêm
+    }
+    function zoom() {
+        $("#card-list img, .card-list img").hover(
+            function () {
+                $(this).css({
+                    "transform": "scale(1.2)",
+                    "transition": "2s ease"
+                })
+            }, function () {
+                $(this).css({
+                    "transform": "scale(1)",
+                    "transition": "0.5s ease"
+                })
+            })
+    }
+</script>
+<div class="align-content-center"></div>
+
+<body>
+    <div id="wrapper">
+        <!--Menu-->
+        <header></header>
+        <!--Content-->
+        <div class="container" style="margin-top: 6rem;">
+            <div class="flat-title flat-title-gradient text-center p-3">
+                <h1>Tất cả sản phẩm</h1>
+                <p>Mua sắm qua bộ sưu tập thời trang mới nhất của chúng tôi</p>
+            </div>
+        </div>
+        <!--Best seller-->
+        <section id="best-seller" class="m-5">
+            <div class="container">
+                <div class="row" id="card-list">
+                    <!--Cards render here-->
+
+                </div>
+            </div>
+        </section>
+        <ul class="pagination pagination-lg justify-content-center my-3 text-dark">
+            <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="./product2.html">2</a></li>
+            <li class="page-item"><a class="page-link" href="./product3.html">3</a></li>
+            <li class="page-item"><a class="page-link" href="./product4.html">4</a></li>
+            <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
+        </ul>
+
+        <!--------------------------------------------------Footer---------------------------------------------------------->
+        <hr>
+        <footer class="mx-3 my-5"></footer>
+        <!--------------------------------------------------Bottom Footer---------------------------------------------------------->
+        <hr>
+        <div class="footer-bottom my-4"></div>
+        <!--------------------------------------------------Scroll To Top Button---------------------------------------------------------->
+        <div id="progress">
+            <span id="progress-value"><i class="bi bi-chevron-up"></i></span>
+        </div>
+    </div>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

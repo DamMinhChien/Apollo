@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ sưu tập thời trang nữ cao cấp</title>
+    <link rel="icon" href="./assets/images/logo/favicon.png">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./assets/css/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/colorMap.js"></script>
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --secondary: #ff69b4;
+            --accent: #ffd700;
+            --light: #fdf5e6;
+            --dark: #4b0082;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff0f5 0%, #fffaf0 100%);
+            color: var(--dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .header-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            margin-top: 6rem;
+        }
+
+        .header-gradient:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.2;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px;
+        }
+
+        .sort-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin: 30px 0;
+        }
+
+        .sort-btn {
+            background: transparent;
+            color: var(--dark);
+            border: 2px solid var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            transition: var(--transition);
+            font-weight: 600;
+            margin: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sort-btn:hover, .sort-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .sort-btn i {
+            font-size: 1.2rem;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+            background: white;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: var(--dark);
+            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 30px;
+            z-index: 2;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card-img-container {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 300px);
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            height: 50px;
+            overflow: hidden;
+            display: -webkit-box;
+            /* -webkit-line-clamp: 2; */
+            -webkit-box-orient: vertical;
+        }
+
+        .card-text {
+            color: var(--secondary);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: auto;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .color-option:hover, .color-option.active {
+            transform: scale(1.2);
+            border-color: var(--accent);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .pagination .page-item {
+            margin: 0 5px;
+        }
+
+        .pagination .page-item .page-link {
+            border-radius: 10px;
+            color: var(--primary);
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            min-width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .pagination .page-item.active .page-link,
+        .pagination .page-item .page-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .pagination .page-item.disabled .page-link {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #progress {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            background: white;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        #progress:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        #progress-value {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .filter-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .filter-title {
+            font-weight: 700;
+            color: var(--primary);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group h6 {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .form-check {
+            margin-bottom: 8px;
+        }
+
+        .form-check-label {
+            cursor: pointer;
+        }
+
+        .form-check-input {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            margin-top: 0.2rem;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .filter-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 600;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        @media (max-width: 992px) {
+            .card-img-container {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 30px 15px;
+            }
+            
+            .card-img-container {
+                height: 220px;
+            }
+            
+            .sort-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .filter-section {
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-gradient {
+                margin-top: 5rem;
+            }
+            
+            .card-img-container {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper text-dark">
+        <header></header>
+        
+        <div class="container">
+            <div class="header-gradient">
+                <div class="header-content text-center">
+                    <h1 class="display-4 fw-bold">BỘ SƯU TẬP THỜI TRANG NỮ</h1>
+                    <p class="fs-5 mt-3">Khám phá những thiết kế tinh tế, phong cách đẳng cấp dành cho phái đẹp</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="filter-section">
+                        <h4 class="filter-title"><i class="bi bi-funnel me-2"></i> BỘ LỌC</h4>
+                        
+                        <div class="filter-group">
+                            <h6>Danh mục</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="category1" checked>
+                                <label class="form-check-label" for="category1">Áo thun nữ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="category2">
+                                <label class="form-check-label" for="category2">Áo sơ mi nữ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="category3">
+                                <label class="form-check-label" for="category3">Chân váy & Đầm</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="category4">
+                                <label class="form-check-label" for="category4">Áo khoác nữ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="category5">
+                                <label class="form-check-label" for="category5">Phụ kiện nữ</label>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h6>Khoảng giá</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="price1">
+                                <label class="form-check-label" for="price1">Dưới 500.000₫</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="price2" checked>
+                                <label class="form-check-label" for="price2">500.000₫ - 1.000.000₫</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="price3">
+                                <label class="form-check-label" for="price3">1.000.000₫ - 2.000.000₫</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="price4">
+                                <label class="form-check-label" for="price4">Trên 2.000.000₫</label>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h6>Thương hiệu</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="brand1" checked>
+                                <label class="form-check-label" for="brand1">Chanel</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="brand2">
+                                <label class="form-check-label" for="brand2">Dior</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="brand3">
+                                <label class="form-check-label" for="brand3">Louis Vuitton</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="brand4">
+                                <label class="form-check-label" for="brand4">Gucci</label>
+                            </div>
+                        </div>
+                        
+                        <button class="filter-btn mt-3">
+                            <i class="bi bi-funnel me-2"></i> Áp dụng bộ lọc
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-9">
+                    <!-- Sorting Section -->
+                    <div class="sort-container">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center">
+                            <h5 class="mb-0 fw-bold"><i class="bi bi-sort-down me-2"></i>Sắp xếp theo:</h5>
+                            <div class="d-flex flex-wrap">
+                                <button class="sort-btn active" data-sort="default">
+                                    <i class="bi bi-star"></i> Mặc định
+                                </button>
+                                <button class="sort-btn" data-sort="price_asc">
+                                    <i class="bi bi-arrow-up"></i> Giá tăng dần
+                                </button>
+                                <button class="sort-btn" data-sort="price_desc">
+                                    <i class="bi bi-arrow-down"></i> Giá giảm dần
+                                </button>
+                                <button class="sort-btn" data-sort="name_asc">
+                                    <i class="bi bi-sort-alpha-down"></i> Tên A-Z
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section id="best-seller" class="mt-4">
+                        <div class="container-fluid">
+                            <div class="row g-4" id="card-list">
+                                <!-- Sản phẩm sẽ được render ở đây -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <div id="pagination" class="my-5">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                <!-- Phân trang sẽ được tạo tự động -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <footer class="mx-3 my-5"></footer>
+        <hr>
+        <div class="footer-bottom my-4"></div>
+
+        <div id="progress">
+            <span id="progress-value"><i class="bi bi-chevron-up"></i></span>
+        </div>
+    </div>
+
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+
+    <script>
+        let filteredProducts = [];
+        const itemsPerPage = 8;
+
+        $(function () {
+            $("header").load("navbar.html");
+            $("footer").load("footer.html");
+            $(".footer-bottom").load("footer-bottom.html");
+
+            $("#progress").click(() => $("html, body").animate({ scrollTop: 0 }, 10));
+
+            ShowNavbarWhenScroll();
+            initPagination();
+            fetchProducts();
+            
+            // Sorting button event
+            $(".sort-btn").click(function() {
+                $(".sort-btn").removeClass("active");
+                $(this).addClass("active");
+                
+                const sortType = $(this).data("sort");
+                sortProducts(sortType);
+                
+                // Reset to first page after sorting
+                $(".pagination .page-item").removeClass("active");
+                $(".pagination .page-item:first-child").addClass("active");
+                renderPage(1);
+            });
+        });
+
+        function fetchProducts() {
+            // Simulate product data
+            filteredProducts = [
+                {
+                    id: 1,
+                    title: "Áo Sơ Mi Nữ Dáng Rộng",
+                    versions: [
+                        { color: "Trắng", price: "650.000₫", img_path: "assets/images/nu/nu8.webp" },
+                        { color: "Hồng", price: "650.000₫", img_path: "assets/images/nu/nu7.webp"}
+                ]
+                },
+                {
+                    id: 2,
+                    title: "Đầm Suông Tay Bồng",
+                    versions: [
+                        { color: "Xanh Dương", price: "1.200.000₫", img_path: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                        { color: "Đen", price: "1.200.000₫", img_path: "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "Áo Len Cổ Lọ Nữ",
+                    versions: [
+                        { color: "Kem", price: "850.000₫", img_path: "assets/images/nu/nu9.webp" },
+                        { color: "Xám", price: "850.000₫", img_path: "assets/images/nu/nu10.webp" }
+                    ]
+                },
+                {
+                    id: 4,
+                    title: "Chân Váy Bút Chì",
+                    versions: [
+                        { color: "Đen", price: "750.000₫", img_path: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                        { color: "Xanh Than", price: "750.000₫", img_path: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" }
+                    ]
+                },
+                {
+                    id: 5,
+                    title: "Áo Croptop Tay Dài",
+                    versions: [
+                        { color: "Trắng", price: "450.000₫", img_path: "assets/images/nu/nu7.webp" },
+                        { color: "Đen", price: "450.000₫", img_path: "assets/images/nu/nu5.webp" }
+                    ]
+                },
+                {
+                    id: 6,
+                    title: "Quần Ống Rộng Nữ",
+                    versions: [
+                        { color: "Đen", price: "900.000₫", img_path: "assets/images/nu/nu5.webp" },
+                        { color: "Trắng", price: "900.000₫", img_path: "assets/images/nu/nu6.webp" }
+                    ]
+                },
+                {
+                    id: 7,
+                    title: "Áo Khoác Dạ Nữ",
+                    versions: [
+                        { color: "Hồng", price: "1.500.000₫", img_path: "assets/images/nu/nu4.webp" },
+                        { color: "Xanh Navy", price: "1.500.000₫", img_path: "assets/images/nu/nu3.webp" }
+                    ]
+                },
+                {
+                    id: 8,
+                    title: "Đầm Dạ Hội Sang Trọng",
+                    versions: [
+                        { color: "Đỏ", price: "2.500.000₫", img_path: "assets/images/nu/nu1.webp" },
+                        { color: "Đen", price: "2.500.000₫", img_path: "assets/images/nu/nu2.webp" }
+                    ]
+                }
+                
+            ];
+            
+            updatePagination(filteredProducts.length);
+            renderPage(1);
+        }
+
+        function initPagination() {
+            $(".pagination").on("click", ".page-item:not(.disabled)", function (e) {
+                e.preventDefault();
+                if ($(this).hasClass("active")) return;
+
+                $(".pagination .page-item").removeClass("active");
+                $(this).addClass("active");
+
+                const page = parseInt($(this).text());
+                renderPage(page);
+            });
+        }
+
+        function updatePagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            const $pagination = $(".pagination");
+            $pagination.empty();
+
+            // Previous button
+            $pagination.append(`
+                <li class="page-item disabled" id="prev-page">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            `);
+
+            for (let i = 1; i <= totalPages; i++) {
+                $pagination.append(`
+                    <li class="page-item ${i === 1 ? 'active' : ''}">
+                        <a class="page-link" href="#">${i}</a>
+                    </li>
+                `);
+            }
+
+            // Next button
+            $pagination.append(`
+                <li class="page-item" id="next-page">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            `);
+        }
+
+        function parsePrice(priceStr) {
+            return parseInt(priceStr.replace(/[^\d]/g, ''));
+        }
+
+        function sortProducts(sortType) {
+            switch (sortType) {
+                case 'price_asc':
+                    filteredProducts.sort((a, b) => {
+                        const priceA = parsePrice(a.versions[0].price);
+                        const priceB = parsePrice(b.versions[0].price);
+                        return priceA - priceB;
+                    });
+                    break;
+                case 'price_desc':
+                    filteredProducts.sort((a, b) => {
+                        const priceA = parsePrice(a.versions[0].price);
+                        const priceB = parsePrice(b.versions[0].price);
+                        return priceB - priceA;
+                    });
+                    break;
+                case 'name_asc':
+                    filteredProducts.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'name_desc':
+                    filteredProducts.sort((a, b) => b.title.localeCompare(a.title));
+                    break;
+                case 'default':
+                default:
+                    filteredProducts.sort((a, b) => a.id - b.id);
+                    break;
+            }
+        }
+
+        function renderPage(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageProducts = filteredProducts.slice(start, end);
+            renderCards(pageProducts);
+            $("html, body").animate({ scrollTop: 0 }, 300);
+        }
+
+        function renderCards(cards) {
+            let cardList = $("#card-list");
+            cardList.empty();
+
+            cards.forEach((card) => {
+                const firstVersion = card.versions[0];
+
+                let cardHTML = `
+                <div class="col-xl-4 col-md-6 col-12 mb-4">
+                    <div class="card">
+                        <div class="card-img-container">
+                            <span class="card-badge">Mới</span>
+                            <a href="./product-detail.html?id=${card.id}">
+                                <img id="product-image-${card.id}" 
+                                     src="${firstVersion.img_path}" 
+                                     alt="${card.title}" 
+                                     class="card-img-top">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">${card.title}</h5>
+                            <p id="product-price-${card.id}" class="card-text">${firstVersion.price}</p>
+                            <div class="color-options" id="color-options-${card.id}"></div>
+                        </div>
+                    </div>
+                </div>`;
+                
+                cardList.append(cardHTML);
+                let colorOptionsDiv = $(`#color-options-${card.id}`);
+
+                card.versions.forEach((version, index) => {
+                    const color = window.colorMap ? (window.colorMap[version.color] ?? "#000000") : "#000000";
+                    colorOptionsDiv.append(`
+                        <div class="color-option ${index === 0 ? 'active' : ''}" 
+                             style="background-color: ${color};"
+                             data-img="${version.img_path}" 
+                             data-price="${version.price}"
+                             title="${version.color}"></div>
+                    `);
+                });
+
+                $(`#color-options-${card.id} .color-option`).click(function () {
+                    $(`#color-options-${card.id} .color-option`).removeClass("active");
+                    $(this).addClass("active");
+                    $(`#product-image-${card.id}`).attr("src", $(this).data("img"));
+                    $(`#product-price-${card.id}`).text($(this).data("price"));
+                });
+            });
+        }
+
+        function ShowNavbarWhenScroll() {
+            let previousScroll = 0;
+            $(window).scroll(function () {
+                let currentScroll = $(this).scrollTop();
+                if (currentScroll > previousScroll) {
+                    $('.navbar').stop().slideUp(1000, "linear");
+                } else {
+                    $('.navbar').stop().slideDown(100, "linear");
+                }
+                previousScroll = currentScroll;
+            });
+        }
+
+        function calcScrollValue() {
+            let pos = $(document).scrollTop();
+            let calcHeight = $(document).height() - $(window).height();
+            let scrollValue = Math.round((pos / calcHeight) * 100);
+
+            if (pos > 100) {
+                $("#progress").fadeIn();
+            } else {
+                $("#progress").fadeOut();
+            }
+
+            $("#progress").css("background", `conic-gradient(var(--primary) ${scrollValue}%, var(--light) ${scrollValue}%)`);
+        }
+
+        $(window).on("scroll", calcScrollValue);
+        $(window).on("load", calcScrollValue);
+    </script>
+</body>
+
+</html>

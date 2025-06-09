@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thời trang tre em</title>
+    <link rel="icon" href="./assets/images/logo/favicon.png">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./assets/css/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/colorMap.js"></script>
+    <style>
+         :root {
+            --primary: #d63384;
+            --secondary: #ff4757;
+            --accent: #ff9a9e;
+            --light: #fff9f9;
+            --dark: #1a1a1a;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff9f9 0%, #f8f9ff 100%);
+            color: var(--dark);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+ /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(214, 51, 132, 0.85) 0%, rgba(255, 71, 87, 0.85) 100%), 
+                        url('https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 180px 20px 100px;
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-info:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .contact-info h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+            font-weight: 600;
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), #fad0c4);
+            border-radius: 2px;
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .info-item:nth-child(2) { animation-delay: 0.2s; }
+        .info-item:nth-child(3) { animation-delay: 0.4s; }
+        .info-item:nth-child(4) { animation-delay: 0.6s; }
+        .info-item:nth-child(5) { animation-delay: 0.8s; }
+
+        .info-item i {
+            font-size: 1.8rem;
+            color: var(--accent);
+            min-width: 50px;
+            padding-top: 5px;
+            transition: var(--transition);
+        }
+
+        .info-item:hover i {
+            transform: scale(1.1);
+            color: var(--primary);
+        }
+
+        .info-content h3 {
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+
+        .info-content p {
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--light-gray);
+            color: var(--dark);
+            border-radius: 50%;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .contact-form:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-form h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+            font-weight: 600;
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contact-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), #fad0c4);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light);
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 154, 158, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 16px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(214, 51, 132, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(214, 51, 132, 0.4);
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+        }
+
+        .btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Map Section */
+        .map-section {
+            margin-bottom: 80px;
+            animation: fadeIn 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        .map-section h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .map-section h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .map-container {
+            height: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 80px;
+            animation: fadeIn 1s ease 0.7s forwards;
+            opacity: 0;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .faq-section h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: var(--accent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .faq-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            background: var(--light);
+        }
+
+        .faq-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .faq-question i {
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            background: white;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper text-dark">
+        <header></header>
+
+  <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Liên hệ với chúng tôi</h1>
+            <p>Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy liên hệ để được tư vấn về sản phẩm, dịch vụ hoặc bất kỳ thắc mắc nào.</p>
+            <a href="#contact-form" class="cta-button">Gửi tin nhắn ngay <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <div class="container">
+        <div class="contact-section">
+            <div class="contact-info animated">
+                <h2>Thông tin liên hệ</h2>
+                
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="info-content">
+                        <h3>Địa chỉ cửa hàng</h3>
+                        <p>296 đường Cầu Diễn, Bắc Từ Liêm, Hà Nội</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="info-content">
+                        <h3>Điện thoại</h3>
+                        <p>0903 456 789</p>
+                        <p>024 3622 8888</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="info-content">
+                        <h3>Email</h3>
+                        <p>contact@apollofashion.vn</p>
+                        <p>support@apollofashion.vn</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div class="info-content">
+                        <h3>Giờ mở cửa</h3>
+                        <p>Thứ 2 - Thứ 6: 9:00 - 21:00</p>
+                        <p>Thứ 7 & Chủ nhật: 10:00 - 22:00</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-form animated" id="contact-form" style="animation-delay: 0.2s;">
+                <h2>Gửi tin nhắn cho chúng tôi</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Họ và tên *</label>
+                        <input type="text" id="name" class="form-control" placeholder="Nhập họ tên của bạn" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" class="form-control" placeholder="Nhập email của bạn" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="Nhập số điện thoại">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Chủ đề *</label>
+                        <select id="subject" class="form-control" required>
+                            <option value="">Chọn chủ đề liên hệ</option>
+                            <option value="product">Hỏi về sản phẩm</option>
+                            <option value="order">Tình trạng đơn hàng</option>
+                            <option value="return">Đổi trả sản phẩm</option>
+                            <option value="feedback">Góp ý - Phản hồi</option>
+                            <option value="other">Vấn đề khác</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Nội dung *</label>
+                        <textarea id="message" class="form-control" placeholder="Nhập nội dung chi tiết" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i> Gửi tin nhắn
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="map-section">
+            <h2><i class="fas fa-map-marked-alt"></i> Bản đồ cửa hàng</h2>
+            <div class="map-container">
+                <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.657278928588!2d105.75405011493248!3d21.04625048599057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313455c764203a8d%3A0x7b4f8e3c8e3d9e2c!2zMjk2IMSQLiBD4bqndSBEaeG7h24sIFBoxrDhu51uZyBD4bqndSBEaeG7h24sIEJhYyBUdSBMaWVtLCBIw6AgTuG7mWk!5e0!3m2!1svi!2s!4v1620000000000" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2><i class="fas fa-question-circle"></i> Câu hỏi thường gặp</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Làm thế nào để kiểm tra tình trạng đơn hàng?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Bạn có thể kiểm tra tình trạng đơn hàng bằng cách đăng nhập vào tài khoản trên website và vào mục "Lịch sử đơn hàng". Ngoài ra, bạn cũng sẽ nhận được email thông báo khi đơn hàng thay đổi trạng thái.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Chính sách đổi trả sản phẩm như thế nào?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Chúng tôi chấp nhận đổi trả trong vòng 30 ngày kể từ ngày nhận hàng. Sản phẩm phải còn nguyên tem mác, chưa qua sử dụng và trong tình trạng như ban đầu. Xin vui lòng liên hệ bộ phận chăm sóc khách hàng để được hướng dẫn chi tiết.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Thời gian giao hàng trung bình là bao lâu?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Thời gian giao hàng phụ thuộc vào địa chỉ nhận hàng của bạn. Đối với khu vực Hà Nội, thời gian giao hàng là 1-2 ngày làm việc. Các tỉnh thành khác thời gian giao hàng từ 2-5 ngày làm việc. Chúng tôi sẽ thông báo cụ thể khi bạn đặt hàng.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Tôi có thể đổi hàng tại cửa hàng không?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Có, bạn có thể mang sản phẩm đến cửa hàng tại 296 đường Cầu Diễn, Bắc Từ Liêm, Hà Nội để đổi trả. Xin vui lòng mang theo hóa đơn mua hàng và sản phẩm trong tình trạng nguyên vẹn.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <hr>
+        <footer class="mx-3 my-5"></footer>
+        <hr>
+        <div class="footer-bottom my-4"></div>
+
+        <div id="progress">
+            <span id="progress-value"><i class="bi bi-chevron-up"></i></span>
+        </div>
+    </div>
+
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+
+    <script>
+        
+
+        $(function () {
+            $("header").load("navbar.html");
+            $("footer").load("footer.html");
+            $(".footer-bottom").load("footer-bottom.html");
+
+            $("#progress").click(() => $("html, body").animate({ scrollTop: 0 }, 10));
+
+            ShowNavbarWhenScroll();
+            initPagination();
+            fetchProducts();
+        });
+
+       // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+        
+        // Form Submission with Validation
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Form validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && subject && message) {
+                // Create loading effect
+                const submitButton = contactForm.querySelector('button');
+                const originalButtonText = submitButton.innerHTML;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
+                submitButton.disabled = true;
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    // Show success message
+                    alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi trong thời gian sớm nhất.');
+                    contactForm.reset();
+                    submitButton.innerHTML = originalButtonText;
+                    submitButton.disabled = false;
+                }, 1500);
+            } else {
+                alert('Vui lòng điền đầy đủ thông tin bắt buộc (*)');
+            }
+        });
+        
+        // Animation on scroll
+        const animatedElements = document.querySelectorAll('.animated');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Set current year in footer
+        document.querySelector('.copyright').innerHTML = `&copy; ${new Date().getFullYear()} Apollo Fashion. Tất cả quyền được bảo lưu.`;
+    
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="vi" class="page-kids">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thời trang trẻ em</title>
+    <link rel="icon" href="./assets/images/logo/favicon.png">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./assets/css/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/colorMap.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff7eb9;
+            --secondary-color: #7fc7ff;
+            --accent-color: #ffce5c;
+            --light-color: #fff5f8;
+            --dark-color: #4a3a4d;
+        }
+        
+        .page-kids {
+            background-color: #fff9fc;
+            background-image: radial-gradient(var(--light-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-family: 'Comic Sans MS', 'Marker Felt', 'Arial Rounded MT Bold', sans-serif;
+        }
+        
+        .page-kids .flat-title-gradient {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border: 3px dashed white;
+            animation: titlePulse 3s infinite alternate;
+        }
+        
+        .page-kids h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .page-kids h1::after {
+            content: "👶";
+            position: absolute;
+            right: -40px;
+            top: -15px;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .page-kids .card {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            background-color: white;
+            position: relative;
+        }
+        
+        .page-kids .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+        
+        .page-kids .card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .page-kids .card-title {
+            color: var(--dark-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .page-kids .card-text {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .page-kids .card-img-top {
+            transition: transform 0.5s ease;
+            border-bottom: 3px dashed var(--light-color);
+        }
+        
+        .page-kids .card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+        
+        .page-kids .form-check-input {
+            width: 25px;
+            height: 25px;
+            border: 2px solid white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .page-kids .page-item.active .page-link {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .page-kids .page-link {
+            color: var(--primary-color);
+            border-radius: 50% !important;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--primary-color);
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .page-kids .page-link:hover {
+            background-color: var(--light-color);
+            transform: scale(1.1);
+        }
+        
+        .page-kids #progress {
+            background: conic-gradient(var(--primary-color) var(--scroll), var(--light-color) 0deg);
+        }
+        
+        .page-kids #progress-value {
+            background-color: var(--primary-color);
+        }
+        
+        .kid-decoration {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.2;
+            font-size: 5rem;
+        }
+        
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .decoration-2 {
+            top: 20%;
+            right: 5%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .decoration-3 {
+            bottom: 20%;
+            left: 10%;
+            animation: float 7s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .kid-banner {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 20px;
+            border-radius: 20px;
+            color: white;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .kid-banner::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle, transparent 20%, white 20%, white 21%, transparent 21%),
+                radial-gradient(circle, transparent 20%, white 20%, white 21%, transparent 21%);
+            background-size: 60px 60px;
+            opacity: 0.1;
+            transform: rotate(30deg);
+            animation: moveBackground 30s linear infinite;
+        }
+        
+        @keyframes moveBackground {
+            0% { transform: rotate(30deg) translate(0, 0); }
+            100% { transform: rotate(30deg) translate(-60px, 60px); }
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .banner-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .banner-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .category-btn {
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .category-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .category-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .category-btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 126, 185, 0.4);
+        }
+        
+        .age-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 10;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .page-kids h1 {
+                font-size: 2rem;
+            }
+            .page-kids h1::after {
+                font-size: 1.5rem;
+                right: -30px;
+                top: -5px;
+            }
+            .banner-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper text-dark">
+        <header></header>
+        
+        <!-- Các phần trang trí -->
+        <div class="kid-decoration decoration-1">👕</div>
+        <div class="kid-decoration decoration-2">👚</div>
+        <div class="kid-decoration decoration-3">👟</div>
+        
+        <div class="container" style="margin-top: 6rem;">
+            <div class="flat-title flat-title-gradient text-center p-4">
+                <h1>Thời trang dành cho bé yêu</h1>
+                <p>Chất liệu an toàn - Thiết kế đáng yêu - Bé thoải mái vui chơi</p>
+            </div>
+        </div>
+        
+        <div class="container mt-4">
+            <div class="kid-banner">
+                <div class="banner-content">
+                    <h2>Ưu đãi đặc biệt cho bé!</h2>
+                    <p>Giảm ngay 20% cho đơn hàng đầu tiên - Miễn phí vận chuyển toàn quốc</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="category-buttons">
+                <button class="category-btn active"><i class="bi bi-tshirt"></i> Bé trai</button>
+                <button class="category-btn"><i class="bi bi-dress"></i> Bé gái</button>
+                <button class="category-btn"><i class="bi bi-snow"></i> Mùa đông</button>
+                <button class="category-btn"><i class="bi bi-sun"></i> Mùa hè</button>
+                <button class="category-btn"><i class="bi bi-stars"></i> Phụ kiện</button>
+            </div>
+        </div>
+
+        <section id="best-seller" class="mt-3">
+            <div class="container">
+                <div class="row" id="card-list">
+                    <!-- Sản phẩm sẽ được render ở đây -->
+                </div>
+            </div>
+        </section>
+
+        <div id="pagination" class="mb-5">
+            <nav aria-label="Page navigation">
+                <ul class="pagination pagination-lg justify-content-center gap-2">
+                    <!-- Phân trang sẽ được tạo tự động -->
+                </ul>
+            </nav>
+        </div>
+
+        <hr>
+        <footer class="mx-3 my-5"></footer>
+        <hr>
+        <div class="footer-bottom my-4"></div>
+
+        <div id="progress">
+            <span id="progress-value"><i class="bi bi-chevron-up"></i></span>
+        </div>
+    </div>
+
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+
+    <script>
+        let filteredProducts = [];
+        const itemsPerPage = 8;
+
+        $(function () {
+            $("header").load("navbar.html");
+            $("footer").load("footer.html");
+            $(".footer-bottom").load("footer-bottom.html");
+
+            $("#progress").click(() => $("html, body").animate({ scrollTop: 0 }, 10));
+
+            ShowNavbarWhenScroll();
+            initPagination();
+            fetchProducts();
+            
+            // Thêm sự kiện cho nút danh mục
+            $(".category-btn").click(function() {
+                $(".category-btn").removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+
+        function fetchProducts() {
+            // Tạo dữ liệu mẫu phù hợp với trẻ em
+           const kidsProducts = [
+    {
+        id: 1,
+        title: "Áo thun công chúa",
+        price: "199.000đ",
+        age: "3-5 tuổi",
+        versions: [
+            { color: "Hồng", img_path: "assets/images/nu/e1.webp", price: "199.000đ" },
+            { color: "Tím", img_path: "assets/images/nu/e2.webp", price: "199.000đ" }
+        ]
+    },
+    {
+        id: 2,
+        title: "Quần jeans bé trai",
+        price: "249.000đ",
+        age: "4-6 tuổi",
+        versions: [
+            { color: "Xanh dương", img_path: "assets/images/nu/e3.webp", price: "249.000đ" },
+            { color: "Đen", img_path: "assets/images/nu/e4.webp", price: "249.000đ" }
+        ]
+    },
+    {
+        id: 3,
+        title: "Váy liền công chúa",
+        price: "299.000đ",
+        age: "3-5 tuổi",
+        versions: [
+            { color: "Đỏ", img_path: "assets/images/nu/e5.webp", price: "299.000đ" },
+            { color: "Xanh", img_path: "assets/images/nu/e6.webp", price: "299.000đ" }
+        ]
+    },
+    {
+        id: 4,
+        title: "Áo khoác mùa đông",
+        price: "349.000đ",
+        age: "5-7 tuổi",
+        versions: [
+            { color: "Xanh lá", img_path: "assets/images/nu/e7.webp", price: "349.000đ" },
+            { color: "Cam", img_path: "assets/images/nu/e8.webp", price: "349.000đ" }
+        ]
+    },
+    {
+        id: 5,
+        title: "Bộ đồ thể thao",
+        price: "279.000đ",
+        age: "6-8 tuổi",
+        versions: [
+            { color: "Xanh dương", img_path: "assets/images/nu/e9.webp", price: "279.000đ" },
+            { color: "Đỏ", img_path: "assets/images/nu/e10.webp", price: "279.000đ" }
+        ]
+    },
+    {
+        id: 6,
+        title: "Áo phông siêu nhân",
+        price: "169.000đ",
+        age: "4-6 tuổi",
+        versions: [
+            { color: "Đỏ", img_path: "assets/images/nu/e10.webp", price: "169.000đ" },
+            { color: "Xanh", img_path: "assets/images/nu/e2.webp", price: "169.000đ" }
+        ]
+    },
+    {
+        id: 7,
+        title: "Chân váy xếp ly",
+        price: "219.000đ",
+        age: "5-7 tuổi",
+        versions: [
+            { color: "Hồng", img_path: "assets/images/nu/e3.webp", price: "219.000đ" },
+            { color: "Xanh mint", img_path: "assets/images/nu/e4.webp", price: "219.000đ" }
+        ]
+    },
+    {
+        id: 8,
+        title: "Quần short bé gái",
+        price: "189.000đ",
+        age: "3-5 tuổi",
+        versions: [
+            { color: "Vàng", img_path: "assets/images/nu/e5.webp", price: "189.000đ" },
+            { color: "Tím", img_path: "assets/images/nu/e6.webp", price: "189.000đ" }
+        ]
+    },
+    {
+        id: 9,
+        title: "Bộ đồ ngủ thú bông",
+        price: "259.000đ",
+        age: "2-4 tuổi",
+        versions: [
+            { color: "Xanh dương", img_path: "assets/images/nu/e7.webp", price: "259.000đ" },
+            { color: "Hồng", img_path: "assets/images/nu/e8.webp", price: "259.000đ" }
+        ]
+    },
+    {
+        id: 10,
+        title: "Áo len cổ lọ",
+        price: "229.000đ",
+        age: "5-7 tuổi",
+        versions: [
+            { color: "Trắng", img_path: "assets/images/nu/e9.webp", price: "229.000đ" },
+            { color: "Xám", img_path: "assets/images/nu/e2.webp", price: "229.000đ" }
+        ]
+    },
+    {
+        id: 11,
+        title: "Váy dạ hội công chúa",
+        price: "399.000đ",
+        age: "4-6 tuổi",
+        versions: [
+            { color: "Hồng phấn", img_path: "assets/images/nu/e1.webp", price: "399.000đ" },
+            { color: "Xanh ngọc", img_path: "assets/images/nu/e2.webp", price: "399.000đ" }
+        ]
+    },
+    {
+        id: 12,
+        title: "Bộ đồ bơi bé gái",
+        price: "179.000đ",
+        age: "3-5 tuổi",
+        versions: [
+            { color: "Cam", img_path: "assets/images/nu/e23.webp", price: "179.000đ" },
+            { color: "Xanh biển", img_path: "assets/images/nu/e24.webp", price: "179.000đ" }
+        ]
+    }
+];
+
+            
+            filteredProducts = kidsProducts;
+            updatePagination(filteredProducts.length);
+            renderPage(1);
+        }
+
+        function initPagination() {
+            $(".pagination").on("click", ".page-item:not(.disabled)", function (e) {
+                e.preventDefault();
+                if ($(this).hasClass("active")) return;
+
+                $(".pagination .page-item").removeClass("active");
+                $(this).addClass("active");
+
+                const page = parseInt($(this).text());
+                renderPage(page);
+            });
+        }
+
+        function updatePagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            const $pagination = $(".pagination");
+            $pagination.empty();
+
+            for (let i = 1; i <= totalPages; i++) {
+                $pagination.append(`
+                    <li class="page-item ${i === 1 ? 'active' : ''}">
+                        <a class="page-link" href="#">${i}</a>
+                    </li>
+                `);
+            }
+        }
+
+        function renderPage(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageProducts = filteredProducts.slice(start, end);
+            renderCards(pageProducts);
+            $("html, body").animate({ scrollTop: 0 }, 300);
+        }
+
+        function renderCards(cards) {
+            let cardList = $("#card-list");
+            cardList.empty();
+
+            cards.forEach((card) => {
+                const firstVersion = card.versions[0];
+
+                let cardHTML = `
+                <div class="col-xl-3 col-md-4 col-6 mb-5">
+                    <div class="card">
+                        <div class="age-tag">${card.age}</div>
+                        <a href="./product-detail.html?id=${card.id}" class="overflow-hidden">
+                            <img id="product-image-${card.id}" 
+                                 src="${firstVersion.img_path}" 
+                                 alt="${card.title}" 
+                                 class="card-img-top">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title fw-normal">${card.title}</h5>
+                            <p id="product-price-${card.id}" class="card-text fw-bold">${firstVersion.price}</p>
+                            <div id="color-options-${card.id}" class="d-flex gap-2 align-content-center flex-wrap"></div>
+                        </div>
+                    </div>
+                </div>`;
+                
+                cardList.append(cardHTML);
+                let colorOptionsDiv = $(`#color-options-${card.id}`);
+
+                card.versions.forEach((version, index) => {
+                    const color = window.colorMap[version.color] ?? "#000000";
+                    colorOptionsDiv.append(`
+                        <div class="form-check">
+                            <input 
+                                class="form-check-input" 
+                                id="color-${card.id}-${version.color}" 
+                                type="radio" 
+                                name="color-${card.id}" 
+                                style="cursor: pointer; background-color: ${color};" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="bottom" 
+                                title="${version.color}" 
+                                value="${version.color}" 
+                                data-img="${version.img_path}" 
+                                data-price="${version.price}"
+                                ${index === 0 ? "checked" : ""}
+                            >
+                        </div>
+                    `);
+                });
+
+                $(`input[name="color-${card.id}"]`).change(function () {
+                    $(`#product-image-${card.id}`).attr("src", $(this).data("img"));
+                    $(`#product-price-${card.id}`).text($(this).data("price"));
+                    $(`input[name="color-${card.id}"]`).tooltip('hide');
+                });
+
+                $('[data-bs-toggle="tooltip"]').tooltip();
+            });
+        }
+
+        function ShowNavbarWhenScroll() {
+            let previousScroll = 0;
+            $(window).scroll(function () {
+                let currentScroll = $(this).scrollTop();
+                if (currentScroll > previousScroll) {
+                    $('.navbar').stop().slideUp(1000, "linear");
+                } else {
+                    $('.navbar').stop().slideDown(100, "linear");
+                }
+                previousScroll = currentScroll;
+            });
+        }
+
+        function calcScrollValue() {
+            let pos = $(document).scrollTop();
+            let calcHeight = $(document).height() - $(window).height();
+            let scrollValue = Math.round((pos / calcHeight) * 100);
+
+            if (pos > 100) {
+                $("#progress").fadeIn();
+            } else {
+                $("#progress").fadeOut();
+            }
+
+            $("#progress").css("background", `conic-gradient(var(--primary-color) ${scrollValue}%, var(--light-color) ${scrollValue}%)`);
+        }
+
+        $(window).on("scroll", calcScrollValue);
+        $(window).on("load", calcScrollValue);
+    </script>
+</body>
+
+</html>

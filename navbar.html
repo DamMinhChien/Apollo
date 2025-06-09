@@ -1,5 +1,4 @@
 <!--Navbar-->
-<!-- Bootstrap 5 Navbar with Offcanvas -->
 <nav class="navbar navbar-light bg-light fixed-top">
     <div class="container-fluid px-3 position-relative">
         <!-- Toggle Button: chỉ hiện khi < lg -->
@@ -25,24 +24,66 @@
                 <li class="nav-item"><a class="nav-link" href="./index.html">Trang chủ</a></li>
                 <li class="nav-item"><a class="nav-link" href="./shop.html">Cửa hàng</a></li>
                 <li class="nav-item"><a class="nav-link" href="./product.html">Sản phẩm</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLg" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Danh Mục</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownLg">
-                        <li><a class="dropdown-item" href="./best-seller.html">Hàng mới về</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Áo</a></li>
-                        <li><a class="dropdown-item" href="#">Quần</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Phụ Kiện</a></li>
-                    </ul>
+                <li class="nav-item dropdown mega-dropdown position-static">
+                <a class="nav-link dropdown-toggle" href="#" id="megaMenu" role="button" data-bs-toggle="dropdown"aria-expanded="false">Danh Mục</a>
+                <div class="dropdown-menu w-100 p-4 border-0 shadow-lg rounded-0" aria-labelledby="megaMenu">
+                    <div class="row">
+                    <!-- Cột NAM -->
+                    <div class="col-lg-3">
+                        <h6 class="fw-bold text-uppercase">Nam ↗</h6>
+                        <ul class="list-unstyled">
+                        <li><a href="nam.html" class="mega-item"><img src="assets/images/img1/na1.webp"> Áo khoác nam <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/na2.webp"> Áo nam <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/na3.webp"> Quần nam <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/na4.webp"> Đồ thể thao nam <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/na5.webp"> Đồ mặc trong & Đồ lót nam <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/na6.webp"> Sản phẩm khác <span>›</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cột NỮ -->
+                    <div class="col-lg-3">
+                        <h6 class="fw-bold text-uppercase">Nữ ↗</h6>
+                        <ul class="list-unstyled">
+                        <li><a href="/best-seller.html" class="mega-item"><img src="assets/images/img1/nu1.webp"> Áo khoác nữ <span>›</span></a></li>
+                        <li><a href="nu.html" class="mega-item"><img src="assets/images/img1/nu2.webp"> Áo nữ <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/nu3.webp"> Quần nữ <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/nu4.webp"> Đồ thể thao nữ <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/nu5.webp"> Đồ mặc trong & Đồ lót nữ <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/nu6.webp"> Sản phẩm khác <span>›</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cột TRẺ EM -->
+                    <div class="col-lg-3">
+                        <h6 class="fw-bold text-uppercase">Trẻ Em ↗</h6>
+                        <ul class="list-unstyled">
+                        <li><a href="treem.html" class="mega-item"><img src="assets/images/img1/te1.webp"> Áo khoác trẻ em <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/te2.webp"> Áo trẻ em <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/te3.webp"> Quần trẻ em <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/te4.webp"> Đồ mặc trong trẻ em <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/te5.webp"> Sản phẩm khác <span>›</span></a></li>
+                        <li><a href="#" class="mega-item"><img src="assets/images/img1/te6.webp"> Phụ kiện trẻ em <span>›</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cột BỘ SƯU TẬP -->
+                    <div class="col-lg-3">
+                        <h6 class="fw-bold text-uppercase">Bộ Sưu Tập</h6>
+                        <div class="collection">
+                        <a href="#"><img src="assets/images/img1/uu1.webp" alt=""><p>YODY Sport Nhẹ Tênh</p></a>
+                        <a href="#"><img src="assets/images/img1/uu2.webp" alt=""><p>BST Peaceful</p></a>
+                        <a href="#"><img src="assets/images/img1/uu3.webp" alt=""><p>BST Jeans</p></a>
+                        <a href="#"><img src="assets/images/img1/uu4.webp" alt=""><p>BST Jeans</p></a>
+                        <a href="#"><img src="assets/images/img1/uu5.webp" alt=""><p>BST Jeans</p></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="./sale.html">Khuyến Mãi</a></li>
                 <li class="nav-item"><a class="nav-link" href="./news.html">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="./recruitment.html">Tuyển dụng</a></li>
             </ul>
 
             <!-- Icon phải -->
@@ -52,20 +93,100 @@
                         <div class="switch"></div>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-search"></i></a></li>
+                <!-- Search icon with dropdown -->
+                <li class="nav-item position-relative">
+                    <a class="nav-link search-icon" href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                    <!-- Search box -->
+                    <div id="searchBoxDesktop" class="position-absolute top-100 end-0 mt-2 bg-white shadow-lg rounded-3 overflow-hidden d-none" style="z-index: 1050; width: 380px;">
+                        <div class="search-header p-3 bg-light">
+                            <h6 class="mb-0 fw-bold">Tìm kiếm sản phẩm</h6>
+                        </div>
+                        <form action="search.html" method="GET" class="search-form">
+                            <input type="text" class="search-input" name="q" placeholder="Nhập từ khóa tìm kiếm..." required>
+                            <button type="submit" class="search-btn">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </form>
+                        <div class="search-suggestions">
+                            <div class="suggestion-header d-flex justify-content-between align-items-center">
+                                <span>Gợi ý tìm kiếm</span>
+                                <a href="#" class="text-decoration-none small">Xem tất cả</a>
+                            </div>
+                            <div class="suggestion-list">
+                                <a href="#" class="suggestion-item">
+                                    <div class="suggestion-img">
+                                        <i class="bi bi-tag-fill text-primary"></i>
+                                    </div>
+                                    <div class="suggestion-text">
+                                        <div class="suggestion-title">Áo khoác nam</div>
+                                        <div class="suggestion-category">Danh mục: Thời trang nam</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="suggestion-item">
+                                    <div class="suggestion-img">
+                                        <i class="bi bi-tag-fill text-success"></i>
+                                    </div>
+                                    <div class="suggestion-text">
+                                        <div class="suggestion-title">Quần jeans nữ</div>
+                                        <div class="suggestion-category">Danh mục: Thời trang nữ</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="suggestion-item">
+                                    <div class="suggestion-img">
+                                        <i class="bi bi-tag-fill text-warning"></i>
+                                    </div>
+                                    <div class="suggestion-text">
+                                        <div class="suggestion-title">Áo thun trẻ em</div>
+                                        <div class="suggestion-category">Danh mục: Thời trang trẻ em</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="suggestion-header">
+                                <span>Tìm kiếm gần đây</span>
+                            </div>
+                            <div class="recent-searches p-3">
+                                <span class="recent-tag">Áo sơ mi</span>
+                                <span class="recent-tag">Quần kaki</span>
+                                <span class="recent-tag">Váy công sở</span>
+                                <span class="recent-tag">Giày thể thao</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item dropdown">
                     <a href="#" id="account" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
                         aria-expanded="false"><i class="bi bi-person"></i></a>
                     <ul id="dropdown-menu-acc" class="dropdown-menu dropdown-menu-end" aria-labelledby="account">
-                        <li><a class="dropdown-item require-login" href="./profile.html">Tài khoản của tôi</a></li>
-                        <li><a class="dropdown-item require-login" href="./purchase.html">Đơn mua</a></li>
                         <li>
-                            <hr class="dropdown-divider">
+                            <a class="dropdown-item require-login" href="./profile.html">
+                                <i class="fas fa-user-circle me-2"></i> Tài khoản của tôi
+                            </a>
                         </li>
-                        <li id="login-li"><a class="dropdown-item" href="./login.html" id="login">Đăng nhập</a></li>
-                        <li id="logout-li" style="display:none;"><a class="dropdown-item" href="#" id="logout">Đăng
-                                xuất</a></li>
+                        <li>
+                            <a class="dropdown-item require-login" href="./lienhe.html">
+                                <i class="fas fa-envelope me-2"></i> Liên hệ
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item require-login" href="./purchase.html">
+                                <i class="fas fa-shopping-bag me-2"></i> Đơn mua
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li id="login-li">
+                            <a class="dropdown-item" href="./login.html" id="login">
+                                <i class="fas fa-sign-in-alt me-2"></i> Đăng nhập
+                            </a>
+                        </li>
+                        <li id="logout-li" style="display:none;">
+                            <a class="dropdown-item" href="#" id="logout">
+                                <i class="fas fa-sign-out-alt me-2"></i> Đăng xuất
+                            </a>
+                        </li>
                     </ul>
+
                 </li>
                 <li class="nav-item " id="username"></li>
                 <li class="nav-item position-relative">
@@ -85,6 +206,32 @@
                     aria-label="Close"></button>
             </div>
             <div class="offcanvas-body px-4">
+                <!-- Search box for mobile -->
+                <div id="searchBoxMobile" class="mb-4 p-3 bg-light rounded-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-search me-2"></i>
+                        <h6 class="mb-0 fw-bold">Tìm kiếm sản phẩm</h6>
+                    </div>
+                    <form action="search.html" method="GET" class="search-form">
+                        <div class="input-group">
+                            <input type="text" class="form-control search-input" name="q" placeholder="Nhập từ khóa tìm kiếm..." required>
+                            <button type="submit" class="btn btn-primary search-btn">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="mt-3">
+                        <div class="suggestion-header mb-2">
+                            <span class="small fw-bold">Gợi ý tìm kiếm</span>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="#" class="recent-tag">Áo khoác nam</a>
+                            <a href="#" class="recent-tag">Quần jeans nữ</a>
+                            <a href="#" class="recent-tag">Áo thun trẻ em</a>
+                        </div>
+                    </div>
+                </div>
+                
                 <ul class="navbar-nav gap-3">
                     <li class="nav-item"><a class="nav-link" href="./index.html">Trang Chủ</a></li>
                     <li class="nav-item"><a class="nav-link" href="./index.html">Cửa Hàng</a></li>
@@ -102,7 +249,7 @@
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="#">Dark Mode</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-search"></i> Tìm kiếm</a></li>
+                    <li class="nav-item"><a class="nav-link search-icon-mobile" href="#"><i class="bi bi-search"></i> Tìm kiếm</a></li>
                     <!-- Tài khoản giống desktop -->
                     <li class="nav-item dropdown">
                         <a href="#" id="account-mobile" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -128,9 +275,401 @@
         </div>
     </div>
 </nav>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<style>
+
+.dropdown-menu {
+    min-width: 200px; 
+    padding: 8px 0;
+}
+
+.dropdown-menu .dropdown-item {
+    padding: 10px 16px;
+    font-size: 15px;
+}
+
+    .dropdown-menu .col-lg-3 {
+        border-right: 1px solid #ddd;
+    }
+
+    .dropdown-menu .col-lg-3:last-child {
+        border-right: none;
+    }
+
+    .dropdown-menu .col-lg-3 {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+
+    /* Mega menu dropdown */
+    .mega-dropdown .dropdown-menu {
+        left: 0;
+        right: 0;
+        top: 100%;
+        border-top: 3px solid #fd5c2b;
+        background-color: #fff;
+        z-index: 1000;
+        min-width: 100%;
+    }
+
+    /* Mục sản phẩm có ảnh */
+    .mega-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+        font-size: 14px;
+        color: #000;
+        text-decoration: none;
+        transition: background-color 0.2s;
+    }
+
+    .mega-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    .mega-item img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .mega-item span {
+        margin-left: auto;
+        font-size: 16px;
+        color: #999;
+    }
+
+    /* Bộ sưu tập */
+    .collection {
+        max-height: 390px;
+        overflow-y: auto;
+        padding-right: 5px;
+    }
+
+    .collection a {
+        display: block;
+        margin-bottom: 15px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .collection img {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 5px;
+        transition: transform 0.3s;
+    }
+
+    .collection img:hover {
+        transform: scale(1.02);
+    }
+
+    .collection p {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    /* Thanh cuộn đẹp */
+    .collection::-webkit-scrollbar {
+        width: 6px;
+    }
+    .collection::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 4px;
+    }
+    .collection::-webkit-scrollbar-thumb:hover {
+        background-color: #999;
+    }
+
+    /* Thiết kế khung tìm kiếm chuyên nghiệp */
+    #searchBoxDesktop {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        border: none;
+        animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .search-header {
+        background: linear-gradient(to right, #fd5c2b, #ff8c5a);
+        color: white;
+    }
+    
+    .search-form {
+        display: flex;
+        height: 60px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .search-input {
+        flex: 1;
+        border: none;
+        padding: 0 25px;
+        font-size: 16px;
+        background: transparent;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+        background: #f8f9fa;
+    }
+    
+    .search-input::placeholder {
+        color: #a0a0a0;
+        font-weight: 300;
+    }
+    
+    .search-btn {
+        width: 60px;
+        background: transparent;
+        border: none;
+        color: #fd5c2b;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+    
+    .search-btn:hover {
+        color: #e04a1a;
+        transform: scale(1.1);
+    }
+    
+    .search-suggestions {
+        background: white;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    .suggestion-header {
+        padding: 12px 20px;
+        font-size: 14px;
+        color: #666;
+        border-bottom: 1px solid #f5f5f5;
+        background: #fafafa;
+        font-weight: 500;
+    }
+    
+    .suggestion-item {
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background 0.2s;
+        border-bottom: 1px solid #f9f9f9;
+        text-decoration: none;
+        color: #333;
+    }
+    
+    .suggestion-item:hover {
+        background: #f8f9fa;
+    }
+    
+    .suggestion-img {
+        width: 36px;
+        height: 36px;
+        border-radius: 5px;
+        background: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        color: #fd5c2b;
+        font-size: 18px;
+    }
+    
+    .suggestion-text {
+        flex: 1;
+    }
+    
+    .suggestion-title {
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 3px;
+        font-size: 15px;
+    }
+    
+    .suggestion-category {
+        font-size: 13px;
+        color: #888;
+    }
+    
+    .recent-searches {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px 15px;
+    }
+    
+    .recent-tag {
+        background: #f5f5f5;
+        border-radius: 20px;
+        padding: 6px 15px;
+        margin: 3px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        color: #555;
+    }
+    
+    .recent-tag:hover {
+        background: #e9ecef;
+        color: #fd5c2b;
+    }
+    
+    /* Animation */
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Thiết kế cho mobile search */
+    #searchBoxMobile .search-form .input-group {
+        border: 1px solid #ddd;
+        border-radius: 50px;
+        overflow: hidden;
+    }
+    
+    #searchBoxMobile .search-input {
+        border: none;
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+    
+    #searchBoxMobile .search-btn {
+        background: #fd5c2b;
+        color: white;
+        padding: 0 20px;
+        border: none;
+    }
+    
+    #searchBoxMobile .search-btn:hover {
+        background: #e04a1a;
+    }
+
+    /* Dark mode adjustments */
+    [data-bs-theme="dark"] #searchBoxDesktop {
+        background-color: #2d2d2d;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    [data-bs-theme="dark"] .search-header {
+        background: linear-gradient(to right, #333, #444);
+    }
+    
+    [data-bs-theme="dark"] .search-input {
+        background-color: #2d2d2d;
+        color: #f0f0f0;
+    }
+    
+    [data-bs-theme="dark"] .search-input:focus {
+        background-color: #3d3d3d;
+    }
+    
+    [data-bs-theme="dark"] .search-input::placeholder {
+        color: #a0a0a0;
+    }
+    
+    [data-bs-theme="dark"] .search-suggestions {
+        background-color: #2d2d2d;
+        color: #f0f0f0;
+    }
+    
+    [data-bs-theme="dark"] .suggestion-header {
+        background-color: #252525;
+        color: #ccc;
+        border-bottom-color: #444;
+    }
+    
+    [data-bs-theme="dark"] .suggestion-item {
+        border-bottom-color: #444;
+        color: #f0f0f0;
+    }
+    
+    [data-bs-theme="dark"] .suggestion-item:hover {
+        background-color: #3d3d3d;
+    }
+    
+    [data-bs-theme="dark"] .suggestion-img {
+        background-color: #3d3d3d;
+    }
+    
+    [data-bs-theme="dark"] .suggestion-title {
+        color: #f0f0f0;
+    }
+    
+    [data-bs-theme="dark"] .recent-tag {
+        background-color: #3d3d3d;
+        color: #ccc;
+    }
+    
+    [data-bs-theme="dark"] .recent-tag:hover {
+        background-color: #4d4d4d;
+        color: #fd5c2b;
+    }
+</style>
 
 <script>
+    // Xử lý chức năng tìm kiếm
+    $(document).ready(function() {
+        // Desktop search
+        $('.search-icon').click(function(e) {
+            e.preventDefault();
+            $('#searchBoxDesktop').toggleClass('d-none');
+            
+            // Focus vào ô tìm kiếm khi hiển thị
+            if (!$('#searchBoxDesktop').hasClass('d-none')) {
+                $('#searchBoxDesktop .search-input').focus();
+            }
+        });
+        
+        // Mobile search
+        $('.search-icon-mobile').click(function(e) {
+            e.preventDefault();
+            // Cuộn đến khung tìm kiếm và focus
+            $('.offcanvas-body').animate({
+                scrollTop: 0
+            }, 300);
+            $('#searchBoxMobile .search-input').focus();
+        });
+        
+        // Đóng khung tìm kiếm khi click ra ngoài (desktop)
+        $(document).click(function(e) {
+            if (!$(e.target).closest('#searchBoxDesktop').length && 
+                !$(e.target).closest('.search-icon').length) {
+                $('#searchBoxDesktop').addClass('d-none');
+            }
+        });
+        
+        // Đóng khung tìm kiếm khi nhấn ESC
+        $(document).keydown(function(e) {
+            if (e.key === "Escape") {
+                $('#searchBoxDesktop').addClass('d-none');
+            }
+        });
+        
+        // Hiệu ứng khi hover vào các gợi ý tìm kiếm
+        $('.suggestion-item').hover(
+            function() {
+                $(this).css('transform', 'translateX(5px)');
+            },
+            function() {
+                $(this).css('transform', 'translateX(0)');
+            }
+        );
+    });
+    
+    // Phần code cũ giữ nguyên
     $(function () {
         $(".toggle-button").click(function () {
             $(this).toggleClass("active")
@@ -278,6 +817,10 @@
             border: none;
             width: 100%;
             margin-top: 0;
+        }
+        
+        #searchBoxMobile {
+            display: block !important;
         }
     }
 </style>

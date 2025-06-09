@@ -294,6 +294,10 @@
             // Kiểm tra tài khoản trong localStorage
             let users = JSON.parse(localStorage.getItem("users") || "[]");
             let user = users.find(u => u.email === email && u.password === password);
+            if (email === "admin@gmail.com" && password === "123456") {
+                window.location.href = "admin/admin.html";
+                return;
+            } 
             if (!user) {
                 alert("Email hoặc mật khẩu không đúng!");
                 return false;

@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Quản lý bán hàng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="/admin/js/thongke.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6fa;
+      padding-top: 50px;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #052c65;
+      padding-top: 20px;
+      color: white;
+    }
+
+    .sidebar h4 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: bold;
+      color: #ffc107;
+    }
+
+    .sidebar a {
+      color: #cbd5e0;
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #1d4ed8;
+      color: white;
+    }
+
+    .main {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .topbar {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .content {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      color: white;
+      background-color: #1e3a8a;
+      margin-top: 20px;
+      border-radius: 0 0 10px 10px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+      .main {
+        margin-left: 0;
+      }
+    }
+    * Custom CSS */
+  .content-section h3 {
+    font-weight: 600;
+    color: #0d6efd; /* màu primary bootstrap */
+  }
+
+  /* Chỉnh lại input tìm kiếm để không quá rộng */
+  input.form-control {
+    max-width: 300px;
+  }
+
+  /* Hiệu ứng hover cho hàng bảng */
+  tbody tr:hover {
+    background-color: #e7f1ff;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Bo tròn cho bảng */
+  .table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  #adminInfo .card {
+  border-radius: 15px;
+  border: none;
+}
+
+#adminInfo .form-label {
+  font-weight: 500;
+  color: #2b2d42;
+}
+
+#adminInfo input[readonly] {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+#avatarUpload {
+  cursor: pointer;
+}
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h4>SHOP ADMIN</h4>
+    <a class="active" onclick="showSection('dashboard', event)"><i class="fas fa-chart-line me-2"></i> Dashboard</a>
+    <a onclick="showSection('sanpham', event)"><i class="fas fa-box me-2"></i> Sản phẩm</a>
+    <a onclick="showSection('donhang', event)"><i class="fas fa-file-invoice me-2"></i> Đơn hàng</a>
+    <a onclick="showSection('khachhang', event)"><i class="fas fa-users me-2"></i> Khách hàng</a>
+    <a onclick="showSection('thongke', event)"><i class="fas fa-chart-pie me-2"></i> Thống kê</a>
+    <a onclick="showSection('nhanvien', event)"><i class="fas fa-user-tie me-2"></i> Nhân viên</a>
+    <a onclick="showSection('adminInfo', event)"><i class="fas fa-user-shield me-2"></i> Quản trị Admin</a>
+  </div>
+
+  <div class="main">
+   <!-- TOPBAR -->
+<div class="topbar fixed-top d-flex justify-content-between align-items-center px-4 py-2 shadow-sm" 
+     style="background: linear-gradient(to right, #1e3c72, #2a5298); color: white; z-index: 999;">
+  <div class="d-flex align-items-center">
+    <i class="fas fa-cogs fa-2x me-2"></i>
+    <h5 class="mb-0 fw-bold">Quản trị hệ thống</h5>
+  </div>
+
+  <div class="dropdown">
+    <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar" class="rounded-circle me-2" width="32" height="32">
+      <span>Admin</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li><span class="dropdown-item-text text-muted">Xin chào: <strong>admin@gmail.com</strong></span></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a id="logoutBtn" class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+    <div class="content">
+      <!-- Dashboard -->
+      <div id="dashboard" class="content-section" style="display:block;">
+        <h3>Trang chủ quản trị</h3>
+        <p>Chào mừng bạn đến với hệ thống quản lý bán hàng.</p>
+        <!-- Các thẻ thông tin nhanh -->
+      <div class="row mt-4">
+        <div class="col-md-3 mb-3">
+          <div class="card text-white bg-primary shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-box me-2"></i>Sản phẩm</h5>
+              <p class="card-text fs-4 fw-bold">120</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card text-white bg-success shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-users me-2"></i>Khách hàng</h5>
+              <p class="card-text fs-4 fw-bold">350</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card text-white bg-warning shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-shopping-cart me-2"></i>Đơn hàng</h5>
+              <p class="card-text fs-4 fw-bold">75</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card text-white bg-danger shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-money-bill-wave me-2"></i>Doanh thu</h5>
+              <p class="card-text fs-4 fw-bold">250 triệu</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Biểu đồ hoặc báo cáo sau này -->
+      <div class="mt-4">
+        <p class="text-muted">Bạn có thể xem thêm báo cáo doanh thu, đơn hàng và sản phẩm bằng biểu đồ ở mục "Thống kê".</p>
+      </div>
+      
+      </div>
+
+<!-- Sản phẩm -->
+<div id="sanpham" class="content-section" style="display:none;">
+  <h3>Quản lý sản phẩm</h3>
+
+  <!-- Nút Thêm sản phẩm (mở modal) -->
+  <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addProductModal">
+    <i class="fas fa-plus"></i> Thêm sản phẩm
+  </button>
+
+  <!-- Modal Thêm sản phẩm -->
+  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <form class="modal-content" id="formAddProduct">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProductModalLabel">Thêm sản phẩm mới</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body row g-3">
+          <div class="col-md-4">
+            <label for="productId" class="form-label">Mã sản phẩm</label>
+            <input type="text" class="form-control" id="productId" placeholder="SPxxx" required>
+          </div>
+          <div class="col-md-8">
+            <label for="productName" class="form-label">Tên sản phẩm</label>
+            <input type="text" class="form-control" id="productName" placeholder="Tên sản phẩm" required>
+          </div>
+          <div class="col-md-4">
+            <label for="productPrice" class="form-label">Giá (VNĐ)</label>
+            <input type="number" class="form-control" id="productPrice" placeholder="Giá" min="0" required>
+          </div>
+          <div class="col-md-4">
+            <label for="productCategory" class="form-label">Danh mục</label>
+            <select class="form-select" id="productCategory" required>
+              <option value="">Chọn danh mục</option>
+              <option value="Điện thoại">Điện thoại</option>
+              <option value="Laptop">Laptop</option>
+              <option value="Phụ kiện">Phụ kiện</option>
+              <option value="Tablet">Tablet</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="productImageFile" class="form-label">Chọn ảnh</label>
+            <input type="file" class="form-control" id="productImageFile" accept="image/*" required>
+          </div>
+          <div class="col-12 text-center">
+            <img id="imagePreview" src="" alt="Xem trước hình" style="max-height:150px; display:none;" class="mt-2 rounded shadow">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Lưu sản phẩm</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bảng sản phẩm -->
+  <table class="table table-bordered table-hover bg-white">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá</th>
+        <th>Hình ảnh</th>
+        <th>Danh mục</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody id="productTableBody">
+      <!-- Sản phẩm sẽ được render bằng JavaScript -->
+    </tbody>
+  </table>
+
+  <!-- Thanh phân trang -->
+  <nav>
+    <ul class="pagination justify-content-center" id="pagination">
+      <!-- Số trang sẽ render ở đây -->
+    </ul>
+  </nav>
+</div>
+
+
+
+      <!-- Đơn hàng -->
+        <div id="donhang" class="content-section" style="display:none;">
+          <h3>Quản lý đơn hàng</h3>
+          <table class="table table-bordered mt-3 align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>Mã đơn</th>
+                <th>Khách hàng</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="orderTableBody">
+              <tr>
+                <td>DH001</td>
+                <td>Nguyễn Văn A</td>
+                <td>21/05/2025</td>
+                <td>5.000.000đ</td>
+                <td><span class="badge bg-warning">Chờ xử lý</span></td>
+                <td>
+                  <button class="btn btn-sm btn-primary btn-confirm">Xác nhận</button>
+                </td>
+              </tr>
+              <tr>
+                <td>DH002</td>
+                <td>Trần Thị B</td>
+                <td>20/05/2025</td>
+                <td>3.200.000đ</td>
+                <td><span class="badge bg-info">Đang giao</span></td>
+                <td>
+                  <button class="btn btn-sm btn-success btn-delivered" disabled>Đã giao</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      <!-- Khách hàng -->
+        <div id="khachhang" class="content-section" style="display:none;">
+          <h3 class="mb-4">Quản lý khách hàng</h3>
+          
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <input type="text" class="form-control w-auto" placeholder="Tìm kiếm khách hàng...">
+            <button class="btn btn-primary">+ Thêm khách hàng</button>
+          </div>
+
+          <div class="table-responsive shadow-sm rounded">
+            <table class="table table-striped table-hover align-middle mb-0">
+              <thead class="table-primary">
+                <tr>
+                  <th scope="col" class="text-center">ID</th>
+                  <th scope="col">Họ tên</th>
+                  <th scope="col">Email</th>
+                  <th scope="col" class="text-center">Số điện thoại</th>
+                  <th scope="col" class="text-center">Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">KH001</td>
+                  <td>Trần Thị B</td>
+                  <td>b@example.com</td>
+                  <td class="text-center">0123456789</td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-sm btn-outline-success me-1" title="Sửa">
+                      <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-danger" title="Xóa">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                  </td>
+                </tr>
+                <!-- Thêm dòng khách hàng khác ở đây -->
+              </tbody>
+            </table>
+          </div>
+           <!-- Modal -->
+        <div class="modal fade" id="modalKhachHang" tabindex="-1" aria-labelledby="modalKhachHangLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <form id="formKhachHang" class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalKhachHangLabel">Thêm khách hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+              </div>
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label for="khachhangID" class="form-label">ID</label>
+                  <input type="text" class="form-control" id="khachhangID" placeholder="VD: KH001" required>
+                </div>
+                <div class="mb-3">
+                  <label for="khachhangTen" class="form-label">Họ tên</label>
+                  <input type="text" class="form-control" id="khachhangTen" placeholder="Họ và tên" required>
+                </div>
+                <div class="mb-3">
+                  <label for="khachhangEmail" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="khachhangEmail" placeholder="example@mail.com" required>
+                </div>
+                <div class="mb-3">
+                  <label for="khachhangSDT" class="form-label">Số điện thoại</label>
+                  <input type="tel" class="form-control" id="khachhangSDT" placeholder="0123456789" required pattern="[0-9]{9,12}">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <nav aria-label="Phân trang khách hàng">
+          <ul class="pagination justify-content-center mt-3">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Trước</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Sau</a>
+            </li>
+          </ul>
+        </nav>
+        </div>
+       
+
+
+      <!-- Thống kê -->
+      <div id="thongke" class="content-section" style="display:none;">
+        <h3>Thống kê tổng quan</h3>
+        <ul>
+          <li>Doanh thu hôm nay: <strong>10.000.000đ</strong></li>
+          <li>Đơn hàng hôm nay: <strong>15</strong></li>
+          <li>Sản phẩm đã bán: <strong>50</strong></li>
+        </ul>
+
+        <div class="row mt-4">
+          <!-- Doanh thu theo tháng -->
+          <div class="col-md-6 mb-4">
+            <h5>Doanh thu theo tháng</h5>
+            <canvas id="chartDoanhThu" style="max-height: 300px;"></canvas>
+          </div>
+
+          <!-- Sản phẩm bán chạy -->
+          <div class="col-md-6 mb-4">
+            <h5>Sản phẩm bán chạy</h5>
+            <canvas id="chartSanPham" style="max-height: 300px;"></canvas>
+          </div>
+
+          <!-- Khách hàng mới theo tháng -->
+          <div class="col-md-6 mb-4">
+            <h5>Khách hàng mới theo tháng</h5>
+            <canvas id="chartKhachHang" style="max-height: 300px;"></canvas>
+          </div>
+
+          <!-- Đơn hàng theo trạng thái -->
+          <div class="col-md-6 mb-4">
+            <h5>Đơn hàng theo trạng thái</h5>
+            <canvas id="chartDonHang" style="max-height: 300px;"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nhân viên -->
+      <div id="nhanvien" class="content-section" style="display:none;">
+        <h3>Quản lý nhân viên</h3>
+        <table class="table table-bordered mt-3">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Tên nhân viên</th>
+              <th>Email</th>
+              <th>Chức vụ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>NV001</td>
+              <td>Phạm Văn C</td>
+              <td>c@example.com</td>
+              <td>Quản lý</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Thêm phần content cho admin -->
+<div id="adminInfo" class="content-section" style="display:none;">
+  <h3>Thông tin quản trị viên</h3>
+  
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-body text-center">
+          <div class="position-relative mb-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" 
+                 class="rounded-circle" 
+                 alt="Avatar" 
+                 width="150" 
+                 height="150"
+                 id="adminAvatar">
+            <label for="avatarUpload" class="btn btn-sm btn-primary position-absolute bottom-0 end-0">
+              <i class="fas fa-camera"></i>
+            </label>
+            <input type="file" 
+                   id="avatarUpload" 
+                   accept="image/*" 
+                   class="d-none"
+                   onchange="previewAvatar(event)">
+          </div>
+          <h5 class="mb-1">Admin</h5>
+          <p class="text-muted mb-3">Quản trị viên cấp cao</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <form id="adminInfoForm">
+            <div class="mb-3">
+              <label class="form-label">Email đăng nhập</label>
+              <input type="email" 
+                     class="form-control" 
+                     value="admin@ictshop.com" 
+                     readonly>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label">Mật khẩu mới</label>
+              <div class="input-group">
+                <input type="password" 
+                       class="form-control" 
+                       id="newPassword"
+                       placeholder="Nhập mật khẩu mới">
+                <button class="btn btn-outline-secondary" 
+                        type="button"
+                        onclick="togglePasswordVisibility('newPassword')">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Xác nhận mật khẩu</label>
+              <div class="input-group">
+                <input type="password" 
+                       class="form-control" 
+                       id="confirmPassword"
+                       placeholder="Xác nhận mật khẩu">
+                <button class="btn btn-outline-secondary" 
+                        type="button"
+                        onclick="togglePasswordVisibility('confirmPassword')">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save me-2"></i>Cập nhật thông tin
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    //dăng xuat
+    document.getElementById("logoutBtn").addEventListener("click", function(e) {
+    e.preventDefault(); // Ngăn link reload
+    localStorage.removeItem("currentUser"); // Xóa trạng thái đăng nhập
+    alert("Đã đăng xuất!");
+    window.location.href = "/login.html"; // Chuyển về trang đăng nhập
+  });
+    function showSection(id, event) {
+      document.querySelectorAll('.content-section').forEach(section => section.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+      if (event) {
+        event.currentTarget.classList.add('active');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const orderTableBody = document.getElementById('orderTableBody');
+
+    // Bắt sự kiện cho các nút xác nhận
+    orderTableBody.addEventListener('click', (e) => {
+      if (e.target.classList.contains('btn-confirm')) {
+        const row = e.target.closest('tr');
+        const statusCell = row.querySelector('td:nth-child(5) > span');
+        // Cập nhật trạng thái đơn
+        statusCell.textContent = 'Đang giao';
+        statusCell.className = 'badge bg-info';
+
+        // Disable nút xác nhận, thay bằng nút "Đã giao"
+        e.target.disabled = true;
+        e.target.textContent = 'Đã xác nhận';
+        e.target.className = 'btn btn-sm btn-secondary';
+
+        // Có thể thêm nút Đã giao ở cột hành động
+        // Hoặc mở thêm nút "Hoàn thành" cho admin click sau này
+      }
+    });
+  });
+
+  //thêm sản phẩm 
+  const formAdd = document.getElementById("formAddProduct");
+  const fileInput = document.getElementById("productImageFile");
+  const imgPreview = document.getElementById("imagePreview");
+
+  fileInput.addEventListener("change", function () {
+    const file = fileInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        imgPreview.src = e.target.result;
+        imgPreview.style.display = "block";
+      };
+      reader.readAsDataURL(file);
+    } else {
+      imgPreview.src = "";
+      imgPreview.style.display = "none";
+    }
+  });
+
+  formAdd.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const newProduct = {
+      id: document.getElementById("productId").value,
+      name: document.getElementById("productName").value,
+      price: parseInt(document.getElementById("productPrice").value),
+      category: document.getElementById("productCategory").value,
+      image: imgPreview.src
+    };
+
+    products.push(newProduct);
+    renderAll();
+
+    const modal = bootstrap.Modal.getInstance(document.getElementById('addProductModal'));
+    modal.hide();
+    formAdd.reset();
+    imgPreview.src = "";
+    imgPreview.style.display = "none";
+  });
+
+  //bảng sản phẩm 
+   const products = [
+    // Giả lập 20 sản phẩm mẫu
+{ id: "SP001", name: "Áo thun nam Basic", price: 150000, image: "https://via.placeholder.com/60", category: "Áo" },
+    { id: "SP002", name: "Quần jean nữ dáng ôm", price: 350000, image: "https://via.placeholder.com/60", category: "Quần" },
+    { id: "SP003", name: "Đầm dạ hội sang trọng", price: 1200000, image: "https://via.placeholder.com/60", category: "Đầm/Váy" },
+    { id: "SP004", name: "Áo sơ mi nam công sở", price: 250000, image: "https://via.placeholder.com/60", category: "Áo" },
+    { id: "SP005", name: "Giày thể thao nữ", price: 500000, image: "https://via.placeholder.com/60", category: "Giày Dép" },
+    { id: "SP006", name: "Mũ lưỡi trai thời trang", price: 90000, image: "https://via.placeholder.com/60", category: "Phụ kiện" },
+    { id: "SP007", name: "Áo khoác kaki nam", price: 450000, image: "https://via.placeholder.com/60", category: "Áo" },
+    { id: "SP008", name: "Chân váy chữ A", price: 220000, image: "https://via.placeholder.com/60", category: "Đầm/Váy" },
+    { id: "SP009", name: "Giày cao gót nữ", price: 650000, image: "https://via.placeholder.com/60", category: "Giày Dép" },
+    { id: "SP010", name: "Túi xách nữ mini", price: 320000, image: "https://via.placeholder.com/60", category: "Phụ kiện" },
+    { id: "SP011", name: "Quần short nam thể thao", price: 180000, image: "https://via.placeholder.com/60", category: "Quần" },
+    { id: "SP012", name: "Áo hoodie unisex", price: 390000, image: "https://via.placeholder.com/60", category: "Áo" },
+    // Thêm nữa nếu muốn
+  ];
+
+  const itemsPerPage = 6;
+  let currentPage = 1;
+
+  function renderProducts() {
+    const tbody = document.getElementById("productTableBody");
+    tbody.innerHTML = "";
+
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginatedProducts = products.slice(start, end);
+
+    paginatedProducts.forEach((p) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${p.id}</td>
+        <td>${p.name}</td>
+        <td>${p.price.toLocaleString("vi-VN")}đ</td>
+        <td><img src="${p.image}" class="img-thumbnail" style="width:60px;"></td>
+        <td>${p.category}</td>
+        <td>
+          <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+
+  function renderPagination() {
+    const totalPages = Math.ceil(products.length / itemsPerPage);
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = "";
+
+    // Nút Prev
+    const prev = document.createElement("li");
+    prev.className = `page-item ${currentPage === 1 ? "disabled" : ""}`;
+    prev.innerHTML = `<a class="page-link" href="#">&laquo;</a>`;
+    prev.onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderAll();
+      }
+    };
+    pagination.appendChild(prev);
+
+    // Các số trang
+    for (let i = 1; i <= totalPages; i++) {
+      const li = document.createElement("li");
+      li.className = `page-item ${currentPage === i ? "active" : ""}`;
+      li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+      li.onclick = () => {
+        currentPage = i;
+        renderAll();
+      };
+      pagination.appendChild(li);
+    }
+
+    // Nút Next
+    const next = document.createElement("li");
+    next.className = `page-item ${currentPage === totalPages ? "disabled" : ""}`;
+    next.innerHTML = `<a class="page-link" href="#">&raquo;</a>`;
+    next.onclick = () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderAll();
+      }
+    };
+    pagination.appendChild(next);
+  }
+
+  function renderAll() {
+    renderProducts();
+    renderPagination();
+  }
+
+  // Khởi tạo lần đầu
+  renderAll();
+
+  //quan ly khách hang
+  document.addEventListener("DOMContentLoaded", () => {
+  const khachhangTableBody = document.querySelector("#khachhang tbody");
+  const searchInput = document.querySelector("#khachhang input[type=text]");
+  const addBtn = document.querySelector("#khachhang button.btn-primary");
+  const form = document.querySelector("#formKhachHang");
+  const modal = new bootstrap.Modal(document.getElementById("modalKhachHang"));
+  const modalTitle = document.getElementById("modalKhachHangLabel");
+  const pagination = document.querySelector("nav[aria-label='Phân trang khách hàng'] ul.pagination");
+
+  // Dữ liệu mẫu 15 khách hàng
+  let khachhangs = [
+    { id: "KH001", ten: "Trần Thị B", email: "b@example.com", sdt: "0123456789" },
+    { id: "KH002", ten: "Nguyễn Văn A", email: "a@example.com", sdt: "0987654321" },
+    { id: "KH003", ten: "Lê Thị C", email: "c@example.com", sdt: "0912345678" },
+    { id: "KH004", ten: "Phạm Văn D", email: "d@example.com", sdt: "0934567890" },
+    { id: "KH005", ten: "Hoàng Thị E", email: "e@example.com", sdt: "0945678901" },
+    { id: "KH006", ten: "Trần Văn F", email: "f@example.com", sdt: "0956789012" },
+    { id: "KH007", ten: "Nguyễn Thị G", email: "g@example.com", sdt: "0967890123" },
+    { id: "KH008", ten: "Lê Văn H", email: "h@example.com", sdt: "0978901234" },
+    { id: "KH009", ten: "Phạm Thị I", email: "i@example.com", sdt: "0989012345" },
+    { id: "KH010", ten: "Hoàng Văn K", email: "k@example.com", sdt: "0990123456" },
+    { id: "KH011", ten: "Trần Thị L", email: "l@example.com", sdt: "0911223344" },
+    { id: "KH012", ten: "Nguyễn Văn M", email: "m@example.com", sdt: "0922334455" },
+    { id: "KH013", ten: "Lê Thị N", email: "n@example.com", sdt: "0933445566" },
+    { id: "KH014", ten: "Phạm Văn O", email: "o@example.com", sdt: "0944556677" },
+    { id: "KH015", ten: "Hoàng Thị P", email: "p@example.com", sdt: "0955667788" },
+  ];
+
+  let currentPage = 1;
+  const rowsPerPage = 5;
+  let filteredData = [...khachhangs];
+  let editIndex = -1; // index khách hàng đang sửa, -1 nếu không sửa
+
+  // Hàm render bảng theo data & trang hiện tại
+  function renderTable() {
+    khachhangTableBody.innerHTML = "";
+
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const pageData = filteredData.slice(start, end);
+
+    if (pageData.length === 0) {
+      khachhangTableBody.innerHTML = `<tr><td colspan="5" class="text-center">Không có dữ liệu</td></tr>`;
+      return;
+    }
+
+    for (const kh of pageData) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td class="text-center">${kh.id}</td>
+        <td>${kh.ten}</td>
+        <td>${kh.email}</td>
+        <td class="text-center">${kh.sdt}</td>
+        <td class="text-center">
+          <button type="button" class="btn btn-sm btn-outline-success me-1 btn-edit" title="Sửa">
+            <i class="bi bi-pencil-fill"></i>
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-danger btn-delete" title="Xóa">
+            <i class="bi bi-trash-fill"></i>
+          </button>
+        </td>
+      `;
+      khachhangTableBody.appendChild(tr);
+    }
+  }
+
+  // Hàm render phân trang
+  function renderPagination() {
+    pagination.innerHTML = "";
+
+    const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+    function createPageItem(page, active = false, disabled = false, text = null) {
+      const li = document.createElement("li");
+      li.className = "page-item";
+      if (active) li.classList.add("active");
+      if (disabled) li.classList.add("disabled");
+      const a = document.createElement("a");
+      a.className = "page-link";
+      a.href = "#";
+      a.textContent = text ?? page;
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (!disabled && currentPage !== page) {
+          currentPage = page;
+          renderTable();
+          renderPagination();
+        }
+      });
+      li.appendChild(a);
+      return li;
+    }
+
+    // nút Trước
+    pagination.appendChild(createPageItem(currentPage - 1, false, currentPage === 1, "Trước"));
+
+    // Các trang
+    for (let i = 1; i <= totalPages; i++) {
+      pagination.appendChild(createPageItem(i, i === currentPage));
+    }
+
+    // nút Sau
+    pagination.appendChild(createPageItem(currentPage + 1, false, currentPage === totalPages, "Sau"));
+  }
+
+  // Hàm lọc theo input tìm kiếm
+  function filterData() {
+    const keyword = searchInput.value.trim().toLowerCase();
+    filteredData = khachhangs.filter(kh =>
+      kh.ten.toLowerCase().includes(keyword) ||
+      kh.email.toLowerCase().includes(keyword) ||
+      kh.sdt.includes(keyword)
+    );
+    currentPage = 1;
+    renderTable();
+    renderPagination();
+  }
+
+  // Khi nhập tìm kiếm
+  searchInput.addEventListener("input", filterData);
+
+  // Mở modal thêm khách hàng
+  addBtn.addEventListener("click", () => {
+    editIndex = -1;
+    modalTitle.textContent = "Thêm khách hàng";
+    form.reset();
+    document.getElementById("khachhangID").disabled = false;
+    modal.show();
+  });
+
+  // Xử lý submit form thêm/sửa khách hàng
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById("khachhangID").value.trim();
+    const ten = document.getElementById("khachhangTen").value.trim();
+    const email = document.getElementById("khachhangEmail").value.trim();
+    const sdt = document.getElementById("khachhangSDT").value.trim();
+
+    // Kiểm tra ID trùng khi thêm mới
+    if (editIndex === -1 && khachhangs.some(kh => kh.id.toLowerCase() === id.toLowerCase())) {
+      alert("ID khách hàng đã tồn tại!");
+      return;
+    }
+
+    if (editIndex === -1) {
+      // Thêm mới
+      khachhangs.push({ id, ten, email, sdt });
+    } else {
+      // Sửa
+      khachhangs[editIndex] = { id, ten, email, sdt };
+    }
+
+    filterData();
+    modal.hide();
+  });
+
+  // Bắt sự kiện cho các nút Sửa, Xóa trong bảng (event delegation)
+  khachhangTableBody.addEventListener("click", (e) => {
+    if (e.target.closest(".btn-edit")) {
+      const tr = e.target.closest("tr");
+      const id = tr.children[0].textContent;
+      editIndex = khachhangs.findIndex(kh => kh.id === id);
+      if (editIndex !== -1) {
+        modalTitle.textContent = "Sửa khách hàng";
+        const kh = khachhangs[editIndex];
+        document.getElementById("khachhangID").value = kh.id;
+        document.getElementById("khachhangID").disabled = true; // không cho sửa ID
+        document.getElementById("khachhangTen").value = kh.ten;
+        document.getElementById("khachhangEmail").value = kh.email;
+        document.getElementById("khachhangSDT").value = kh.sdt;
+        modal.show();
+      }
+    } else if (e.target.closest(".btn-delete")) {
+      const tr = e.target.closest("tr");
+      const id = tr.children[0].textContent;
+      if (confirm(`Bạn có chắc muốn xóa khách hàng ${id} không?`)) {
+        const idx = khachhangs.findIndex(kh => kh.id === id);
+        if (idx !== -1) {
+          khachhangs.splice(idx, 1);
+          filterData();
+        }
+      }
+    }
+  });
+
+  // Khởi tạo ban đầu
+  filterData();  
+});
+
+// Thêm hàm xử lý ảnh đại diện
+function previewAvatar(event) {
+  const reader = new FileReader();
+  reader.onload = function() {
+    const output = document.getElementById('adminAvatar');
+    output.src = reader.result;
+  };
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+
+
+// Xử lý form cập nhật thông tin
+document.getElementById('adminInfoForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const newPassword = document.getElementById('newPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  
+  if(newPassword !== confirmPassword) {
+    alert('Mật khẩu xác nhận không khớp!');
+    return;
+  }
+  
+  // Gửi yêu cầu cập nhật
+  console.log('Cập nhật thông tin:', {
+    newPassword: newPassword
+  });
+  
+  alert('Cập nhật thông tin thành công!');
+  this.reset();
+});
+  </script>
+</body>
+</html>

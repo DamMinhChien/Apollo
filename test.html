@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hover Zoom</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <style>
         .box {
             width: 150px;
@@ -42,13 +43,21 @@
 </head>
 
 <body>
-
-    <div class="box">Hover Me!</div>
-    <div>
-        <input type="radio" name="abc" id="">Click
-        <input type="radio" name="abc" id="">ok
-    </div>
+    <form action="#">
+        <div class="input-group w-25">
+            <input type="text" class="form-control" placeholder="Nhập nội dung cần tìm kiếm" name="search" />
+            <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+        </div>
+    </form>
 
 </body>
+<script src="./assets/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(function () {
+        $("#file").change(function () {
+            $("#imgPreview").attr("src", URL.createObjectURL(this.files[0])).removeClass("d-none")
+        })
+    })
+</script>
 
 </html>

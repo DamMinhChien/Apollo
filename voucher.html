@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher</title>
+    <link rel="icon" href="./assets/images/logo/favicon.png">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./assets/css/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <script src="./assets/js/colorMap.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<style>
+    :root {
+            --primary: #FF6B00;
+            --primary-light: #FFF4EB;
+            --primary-dark: #E05A00;
+            --secondary: #28A745;
+            --discount: #FF4081;
+            --freeship: #2196F3;
+            --buy1get1: #9C27B0;
+            --saved: #4CAF50;
+            --dark: #333;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --border-radius: 16px;
+            --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            font-family: 'Montserrat', sans-serif;
+            background-image: radial-gradient(circle at 15% 50%, rgba(255, 107, 0, 0.05) 0%, rgba(255, 107, 0, 0) 25%), 
+                              radial-gradient(circle at 85% 30%, rgba(40, 167, 69, 0.05) 0%, rgba(40, 167, 69, 0) 25%);
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+         .voucher-section {
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-header h1 {
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            font-size: 2.8rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background: linear-gradient(90deg, var(--primary), var(--discount));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 1.8rem auto 0;
+            line-height: 1.7;
+        }
+        
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .category-tab {
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            background: white;
+            border: 2px solid;
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+        
+        .category-tab.active, .category-tab:hover {
+            color: white;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            transform: translateY(-3px);
+        }
+        
+        .category-tab[data-category="all"] { border-color: var(--primary); color: var(--primary); }
+        .category-tab[data-category="discount"] { border-color: var(--discount); color: var(--discount); }
+        .category-tab[data-category="freeship"] { border-color: var(--freeship); color: var(--freeship); }
+        .category-tab[data-category="buy1get1"] { border-color: var(--buy1get1); color: var(--buy1get1); }
+        .category-tab[data-category="saved"] { border-color: var(--saved); color: var(--saved); }
+        
+        .category-tab[data-category="all"].active, 
+        .category-tab[data-category="all"]:hover { background: var(--primary);color: white; }
+        
+        .category-tab[data-category="discount"].active, 
+        .category-tab[data-category="discount"]:hover { background: var(--discount);color: white; }
+        
+        .category-tab[data-category="freeship"].active, 
+        .category-tab[data-category="freeship"]:hover { background: var(--freeship);color: white; }
+        
+        .category-tab[data-category="buy1get1"].active, 
+        .category-tab[data-category="buy1get1"]:hover { background: var(--buy1get1); color: white; }
+        
+        .category-tab[data-category="saved"].active, 
+        .category-tab[data-category="saved"]:hover { background: var(--saved);color: white; }
+        
+        /* Voucher Grid */
+        .voucher-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .voucher-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: none;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+        
+        .voucher-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            z-index: 1;
+        }
+        
+        /* Màu sắc theo loại voucher */
+        .voucher-card.discount::before { background: var(--discount); }
+        .voucher-card.freeship::before { background: var(--freeship); }
+        .voucher-card.buy1get1::before { background: var(--buy1get1); }
+        .voucher-card.saved::before { background: var(--saved); }
+        
+        .voucher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+        }
+        
+        .voucher-header {
+            padding: 2rem 1.8rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .voucher-card.discount .voucher-header { background: linear-gradient(135deg, rgba(255, 64, 129, 0.1) 0%, rgba(255, 64, 129, 0.05) 100%); }
+        .voucher-card.freeship .voucher-header { background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(33, 150, 243, 0.05) 100%); }
+        .voucher-card.buy1get1 .voucher-header { background: linear-gradient(135deg, rgba(156, 39, 176, 0.1) 0%, rgba(156, 39, 176, 0.05) 100%); }
+        .voucher-card.saved .voucher-header { background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%); }
+        
+        .voucher-tag {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            color: white;
+            padding: 5px 35px;
+            transform: rotate(45deg);
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        
+        .voucher-card.discount .voucher-tag { background: var(--discount); }
+        .voucher-card.freeship .voucher-tag { background: var(--freeship); }
+        .voucher-card.buy1get1 .voucher-tag { background: var(--buy1get1); }
+        .voucher-card.saved .voucher-tag { background: var(--saved); }
+        
+        .voucher-value {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -1px;
+        }
+        
+        .voucher-card.discount .voucher-value { color: var(--discount); }
+        .voucher-card.freeship .voucher-value { color: var(--freeship); }
+        .voucher-card.buy1get1 .voucher-value { color: var(--buy1get1); }
+        .voucher-card.saved .voucher-value { color: var(--saved); }
+        
+        .voucher-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .voucher-card.discount .voucher-title { color: var(--discount); }
+        .voucher-card.freeship .voucher-title { color: var(--freeship); }
+        .voucher-card.buy1get1 .voucher-title { color: var(--buy1get1); }
+        .voucher-card.saved .voucher-title { color: var(--saved); }
+        
+        .voucher-conditions {
+            padding: 1.4rem;
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--dark);
+            font-weight: 500;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .voucher-card.discount .voucher-conditions { background: rgba(255, 64, 129, 0.05); }
+        .voucher-card.freeship .voucher-conditions { background: rgba(33, 150, 243, 0.05); }
+        .voucher-card.buy1get1 .voucher-conditions { background: rgba(156, 39, 176, 0.05); }
+        .voucher-card.saved .voucher-conditions { background: rgba(76, 175, 80, 0.05); }
+        
+        .voucher-body {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .voucher-desc {
+            color: var(--gray);
+            margin-bottom: 1.8rem;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+        
+        .voucher-expiry {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.1rem;
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 1.8rem;
+            border: 1px dashed #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .voucher-expiry strong {
+            color: var(--primary);
+        }
+        
+        .voucher-code {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.4rem;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            border: 2px dashed;
+            margin-bottom: 1.8rem;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+        
+        .voucher-card.discount .voucher-code { color: var(--discount); border-color: var(--discount); }
+        .voucher-card.freeship .voucher-code { color: var(--freeship); border-color: var(--freeship); }
+        .voucher-card.buy1get1 .voucher-code { color: var(--buy1get1); border-color: var(--buy1get1); }
+        .voucher-card.saved .voucher-code { color: var(--saved); border-color: var(--saved); }
+        
+        .voucher-code::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='currentColor' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .voucher-code:hover {
+            transform: scale(1.02);
+        }
+        
+        .voucher-code::after {
+            content: "Sao chép";
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 2;
+        }
+        
+        .voucher-card.discount .voucher-code::after { background: var(--discount); }
+        .voucher-card.freeship .voucher-code::after { background: var(--freeship); }
+        .voucher-card.buy1get1 .voucher-code::after { background: var(--buy1get1); }
+        .voucher-card.saved .voucher-code::after { background: var(--saved); }
+        
+        .voucher-code:hover::after {
+            opacity: 1;
+            top: -15px;
+        }
+        
+        .voucher-actions {
+            display: flex;
+            gap: 1.2rem;
+        }
+        
+        .voucher-btn {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.05rem;
+        }
+        
+        .save-btn {
+            color: white;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .voucher-card.discount .save-btn { background: var(--discount); }
+        .voucher-card.freeship .save-btn { background: var(--freeship); }
+        .voucher-card.buy1get1 .save-btn { background: var(--buy1get1); }
+        .voucher-card.saved .save-btn { background: var(--saved); }
+        
+        .save-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .save-btn.saved {
+            background: var(--saved);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.25);
+        }
+        
+        .save-btn.saved:hover {
+            background: #3d8b40;
+        }
+        
+        .detail-btn {
+            background: transparent;
+            border: 2px solid;
+            transition: var(--transition);
+        }
+        
+        .voucher-card.discount .detail-btn { border-color: var(--discount); color: var(--discount); }
+        .voucher-card.freeship .detail-btn { border-color: var(--freeship); color: var(--freeship); }
+        .voucher-card.buy1get1 .detail-btn { border-color: var(--buy1get1); color: var(--buy1get1); }
+        .voucher-card.saved .detail-btn { border-color: var(--saved); color: var(--saved); }
+        
+        .detail-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 5rem 0;
+            grid-column: 1 / -1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .empty-state i {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            opacity: 0.2;
+            color: var(--gray);
+        }
+        
+        .empty-state h3 {
+            color: var(--dark);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .empty-state p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+</style>
+<script>
+    $(function () {
+        $("header").load("navbar.html")
+        $("footer").load("footer.html")
+        $(".footer-bottom").load("footer-bottom.html")
+        $("#progress").click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 10);
+        })
+        ShowNavbarWhenScroll()
+        zoom()
+        $(".pagination .page-item").click(function (e) {
+            e.preventDefault()
+            $(".pagination .page-item").removeClass("active")
+            $(this).addClass("active")
+        })
+    })
+    function ShowNavbarWhenScroll() {
+        var previousScroll = 0
+        $(window).scroll(function () {
+            var currentScroll = $(this).scrollTop();
+            if (currentScroll > previousScroll) {
+                $('.navbar').stop().slideUp(1000, "linear");
+            } else {
+                $('.navbar').stop().slideDown(100, "linear");
+            }
+            previousScroll = currentScroll;
+        })
+    }
+
+    //voucher
+     const vouchers = [
+            {
+                id: 1,
+                title: "Giảm giá 10%",
+                value: "10%",
+                conditions: "Áp dụng cho đơn hàng từ 200.000đ",
+                description: "Giảm ngay 10% cho toàn bộ đơn hàng khi sử dụng mã này. Không áp dụng đồng thời với các chương trình khuyến mãi khác. Mỗi khách hàng chỉ được sử dụng 1 lần.",
+                expiry: "31/12/2023",
+                code: "VYFOOD10",
+                category: "discount",
+                saved: false,
+                tag: "NỔI BẬT"
+            },
+            {
+                id: 2,
+                title: "Miễn phí vận chuyển",
+                value: "FREESHIP",
+                conditions: "Áp dụng cho đơn hàng từ 99.000đ",
+                description: "Miễn phí vận chuyển toàn quốc cho đơn hàng của bạn. Không giới hạn khoảng cách. Áp dụng cho tất cả đơn hàng đủ điều kiện. Chỉ áp dụng cho vận chuyển tiêu chuẩn.",
+                expiry: "30/06/2024",
+                code: "FREESHIPVY",
+                category: "freeship",
+                saved: false,
+                tag: null
+            },
+            {
+                id: 3,
+                title: "Giảm thẳng 50.000đ",
+                value: "50K",
+                conditions: "Áp dụng cho đơn hàng từ 500.000đ",
+                description: "Giảm ngay 50.000đ cho đơn hàng của bạn. Mỗi tài khoản chỉ được sử dụng 1 lần. Áp dụng cho tất cả sản phẩm. Không áp dụng kết hợp với chương trình khuyến mãi khác.",
+                expiry: "15/07/2024",
+                code: "VYFOOD50K",
+                category: "discount",
+                saved: false,
+                tag: null
+            },
+            {
+                id: 4,
+                title: "Mua 1 tặng 1 nước sốt",
+                value: "BUY1GET1",
+                conditions: "Áp dụng khi mua bất kỳ sản phẩm nào",
+                description: "Mua bất kỳ sản phẩm nào nhận ngay 1 chai nước sốt đặc biệt của Vy Food. Không có giá trị quy đổi thành tiền mặt. Chương trình có giới hạn số lượng.",
+                expiry: "20/08/2024",
+                code: "VYBUY1GET1",
+                category: "buy1get1",
+                saved: true,
+                tag: "MỚI"
+            },
+            {
+                id: 5,
+                title: "Giảm 100.000đ",
+                value: "100K",
+                conditions: "Áp dụng cho đơn hàng từ 800.000đ",
+                description: "Giảm ngay 100.000đ cho đơn hàng của bạn. Không áp dụng cho các sản phẩm khuyến mãi khác. Chỉ áp dụng cho khách hàng thân thiết. Ưu đãi có giới hạn số lượng.",
+                expiry: "20/08/2024",
+                code: "VYFOOD100",
+                category: "discount",
+                saved: true,
+                tag: null
+            },
+            {
+                id: 6,
+                title: "Miễn phí vận chuyển nhanh",
+                value: "FREESHIP+",
+                conditions: "Áp dụng cho đơn hàng từ 300.000đ",
+                description: "Miễn phí vận chuyển nhanh trong nội thành. Áp dụng cho tất cả đơn hàng đủ điều kiện. Giao hàng trong vòng 2 giờ kể từ khi đặt hàng.",
+                expiry: "15/09/2024",
+                code: "FREESHIPPLUS",
+                category: "freeship",
+                saved: false,
+                tag: "ƯU ĐÃI"
+            }
+        ];
+
+        // Hiển thị thông báo
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'info' ? 'fa-info-circle' : 'fa-exclamation-circle'} me-2"></i>${message}`;
+            document.body.appendChild(notification);
+            
+            // Hiệu ứng hiển thị
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Tự động ẩn sau 3 giây
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Render danh sách voucher
+        function renderVouchers(voucherList) {
+            const voucherContainer = document.getElementById('voucher-list');
+            voucherContainer.innerHTML = '';
+            
+            if (voucherList.length === 0) {
+                voucherContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-tag"></i>
+                        <h3>Không tìm thấy mã giảm giá</h3>
+                        <p>Hiện không có mã giảm giá nào phù hợp với lựa chọn của bạn. Vui lòng thử lại với bộ lọc khác.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            voucherList.forEach(voucher => {
+                const voucherCard = document.createElement('div');
+                voucherCard.className = `voucher-card ${voucher.category} ${voucher.saved ? 'saved' : ''}`;
+                
+                let tagHtml = '';
+                if (voucher.tag) {
+                    tagHtml = `<div class="voucher-tag">${voucher.tag}</div>`;
+                }
+                
+                voucherCard.innerHTML = `
+                    <div class="voucher-header">
+                        ${tagHtml}
+                        <div class="voucher-value">${voucher.value}</div>
+                        <div class="voucher-title">${voucher.title}</div>
+                    </div>
+                    <div class="voucher-conditions">
+                        ${voucher.conditions}
+                    </div>
+                    <div class="voucher-body">
+                        <div class="voucher-desc">
+                            ${voucher.description}
+                        </div>
+                        <div class="voucher-expiry">
+                            <i class="fas fa-calendar-check"></i>
+                            <strong>Hạn sử dụng:</strong> ${voucher.expiry}
+                        </div>
+                        <div class="voucher-code" data-code="${voucher.code}">
+                            ${voucher.code}
+                        </div>
+                        <div class="voucher-actions">
+                            <button class="voucher-btn save-btn ${voucher.saved ? 'saved' : ''}" data-id="${voucher.id}">
+                                <i class="fas ${voucher.saved ? 'fa-bookmark' : 'fa-bookmark'}"></i> 
+                                ${voucher.saved ? 'Đã lưu' : 'Lưu mã'}
+                            </button>
+                            <button class="voucher-btn detail-btn" data-id="${voucher.id}">
+                                <i class="fas fa-info-circle"></i> Chi tiết
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                voucherContainer.appendChild(voucherCard);
+            });
+            
+            // Gắn sự kiện sau khi render
+            attachEvents();
+        }
+
+        // Gắn sự kiện cho các nút
+        function attachEvents() {
+            // Sự kiện lưu mã
+            document.querySelectorAll('.save-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const voucherId = parseInt(this.getAttribute('data-id'));
+                    const voucher = vouchers.find(v => v.id === voucherId);
+                    
+                    if (voucher) {
+                        voucher.saved = !voucher.saved;
+                        if (voucher.saved) {
+                            showNotification('Đã lưu mã giảm giá thành công!', 'success');
+                        } else {
+                            showNotification('Đã bỏ lưu mã giảm giá', 'info');
+                        }
+                        
+                        // Cập nhật giao diện nếu đang ở tab "Đã lưu"
+                        const currentCategory = document.querySelector('.category-tab.active').getAttribute('data-category');
+                        if (currentCategory === 'saved') {
+                            filterVouchers('saved');
+                        } else {
+                            renderVouchers(filterByCategory(currentCategory));
+                        }
+                    }
+                });
+            });
+            
+            // Sự kiện sao chép mã
+            document.querySelectorAll('.voucher-code').forEach(codeEl => {
+                codeEl.addEventListener('click', function() {
+                    const code = this.getAttribute('data-code');
+                    navigator.clipboard.writeText(code).then(() => {
+                        showNotification(`Đã sao chép mã <strong>${code}</strong>!`, 'info');
+                    });
+                });
+            });
+            
+            // Sự kiện xem chi tiết
+            document.querySelectorAll('.detail-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const voucherId = parseInt(this.getAttribute('data-id'));
+                    const voucher = vouchers.find(v => v.id === voucherId);
+                    
+                    if (voucher) {
+                        showVoucherDetail(voucher);
+                    }
+                });
+            });
+        }
+
+        // Lọc voucher theo danh mục
+        function filterByCategory(category) {
+            if (category === 'all') return vouchers;
+            if (category === 'saved') return vouchers.filter(v => v.saved);
+            return vouchers.filter(v => v.category === category);
+        }
+
+        // Hiển thị voucher theo bộ lọc
+        function filterVouchers(category) {
+            const filteredVouchers = filterByCategory(category);
+            renderVouchers(filteredVouchers);
+        }
+
+        // Hiển thị chi tiết voucher
+        function showVoucherDetail(voucher) {
+            // Tạo modal chi tiết
+            const modalHtml = `
+                <div class="modal" id="voucherDetailModal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5); position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 1050;">
+                    <div class="modal-dialog modal-dialog-centered" style="position: relative; top: 50%; transform: translateY(-50%); max-width: 600px;">
+                        <div class="modal-content" style="border-radius: 16px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.25);">
+                            <div class="modal-header" style="background: #f8f9fa; border-bottom: 1px solid #e9ecef; padding: 1.5rem;">
+                                <h5 class="modal-title" style="font-weight: 700; font-size: 1.5rem;">${voucher.title}</h5>
+                                <button type="button" class="btn-close" onclick="document.getElementById('voucherDetailModal').remove()" style="border: none; background: none; font-size: 1.5rem; cursor: pointer;">×</button>
+                            </div>
+                            <div class="modal-body" style="padding: 2rem;">
+                                <div class="d-flex justify-content-center mb-4">
+                                    <div class="p-4 rounded-circle" style="width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; 
+                                        background: ${voucher.category === 'discount' ? 'rgba(255, 64, 129, 0.1)' : 
+                                        voucher.category === 'freeship' ? 'rgba(33, 150, 243, 0.1)' : 
+                                        voucher.category === 'buy1get1' ? 'rgba(156, 39, 176, 0.1)' : 'rgba(76, 175, 80, 0.1)'}; 
+                                        border: 2px dashed ${voucher.category === 'discount' ? '#FF4081' : 
+                                        voucher.category === 'freeship' ? '#2196F3' : 
+                                        voucher.category === 'buy1get1' ? '#9C27B0' : '#4CAF50'};">
+                                        <span class="display-4 fw-bold" style="color: ${voucher.category === 'discount' ? '#FF4081' : 
+                                        voucher.category === 'freeship' ? '#2196F3' : 
+                                        voucher.category === 'buy1get1' ? '#9C27B0' : '#4CAF50'};">${voucher.value}</span>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 style="font-size: 1.1rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;"><i class="fas fa-tag"></i> Mã giảm giá</h6>
+                                    <div class="bg-light p-3 rounded text-center fw-bold fs-5" 
+                                         style="border: 2px dashed #ccc; letter-spacing: 2px;">${voucher.code}</div>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 style="font-size: 1.1rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;"><i class="fas fa-info-circle"></i> Mô tả</h6>
+                                    <p>${voucher.description}</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <h6 style="font-size: 1.1rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;"><i class="fas fa-check-circle"></i> Điều kiện</h6>
+                                        <p>${voucher.conditions}</p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h6 style="font-size: 1.1rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;"><i class="fas fa-calendar-check"></i> Hạn sử dụng</h6>
+                                        <p>${voucher.expiry}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="background: #f8f9fa; border-top: 1px solid #e9ecef; padding: 1.2rem 2rem;">
+                                <button type="button" class="btn btn-secondary" onclick="document.getElementById('voucherDetailModal').remove()" style="background: #6c757d; border: none; padding: 0.7rem 1.5rem; border-radius: 8px; color: white; font-weight: 600; cursor: pointer;">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Thêm modal vào DOM
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+
+        // Khởi tạo trang
+        document.addEventListener('DOMContentLoaded', function() {
+            // Render tất cả voucher ban đầu
+            renderVouchers(vouchers);
+            
+            // Sự kiện cho các tab phân loại
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Cập nhật tab active
+                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Lọc và hiển thị voucher
+                    const category = this.getAttribute('data-category');
+                    filterVouchers(category);
+                });
+            });
+        });
+</script>
+<body>
+    <div class="wrapper" class="text-dark">
+        <header></header>
+
+    <section class="voucher-section">
+        <div class="section-header">
+            <h1>Mã Giảm Giá Đặc Biệt</h1>
+            <p>Khám phá các ưu đãi độc quyền từ Apollo. Lưu ngay mã giảm giá để tận hưởng những ưu đãi hấp dẫn khi mua sắm các sản phẩm chất lượng cao!</p>
+        </div>
+        
+        <div class="category-tabs">
+            <div class="category-tab active" data-category="all">
+                <i class="fas fa-star"></i> Tất cả
+            </div>
+            <div class="category-tab" data-category="discount">
+                <i class="fas fa-percent"></i> Giảm giá
+            </div>
+            <div class="category-tab" data-category="freeship">
+                <i class="fas fa-truck"></i> Miễn phí vận chuyển
+            </div>
+            <div class="category-tab" data-category="buy1get1">
+                <i class="fas fa-gift"></i> Mua 1 tặng 1
+            </div>
+            <div class="category-tab" data-category="saved">
+                <i class="fas fa-bookmark"></i> Đã lưu
+            </div>
+        </div>
+        
+        <div class="voucher-container" id="voucher-list">
+            <!-- Vouchers will be loaded here -->
+        </div>
+    </section>
+
+       
+        <hr>
+        <footer class="mx-3 my-5"></footer>
+        <hr>
+        <div class="footer-bottom my-4"></div>
+        <div id="progress">
+            <span id="progress-value"><i class="bi bi-chevron-up"></i></span>
+        </div>
+    </div>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
